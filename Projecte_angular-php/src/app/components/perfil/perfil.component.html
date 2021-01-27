@@ -13,7 +13,7 @@
                     alt="User-Profile-Image"
                   />
                 </div>
-                <h6 class="f-w-600">QuimMP</h6>
+                <h6 class="f-w-600">{{alumno.nickname}}</h6>
                 <p>Alumno</p>
                 <i
                   class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
@@ -27,30 +27,30 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <p class="m-b-10 f-w-600">Nombre</p>
-                    <h6 class="text-muted f-w-400">Quim</h6>
+                    <h6 class="text-muted f-w-400">{{alumno.firstname}}</h6>
                   </div>
                   <div class="col-sm-6">
                     <p class="m-b-10 f-w-600">Apellidos</p>
-                    <h6 class="text-muted f-w-400">Martínez Piqué</h6>
+                    <h6 class="text-muted f-w-400">{{alumno.lastname}}</h6>
                   </div>
                   <div class="col-sm-6">
                     <p class="m-b-10 f-w-600">Email</p>
-                    <h6 class="text-muted f-w-400">qmartinez@useit.es</h6>
+                    <h6 class="text-muted f-w-400">{{alumno.email}}</h6>
                   </div>
                   <div class="col-sm-6">
                     <p class="m-b-10 f-w-600">Contraseña</p>
-                    <h6 class="text-muted f-w-400">*******</h6>
+                    <h6 class="text-muted f-w-400">{{alumno.password}}</h6>
                   </div>
                 </div>
                 <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
                   Rankings
                 </h6>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">1. BONUS_DAW</p>
-                    <h6 class="text-muted f-w-400">16 alumnos</h6>
+                <div class="row" >
+                  <div class="col-sm-6" *ngFor="let rank of rankingArray">
+                    <p class="m-b-10 f-w-600">{{rank.name}}</p>
+                    <h6 class="text-muted f-w-400">{{rank.numStudents}} alumnos</h6>
                   </div>
-                  <div class="col-sm-6">
+                  <!--<div class="col-sm-6">
                     <p class="m-b-10 f-w-600">2. BONUS_DAM</p>
                     <h6 class="text-muted f-w-400">21 alumnos</h6>
                   </div>
@@ -65,7 +65,7 @@
                   <div class="col-sm-6">
                     <p class="m-b-10 f-w-600">5. BONUS_SMX</p>
                     <h6 class="text-muted f-w-400">28 alumnos</h6>
-                  </div>
+                  </div>-->
 
                   <div class="col-sm-12">
                     <img
