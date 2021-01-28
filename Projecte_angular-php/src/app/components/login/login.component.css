@@ -175,3 +175,9 @@ input {
 	height: 40px;
 	width: 40px;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .container{
+    transform: translateY(25%);
+  }
+}

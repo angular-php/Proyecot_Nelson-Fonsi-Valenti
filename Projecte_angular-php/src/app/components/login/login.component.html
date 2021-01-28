@@ -1,14 +1,25 @@
 <div class="container" id="container">
 	<div class="form-container sign-in-container">
-		<form action="#">
+    <form [formGroup]="formLogin" (ngSubmit)="submitLogin()">
+      <input type="text" [formControlName]="'username'"/>
+      <!-- <div *ngIf="form.get('username').hasError('required')">
+          Username is a required field
+      </div>
+
+      [disabled]="!form.valid"-->
+
+      <input type="password" [formControlName]="'password'"/>
+      <button  type="submit">Submit</button>
+    </form>
+    <label>
       <h1>Login</h1>
       <br>
 			<span>Utiliza tu cuenta:</span>
-			<input type="email" placeholder="Email" />
+			<input type="email" [formControl]="email" placeholder="Email" />
       <input type="password" placeholder="*********" />
       <br>
-			<button>Sign In</button>
-		</form>
+			<button type="submit">Sign In</button>
+    </label>
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
