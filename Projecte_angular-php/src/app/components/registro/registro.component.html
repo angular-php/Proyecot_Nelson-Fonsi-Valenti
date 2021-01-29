@@ -1,44 +1,121 @@
 <div class="wrapper">
+
   <div class="inner">
+
+    <!-- Imagen Izquierda -->
     <img src="assets/img/image-3.png" alt="" class="image-1">
-    <form action="">
+
+    <form [formGroup]="registro">
+
       <h3>Registrarse</h3>
+
+
+      <!-- Nick -->
       <div class="form-holder">
         <span class="lnr lnr-user"></span>
-        <input type="text" class="form-control" placeholder="Nick">
+        <input [class.is-invalid]="registro.get('nick').touched && registro.get('nick').invalid" type="text"
+          class="form-control" formControlName="nick" placeholder="Nick" required minlength="4">
       </div>
+
+      <div
+        *ngIf="registro.get('nick').invalid && registro.get('nick').errors && (registro.get('nick').dirty || registro.get('cpass').touched)">
+        <small class="text-danger" *ngIf="registro.get('nick').hasError('required')">
+          Introduce un Nick (Obligatorio)
+        </small>
+        <small class="text-danger" *ngIf="registro.get('nick').hasError('minlength')">
+          Minimo de {{registro.get('nick').errors.minlength.requiredLength}} caracteres.
+        </small>
+      </div>
+
+      <!-- Password -->
       <div class="form-holder">
         <span class="lnr lnr-lock"></span>
-        <input type="password" class="form-control" placeholder="Password">
+        <input [class.is-invalid]="registro.get('pass').touched && registro.get('pass').invalid" type="password"
+          class="form-control" formControlName="pass" placeholder="Password" required>
       </div>
+
+      <div
+        *ngIf="registro.get('pass').invalid && registro.get('pass').errors && (registro.get('pass').dirty || registro.get('pass').touched)">
+        <small class="text-danger" *ngIf="registro.get('pass').hasError('required')">
+          Introduce una Contraseña (Obligatorio)
+        </small>
+        <small class="text-danger" *ngIf="registro.get('pass').hasError('minlength')">
+          Minimo de {{registro.get('pass').errors.minlength.requiredLength}} caracteres.
+        </small>
+        <small class="text-danger" *ngIf="registro.get('pass').hasError('maxlength')">
+          Máximo de {{registro.get('pass').errors.maxlength.requiredLength}} caracteres.
+        </small>
+      </div>
+
+      <!-- Confirm Password -->
       <div class="form-holder">
         <span class="lnr lnr-lock"></span>
-        <input type="password" class="form-control" placeholder="Confirm Password">
+        <input [class.is-invalid]="registro.get('cpass').touched && registro.get('cpass').invalid" type="password"
+          class="form-control" formControlName="cpass" placeholder="Confirm Password" required>
       </div>
+
+      <div
+        *ngIf="registro.get('cpass').invalid && registro.get('cpass').errors && (registro.get('cpass').dirty || registro.get('cpass').touched)">
+        <small class="text-danger" *ngIf="registro.get('cpass').hasError('required')">
+          Repite la contraseña
+        </small>
+        <small class="text-danger" *ngIf="registro.get('cpass').hasError('compare')">
+          Las contraseñass no coinciden
+        </small>
+      </div>
+
+      <!-- Correo Electronico -->
       <div class="form-holder">
         <span class="lnr lnr-envelope"></span>
-        <input type="email" class="form-control" placeholder="Correo Electronico">
+        <input [class.is-invalid]="registro.get('email').touched && registro.get('email').invalid" type="email"
+          class="form-control" formControlName="email" placeholder="Correo Electronico" required>
       </div>
+
+      <!-- FirstName -->
       <div class="form-holder">
         <span class="lnr lnr-pencil"></span>
-        <input type="text" class="form-control" placeholder="Nombre">
+        <input [class.is-invalid]="registro.get('firstname').touched && registro.get('firstname').invalid" type="text"
+          class="form-control" formControlName="firstname" placeholder="Nombre" required>
       </div>
+
+      <!-- LastName -->
       <div class="form-holder">
         <span class="lnr lnr-pencil"></span>
-        <input type="text" class="form-control" placeholder="Apellidos">
+        <input [class.is-invalid]="registro.get('lastname').touched && registro.get('lastname').invalid" type="text"
+          class="form-control" formControlName="lastname" placeholder="Apellidos" required>
       </div>
+
+      <!-- Centro -->
       <div class="form-holder">
         <span class="lnr lnr-graduation-hat"></span>
-        <input type="text" class="form-control" placeholder="Centro">
+        <input [class.is-invalid]="registro.get('centro').touched && registro.get('centro').invalid" type="text"
+          class="form-control" formControlName="centro" placeholder="Centro" required>
       </div>
-      <button>
+
+      <!-- <button>
         <span>Registrar</span>
-      </button>
+      </button> -->
+
+      <div class="buttons">
+        <div class="container">
+          <a class="btn effect01" target="_blank"><span>Registrarse</span></a>
+        </div>
+        <div class="container">
+          <a class="btn effect01" target="_blank"><span>Ya tengo cuenta</span></a>
+        </div>
+      </div>
+
+
+
     </form>
+
+    <!-- {{registro.value | json}} -->
+
+    <!-- Imagen Derecha -->
     <img src="assets/img/image-2.png" alt="" class="image-2">
+
   </div>
 
 </div>
 
-<script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/main.js"></script>
