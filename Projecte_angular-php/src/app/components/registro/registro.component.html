@@ -71,6 +71,16 @@
           class="form-control" formControlName="email" placeholder="Correo Electronico" required>
       </div>
 
+      <div
+        *ngIf="registro.get('email').invalid && registro.get('email').errors && (registro.get('email').dirty || registro.get('email').touched)">
+        <small class="text-danger" *ngIf="registro.get('email').hasError('required')">
+          Introduce un Correo Electronico (Obligatorio)
+        </small>
+        <small class="text-danger" *ngIf="registro.get('email').hasError('email')">
+          Introduce un correo valido con @ i la continuación
+        </small>
+      </div>
+
       <!-- FirstName -->
       <div class="form-holder">
         <span class="lnr lnr-pencil"></span>
@@ -98,10 +108,12 @@
 
       <div class="buttons">
         <div class="container">
-          <a class="btn effect01" target="_blank"><span>Registrarse</span></a>
+          <button type="submit" class="btn effect01" target="_blank" [disabled]="!registro.valid"
+            (click)="sweetAlertRegistrarte()"><span>Registrarse</span>
+          </button>
         </div>
         <div class="container">
-          <a class="btn effect01" target="_blank"><span>Ya tengo cuenta</span></a>
+          <a class="btn effect01" target="_blank" (click)="sweetAlertLogin()"><span>Ya tengo cuenta</span></a>
         </div>
       </div>
 
