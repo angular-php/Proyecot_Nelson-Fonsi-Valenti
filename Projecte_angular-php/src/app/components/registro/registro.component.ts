@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor() { }
+  constructor(private usuarioService: UsuarioService) { }
 
   registro = new FormGroup({
 
@@ -25,29 +26,27 @@ export class RegistroComponent implements OnInit {
   });
 
   sweetAlertRegistrarte() {
+
     Swal.fire({
       icon: 'success',
       text: 'Usuaro registrado!',
     })
+
   }
 
-  sweetAlertLogin() {
-    Swal.fire({
-      title: 'Estas seguro que tienes cuenta?',
-      showDenyButton: true,
-      confirmButtonText: `Si`,
-      denyButtonText: `No`,
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire('Perfecto!', 'Vamos al registro....', 'success')
-      } else if (result.isDenied) {
-        Swal.fire('Registrate primero!', '', 'info')
-      }
-    })
-  }
+  botonLogin() {}
 
   ngOnInit(): void {
+
+    // this.usuarioService.RegistrarUsuario(
+    //   this.registro.controls.nick.value,
+    //   this.registro.controls.pass.value,
+    //   this.registro.controls.email.value,
+    //   this.registro.controls.firstname.value,
+    //   this.registro.controls.lastname.value,
+    //   this.registro.controls.centro.value
+    //   );
+
   }
 
 }
