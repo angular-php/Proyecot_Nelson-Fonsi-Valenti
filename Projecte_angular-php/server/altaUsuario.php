@@ -1,4 +1,9 @@
 <?php
+  header('Access-Control-Allow-Origin: *');
+  header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+  //header('Content-Type: text/html; charset=UTF-8');
+  echo 'ghdfhgsdf';
+
 
   class Usuario{
 
@@ -22,34 +27,21 @@
     }
 
     //Insertar usuario
-    public function Insertar(Usuario $u) {
+    public function InsertarAlumno(Usuario $u) {
       try {
-          $consulta="INSERT INTO usuarios(nombre, apellido, correo, contrasena) VALUES (?,?,?,?);";
+          $consulta="INSERT INTO alumnos(nick, password, email, firstName, lastName) VALUES (?,?,?,?,?);";
           $this->pdo->prepare($consulta)->execute(array(
               $u->getNick(),
               $u->getPassword(),
               $u->getEmail(),
               $u->getFirstName(),
-              $u->getLastName(),
-              $u->getCenter()
+              $u->getLastName()
           ));
+          $this->pdo->Insertar($u);
       } catch (Exception $e) {
           die($e->getMessage());
       }
     }
-
-  //   // Guardar usuario
-  //   public function Guardar() {
-  //     $u = new Usuario;
-  //     $u->setNick($_POST['nick']);
-  //     $u->setNombre($_POST['nombre']);
-  //     $u->setApellido($_POST['apellido']);
-  //     $u->setCorreo($_POST['correo']);
-  //     $u->setContrasena($_POST['contrasena']);
-
-  //     $this->modelo->Insertar($u);
-  //     header("location:?c=usuario");
-  // }
 
     // Getters Setters
     public function getNick() {

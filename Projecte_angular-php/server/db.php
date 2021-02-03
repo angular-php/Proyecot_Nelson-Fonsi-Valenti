@@ -1,11 +1,14 @@
 <?php
+  header('Access-Control-Allow-Origin: *');
+  header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+  header('Content-Type: text/html; charset=UTF-8');
 
   class BasedeDatos
   {
     //Datos BBDD
     public const servidor = "localhost";
     public const usuariobd = "root";
-    public const password = "usbw";
+    public const password = "";
     public const nombrebd = "angularphp";
 
     //Conexion con la BBDD
