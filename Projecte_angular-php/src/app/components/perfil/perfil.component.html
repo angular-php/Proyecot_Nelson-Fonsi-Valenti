@@ -14,9 +14,9 @@
                     width="50%"
                   />
                 </div>
-                <h6 class="f-w-600">{{usuario.nickname}}</h6>
-                <p *ngIf="usuario.student === true">Alumno</p>
-                <p *ngIf="usuario.student === false">Profesor</p>
+                <p>Alumno</p>
+                <h6 class="f-w-600">{{nickname}}</h6>
+                <br>
                 <i
                   class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
                 ></i>
@@ -36,7 +36,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control text-muted f-w-400" placeholder="Nombre" formControlName="fname" [(ngModel)]="usuario.firstname">
+                        <input type="text" class="form-control text-muted f-w-400" placeholder="Nombre" formControlName="fname" >
                       </div>
                       <div *ngIf="!perfilForm.controls.fname.valid && perfilForm.dirty">
                         <div class="validation-errors">
@@ -55,7 +55,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon2"><i class="far fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control text-muted f-w-400" placeholder="Apellidos" formControlName="lname" [(ngModel)]="usuario.lastname">
+                        <input type="text" class="form-control text-muted f-w-400" placeholder="Apellidos" formControlName="lname">
                       </div>
                       <div *ngIf="!perfilForm.controls.lname.valid && perfilForm.dirty">
                         <div class="validation-errors">
@@ -73,7 +73,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon3"><i class="far fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control text-muted f-w-400" placeholder="Email" formControlName="email" [(ngModel)]="usuario.email">
+                        <input type="email" class="form-control text-muted f-w-400" placeholder="Email" formControlName="email">
                       </div>
                       <div *ngIf="!perfilForm.controls.email.valid && perfilForm.dirty">
                         <div class="validation-errors">
@@ -91,7 +91,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon3"><i class="fas fa-unlock-alt"></i></span>
                         </div>
-                        <input type="password" class="form-control text-muted f-w-400" placeholder="Contraseña" formControlName="password" [(ngModel)]="usuario.password">
+                        <input type="password" class="form-control text-muted f-w-400" placeholder="Contraseña" formControlName="password">
                         <div class="input-group-prepend">
                           <button class="btn btn-outline-secondary" type="button"><i class="far fa-edit"></i></button>
                         </div>
@@ -106,7 +106,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6" *ngIf="usuario.student === false">
+                    <!-- <div class="col-sm-6">
                       <p class="m-b-10 f-w-600">Centro</p>
                       <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
@@ -114,7 +114,7 @@
                         </div>
                         <input type="text" class="form-control text-muted f-w-400" placeholder="Centro" value="{{usuario.center}}">
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </form>
                 <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
@@ -125,20 +125,20 @@
                     <p class="m-b-10 f-w-600">{{rank.name}}</p>
                     <h6 class="text-muted f-w-400">{{rank.numStudents}} usuarios</h6>
                   </div>
-                  <div class="col-sm-12" *ngIf="usuario.student === true">
+                  <div class="col-sm-12">
                     <img
                       src="assets/img/student.svg"
                       alt="student profile"
                       width="50%"
                     />
                   </div>
-                  <div class="col-sm-12" *ngIf="usuario.student === false">
+                  <!-- <div class="col-sm-12">
                     <img
                       src="assets/img/professor.svg"
                       alt="professor profile"
                       width="50%"
                     />
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { Ranking } from 'src/app/models/ranking.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-perfil',
@@ -9,7 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-
+  nickname: string;
   usuario: Usuario;
   rankingArray: Ranking[] = [];
 
@@ -37,9 +38,10 @@ export class PerfilComponent implements OnInit {
   };
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) {
 
     this.perfilForm = this.formBuilder.group({
+
       fname: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lname: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.email]),
@@ -49,9 +51,29 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.selectUser(2);
     this.rankingArray.push(new Ranking('BONUS_DAW', 16));
     this.rankingArray.push(new Ranking('BONUS_DAM', 21));
-    this.usuario = new Usuario('QuimMP','Quim','Martinez Pique', 'qmartinez@useit.es', '123456', true, this.rankingArray, null, "ILERNA");
+
+    //this.usuario = new Usuario('QuimMP','Quim','Martinez Pique', 'qmartinez@useit.es', '123456', true, this.rankingArray, null, "ILERNA");
+  }
+
+  selectUser(id) {
+    this.usuarioService.getUsuario(id).subscribe((resp => {
+      this.usuario = new Usuario(resp[0].nick, resp[0].firstName, resp[0].lastName, resp[0].email, resp[0].password, this.rankingArray);
+      console.log(this.usuario);
+      this.nickname = resp[0].nick;
+      this.perfilForm.setValue({
+        fname: this.usuario.firstname,
+        lname: this.usuario.lastname,
+        email: this.usuario.email,
+        password: this.usuario.password
+      });
+
+
+    }), (e => {
+      console.log(e);
+    }));
   }
 
 }
