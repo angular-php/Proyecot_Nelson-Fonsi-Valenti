@@ -3,9 +3,14 @@
     <!-- Imagen Izquierda -->
     <img src="assets/img/image-3.png" alt="" class="image-1" />
 
-    <form [formGroup]="registro" method="POST" *ngIf="mostrar === true" class="container">
+    <form
+      [formGroup]="registro"
+      method="POST"
+      *ngIf="mostrar === true"
+      class="container"
+    >
       <!-- TITULO PAGINA -->
-      <br>
+      <br />
       <h3>Registrarse Alumno</h3>
 
       <!-- Botones PROFE-ALUMNO -->
@@ -51,9 +56,7 @@
             *ngIf="registro.get('nick').hasError('minlength')"
           >
             Minimo de
-            {{
-              registro.get("nick").errors.minlength.requiredLength
-            }}
+            {{ registro.get("nick").errors.minlength.requiredLength }}
             caracteres.
           </small>
         </div>
@@ -213,9 +216,7 @@
           *ngIf="registro.get('firstname').hasError('minlength')"
         >
           Minimo de
-          {{
-            registro.get("firstname").errors.minlength.requiredLength
-          }}
+          {{ registro.get("firstname").errors.minlength.requiredLength }}
           caracteres.
         </small>
       </div>
@@ -254,14 +255,10 @@
           *ngIf="registro.get('lastname').hasError('minlength')"
         >
           Minimo de
-          {{
-            registro.get("lastname").errors.minlength.requiredLength
-          }}
+          {{ registro.get("lastname").errors.minlength.requiredLength }}
           caracteres.
         </small>
       </div>
-
-
 
       <!-- Centro -->
       <div class="form-holder esconder">
@@ -293,16 +290,26 @@
         </div>
 
         <div class="container">
-          <a class="btn effect01" target="_blank" (click)="botonLogin()"
-            ><span>Ya tengo cuenta</span></a
+          <button
+            class="btn effect01"
+            target="_blank"
+            routerLink="/login"
+            routerLinkActive="active"
           >
+            <span>Ya tengo cuenta</span>
+          </button>
         </div>
       </div>
     </form>
 
-    <form [formGroup]="registro" method="POST" *ngIf="mostrar === false" class="container">
+    <form
+      [formGroup]="registro"
+      method="POST"
+      *ngIf="mostrar === false"
+      class="container"
+    >
       <!-- TITULO PAGINA -->
-      <br>
+      <br />
       <h3>Registrarse Profesor</h3>
 
       <!-- Botones PROFE-ALUMNO -->
@@ -348,9 +355,7 @@
             *ngIf="registro.get('nick').hasError('minlength')"
           >
             Minimo de
-            {{
-              registro.get("nick").errors.minlength.requiredLength
-            }}
+            {{ registro.get("nick").errors.minlength.requiredLength }}
             caracteres.
           </small>
         </div>
@@ -510,9 +515,7 @@
           *ngIf="registro.get('firstname').hasError('minlength')"
         >
           Minimo de
-          {{
-            registro.get("firstname").errors.minlength.requiredLength
-          }}
+          {{ registro.get("firstname").errors.minlength.requiredLength }}
           caracteres.
         </small>
       </div>
@@ -551,9 +554,7 @@
           *ngIf="registro.get('lastname').hasError('minlength')"
         >
           Minimo de
-          {{
-            registro.get("lastname").errors.minlength.requiredLength
-          }}
+          {{ registro.get("lastname").errors.minlength.requiredLength }}
           caracteres.
         </small>
       </div>
@@ -604,9 +605,13 @@
         </div>
 
         <div class="container">
-          <a class="btn effect01" target="_blank" (click)="botonLogin()"
-            ><span>Ya tengo cuenta</span></a
-          >
+          <button
+            class="btn effect01"
+            target="_blank"
+            routerLink="/login"
+            routerLinkActive="active"
+            ><span>Ya tengo cuenta</span>
+          </button>
         </div>
       </div>
     </form>

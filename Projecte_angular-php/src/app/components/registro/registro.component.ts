@@ -75,4 +75,13 @@ export class RegistroComponent implements OnInit {
   mostrarAlum() {
     this.mostrar = true;
   }
+
+  //Registrar
+  botonRegistrarProf() {
+
+  }
+
+  botonRegistrarAlum() {
+
+  }
 }
