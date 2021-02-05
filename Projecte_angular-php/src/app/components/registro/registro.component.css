@@ -39,6 +39,25 @@ ul {
   margin: 0;
 }
 
+.botonesPA {
+  position: relative;
+  text-align: center;
+}
+
+.btnAP {
+  font-size: 20px;
+  margin-left: 20%;
+  color: #666;
+  transition: all .5s;
+}
+
+.btnAP:hover {
+  transform: scale(1.1);
+  color:#4778ff;
+  transition: all .5s;
+}
+
+
 img {
   max-width: 100%;
 }
@@ -68,6 +87,7 @@ a {
 .inner {
   position: relative;
   width: 435px;
+  background-color: transparent;
 }
 
 .image-1 {
@@ -88,7 +108,7 @@ form {
   position: relative;
   z-index: 9;
   border-radius: 20px;
-  padding: 77px 61px 66px;
+  padding: 40px 61px 25px;
   background: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
@@ -255,6 +275,11 @@ button:hover:after {
 
   .wrapper {
     background: none;
+  }
+
+  .btnAP {
+    font-size: 25px;
+    margin-left: 23%;
   }
 }
 
@@ -824,7 +849,13 @@ body {
   width: 100%;
   height: 100%;
   margin: 0 auto;
+
+  background-color: transparent;
 /*   padding: 2em 0em; */
+}
+
+.esconder {
+  visibility: hidden;
 }
 
 .container {
@@ -834,8 +865,8 @@ body {
   justify-content: center;
   text-align: right;
   background-color: #FFF;
-  padding:  5px 0px;
-  width: 240px;
+  padding:  10px 5px;
+  width: 390px;
 }
 
 .btn {

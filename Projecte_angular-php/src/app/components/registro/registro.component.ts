@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registro.component.css'],
 })
 export class RegistroComponent implements OnInit {
+  mostrar: boolean = true;
   constructor(private usuarioService: UsuarioService) {}
 
   registro = new FormGroup({
@@ -40,14 +41,14 @@ export class RegistroComponent implements OnInit {
     centro: new FormControl('', Validators.required),
   });
 
-  sweetAlertRegistrarte() {
-    Swal.fire({
-      icon: 'success',
-      text: 'Usuaro registrado!',
-    });
-  }
+  // sweetAlertRegistrarte() {
+  //   Swal.fire({
+  //     icon: 'success',
+  //     text: 'Usuaro registrado!',
+  //   });
+  // }
 
-  botonLogin() {
+  botonRegistroAlum() {
     this.usuarioService
       .RegistrarAlumno(
         new Usuario(
@@ -65,4 +66,13 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  //Mostrar Formulari PROF-ALUMNO
+  mostrarProf() {
+    this.mostrar = false;
+  }
+
+  mostrarAlum() {
+    this.mostrar = true;
+  }
 }
