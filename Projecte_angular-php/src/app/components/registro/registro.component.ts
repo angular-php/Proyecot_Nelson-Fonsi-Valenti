@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -56,8 +55,7 @@ export class RegistroComponent implements OnInit {
           this.registro.controls.firstname.value,
           this.registro.controls.lastname.value,
           this.registro.controls.email.value,
-          this.registro.controls.pass.value,
-          true
+          this.registro.controls.pass.value
         )
       )
       .subscribe((resp) => {

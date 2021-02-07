@@ -1,4 +1,4 @@
-<div class="page-content page-container" id="page-content" style="background-color: rgb(218, 218, 218);">
+<div class="page-content page-container" id="page-content" class="bg">
   <div class="padding">
     <div class="row container-l d-flex justify-content-center">
       <div class="col-xl-6 col-md-12">
@@ -11,62 +11,120 @@
                     src="https://img.icons8.com/bubbles/100/000000/user.png"
                     class="img-radius"
                     alt="User-Profile-Image"
+                    width="50%"
                   />
                 </div>
-                <h6 class="f-w-600">QuimMP</h6>
                 <p>Alumno</p>
+                <h6 class="f-w-600">{{nickname}}</h6>
+                <br>
                 <i
                   class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
                 ></i>
-                <button type="button" class="btn btn-light">Editar</button>
+                <button type="submit" [disabled]="perfilForm.invalid" class="btn btn-light btn-floating">
+                  <i class="far fa-save"></i>
+                </button>
               </div>
             </div>
             <div class="col-sm-8">
               <div class="card-block">
                 <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Información</h6>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Nombre</p>
-                    <h6 class="text-muted f-w-400">Quim</h6>
+                <form [formGroup]="perfilForm">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">Nombre</p>
+                      <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control text-muted f-w-400" placeholder="Nombre" formControlName="fname" >
+                      </div>
+                      <div *ngIf="!perfilForm.controls.fname.valid && perfilForm.dirty">
+                        <div class="validation-errors">
+                          <ng-container *ngFor="let validation of validation_messages.fname">
+                            <div *ngIf="perfilForm.get('fname').hasError(validation.type) && (perfilForm.get('fname').dirty || perfilForm.get('fname').touched)">
+                              {{ validation.message }}
+                            </div>
+                          </ng-container>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">Apellidos</p>
+                      <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon2"><i class="far fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control text-muted f-w-400" placeholder="Apellidos" formControlName="lname">
+                      </div>
+                      <div *ngIf="!perfilForm.controls.lname.valid && perfilForm.dirty">
+                        <div class="validation-errors">
+                          <ng-container *ngFor="let validation of validation_messages.lname">
+                            <div *ngIf="perfilForm.get('lname').hasError(validation.type) && (perfilForm.get('lname').dirty || perfilForm.get('lname').touched)">
+                              {{ validation.message }}
+                            </div>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">Email</p>
+                      <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon3"><i class="far fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control text-muted f-w-400" placeholder="Email" formControlName="email">
+                      </div>
+                      <div *ngIf="!perfilForm.controls.email.valid && perfilForm.dirty">
+                        <div class="validation-errors">
+                          <ng-container *ngFor="let validation of validation_messages.email">
+                            <div *ngIf="perfilForm.get('email').hasError(validation.type) && (perfilForm.get('email').dirty || perfilForm.get('email').touched)">
+                              {{ validation.message }}
+                            </div>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">Contraseña</p>
+                      <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon3"><i class="fas fa-unlock-alt"></i></span>
+                        </div>
+                        <input type="password" class="form-control text-muted f-w-400" placeholder="Contraseña" formControlName="password">
+                        <div class="input-group-prepend">
+                          <button class="btn btn-outline-secondary" type="button"><i class="far fa-edit"></i></button>
+                        </div>
+                      </div>
+                      <div *ngIf="!perfilForm.controls.password.valid && perfilForm.dirty">
+                        <div class="validation-errors">
+                          <ng-container *ngFor="let validation of validation_messages.password">
+                            <div *ngIf="perfilForm.get('password').hasError(validation.type) && (perfilForm.get('password').dirty || perfilForm.get('password').touched)">
+                              {{ validation.message }}
+                            </div>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">Centro</p>
+                      <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon5"><i class="fas fa-school"></i></span>
+                        </div>
+                        <input type="text" class="form-control text-muted f-w-400" placeholder="Centro" value="{{usuario.center}}">
+                      </div>
+                    </div> -->
                   </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Apellidos</p>
-                    <h6 class="text-muted f-w-400">Martínez Piqué</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Email</p>
-                    <h6 class="text-muted f-w-400">qmartinez@useit.es</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Contraseña</p>
-                    <h6 class="text-muted f-w-400">*******</h6>
-                  </div>
-                </div>
+                </form>
                 <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
                   Rankings
                 </h6>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">1. BONUS_DAW</p>
-                    <h6 class="text-muted f-w-400">16 alumnos</h6>
+                <div class="row" >
+                  <div class="col-sm-6" *ngFor="let rank of rankingArray">
+                    <p class="m-b-10 f-w-600">{{rank.name}}</p>
+                    <h6 class="text-muted f-w-400">{{rank.numStudents}} usuarios</h6>
                   </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">2. BONUS_DAM</p>
-                    <h6 class="text-muted f-w-400">21 alumnos</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">3. BONUS2020</p>
-                    <h6 class="text-muted f-w-400">31 alumnos</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">4. PROGRAMACIÓN</p>
-                    <h6 class="text-muted f-w-400">16 alumnos</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">5. BONUS_SMX</p>
-                    <h6 class="text-muted f-w-400">28 alumnos</h6>
-                  </div>
-
                   <div class="col-sm-12">
                     <img
                       src="assets/img/student.svg"
@@ -74,9 +132,13 @@
                       width="50%"
                     />
                   </div>
-                  <!--<div class="col-sm-12">
-                                    <img src="assets/img/professor.svg" alt="professor profile" width="50%">
-                                  </div>-->
+                  <!-- <div class="col-sm-12">
+                    <img
+                      src="assets/img/professor.svg"
+                      alt="professor profile"
+                      width="50%"
+                    />
+                  </div> -->
                 </div>
               </div>
             </div>

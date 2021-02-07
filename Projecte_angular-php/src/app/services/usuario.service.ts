@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../models/usuario.model';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  url = "http://localhost:5500/";
+  [x: string]: any;
+
+  URL = "http://localhost:80/Proyecto_Nelson-Fonsi-Valenti/Projecte_angular-php/";
+
   constructor(private http: HttpClient) { }
 
-
-  RegistrarAlumno(usuario) {
-    let payload = JSON.stringify(usuario);
-    return this.http
-    .post(`${this.url}Proyecto_Nelson-Fonsi-Valenti/Projecte_angular-php/server/altaUsuario.php`, payload ,{responseType: 'text'});  }
+  getUsuario(id: number) {
+    return this.http.get(`${this.URL}server/seleccionarUsuario.php?id=${id}`);
+  }
 }
