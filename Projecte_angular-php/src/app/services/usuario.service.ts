@@ -5,13 +5,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UsuarioService {
-  [x: string]: any;
 
-  URL = "http://localhost:80/Proyecto_Nelson-Fonsi-Valenti/Projecte_angular-php/";
+  URL = "http://localhost/Proyecto_Nelson-Fonsi-Valenti/Projecte_angular-php/server/";
 
   constructor(private http: HttpClient) { }
 
   getUsuario(id: number) {
-    return this.http.get(`${this.URL}server/seleccionarUsuario.php?id=${id}`);
+    return this.http.get(`${this.URL}seleccionarUsuarios.php?id=${id}`);
   }
 }

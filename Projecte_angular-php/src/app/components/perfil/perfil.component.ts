@@ -51,7 +51,7 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectUser(2);
+    this.selectUser(1);
     this.rankingArray.push(new Ranking('BONUS_DAW', 16));
     this.rankingArray.push(new Ranking('BONUS_DAM', 21));
 
@@ -60,7 +60,7 @@ export class PerfilComponent implements OnInit {
 
   selectUser(id) {
     this.usuarioService.getUsuario(id).subscribe((resp => {
-      this.usuario = new Usuario(resp[0].nick, resp[0].firstName, resp[0].lastName, resp[0].email, resp[0].password, this.rankingArray);
+      this.usuario = new Usuario(resp[0].nick, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray);
       console.log(this.usuario);
       this.nickname = resp[0].nick;
       this.perfilForm.setValue({

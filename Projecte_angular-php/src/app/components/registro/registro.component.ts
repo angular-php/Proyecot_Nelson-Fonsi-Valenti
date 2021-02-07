@@ -47,7 +47,7 @@ export class RegistroComponent implements OnInit {
   //   });
   // }
 
-  botonRegistroAlum() {
+  /*botonRegistroAlum() {
     this.usuarioService
       .RegistrarAlumno(
         new Usuario(
@@ -61,7 +61,7 @@ export class RegistroComponent implements OnInit {
       .subscribe((resp) => {
         console.log(resp);
       });
-  }
+  }*/
 
   ngOnInit(): void {}
 
