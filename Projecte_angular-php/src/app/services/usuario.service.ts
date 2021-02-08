@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class UsuarioService {
   [x: string]: any;
 
-  URL = "http://localhost:80/Proyecto_Nelson-Fonsi-Valenti/Projecte_angular-php/";
+  URL = "http://localhost:8080/";
 
   constructor(private http: HttpClient) { }
 
