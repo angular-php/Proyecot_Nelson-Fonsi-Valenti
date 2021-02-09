@@ -47,21 +47,21 @@ export class RegistroComponent implements OnInit {
   //   });
   // }
 
-  botonRegistroAlum() {
-    this.usuarioService
-      .RegistrarAlumno(
-        new Usuario(
-          this.registro.controls.nick.value,
-          this.registro.controls.firstname.value,
-          this.registro.controls.lastname.value,
-          this.registro.controls.email.value,
-          this.registro.controls.pass.value
-        )
-      )
-      .subscribe((resp) => {
-        console.log(resp);
-      });
-  }
+  // botonRegistroAlum() {
+  //   this.usuarioService
+  //     .RegistrarAlumno(
+  //       new Usuario(
+  //         this.registro.controls.nick.value,
+  //         this.registro.controls.firstname.value,
+  //         this.registro.controls.lastname.value,
+  //         this.registro.controls.email.value,
+  //         this.registro.controls.pass.value
+  //       )
+  //     )
+  //     .subscribe((resp) => {
+  //       console.log(resp);
+  //     });
+  // }
 
   ngOnInit(): void {}
 
