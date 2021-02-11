@@ -11,7 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class RegistroComponent implements OnInit {
   mostrar: boolean = true;
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService: UsuarioService) { }
 
   registro = new FormGroup({
     nick: new FormControl('', [
@@ -63,7 +63,7 @@ export class RegistroComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   //Mostrar Formulari PROF-ALUMNO
   mostrarProf() {
