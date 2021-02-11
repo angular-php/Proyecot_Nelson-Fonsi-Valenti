@@ -7,17 +7,11 @@ const api = environment.url;
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class RegistroService {
   [x: string]: any;
 
   constructor(private http: HttpClient) { }
 
-  getUsuario(id: number) {
-    return this.http.get(`${api}server/seleccionarUsuario.php?id=${id}`);
-  }
-
-  registro(){
-
-  }
+  
 
 }
