@@ -848,10 +848,6 @@ body {
   /*   padding: 2em 0em; */
 }
 
-.esconder {
-  visibility: hidden;
-}
-
 .container {
   align-items: center;
   display: flex;
