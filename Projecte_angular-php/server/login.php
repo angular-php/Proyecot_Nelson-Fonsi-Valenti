@@ -1,51 +1,43 @@
 <?php
   header('Access-Control-Allow-Origin: *');
   header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+  header("Content-Type: text/html;charset=utf-8");
 
   require("db.php");
   session_start();
 
-  $nick;
-  $password;
-  $con=retornarConexion();
+  // Obtengo los datos cargados en el formulario de login.
+  $nombre = $_GET['usuario'];
+  $password = $_GET['password'];
+  $con = retornarConexion();
+  $instruccion = "select count(*) as cuantos from usuario where nombre = '$nombre'";
+  $resultado = mysqli_query($con, $instruccion);
 
-  echo "hola";
 
-  if (!$con) {
-    die("No se ha podido realizar la corrección ERROR:" . mysqli_connect_error() . "<br>");
-  }else {
-    mysqli_set_charset ($con, "utf8");
-    echo "Se ha conectado a la base de datos" . "<br>";
+
+
+  //Comprovar que exista el usuario
+  while ($fila = $resultado->fetch_array()) {
+    $numero = $fila["cuantos"];
   }
 
-  $resultado = mysqli_query($con, $registros);
-    while ($fila = $resultado->fetch_assoc()) {
-    $numero=$fila["cuantos"];
-  }
-
-  if($numero==0){
+  //Si no existe
+  if ($numero == 0) {
     echo "El usuario no existe";
+  //Si existe
   }else {
-    $registros = "select password as cuantos from profesores where nick = '$nick'";
-    $resultado = mysqli_query($con, $registros);
-
-    while ($fila = $resultado->fetch_assoc()) {
-      $password2=$fila["cuantos"];
+    $instruccion = "select password as cuantos from usuario where nombre = '$nombre'";
+    $resultado = mysqli_query($con, $instruccion);
+    while ($fila = $resultado->fetch_array()) {
+      $password2 = $fila["cuantos"];
     }
 
-    if (!strcmp($password2 , $password) == 0){
+    //Comprovar si coincide el password
+    if (!strcmp($password2, $password) == 0) {
       echo "Contraseña incorrecta";
-      $json = json_encode('ko '+$nick);
-    }else {
-      $json = json_encode('ok '+$nick);
+    } else {
       echo "Login OK";
-      $_SESSION["nick_logueado"]=$nick;
-      ?>
-        <a href="menu_profesor.php">Acceder al menu</a>
-      <?php
+      $_SESSION["nombre_logueado"] = $nombre;
     }
   }
-
-  echo $json;
-  header('Content-Type: application/json');
 ?>

@@ -15,6 +15,6 @@ export class UsuarioService {
   }
 
   login(usuario: String, passw: String) {
-    return this.http.get(`${api}server/login.php?usuario=${usuario}?password=${passw}`, {responseType: 'text'});
+    return this.http.get(`${api}server/login.php?usuario=${usuario}&password=${passw}`, {responseType: 'text'});
   }
 }
