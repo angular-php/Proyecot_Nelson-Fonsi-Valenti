@@ -10,23 +10,61 @@
   $nombre = $_GET['usuario'];
   $password = $_GET['password'];
   $con = retornarConexion();
-  $instruccion = "select count(*) as cuantos from usuario where nombre = '$nombre'";
+  class Result {}
+  $response = new Result();
+
+
+/*******************    ALUMNO      ********************/
+  $instruccion = "select count(*) as cuantos from alumnos where nickname = '$nombre'";
   $resultado = mysqli_query($con, $instruccion);
 
-
-
-
-  //Comprovar que exista el usuario
+  //Comprovar que exista
   while ($fila = $resultado->fetch_array()) {
     $numero = $fila["cuantos"];
   }
 
   //Si no existe
   if ($numero == 0) {
-    echo "El usuario no existe";
+    /*******************    PROFE      ********************/
+    $instruccion = "select count(*) as cuantos from profesores where nickname = '$nombre'";
+    $resultado = mysqli_query($con, $instruccion);
+
+    //Comprovar que exista
+    while ($fila = $resultado->fetch_array()) {
+      $numero = $fila["cuantos"];
+    }
+
+    //Si no existe
+    if ($numero == 0) {
+      $response->resultado = 'NE';
+    //Si existe
+    }else {
+      $instruccion = "select password as cuantos from profesores where nickname = '$nombre'";
+      $resultado = mysqli_query($con, $instruccion);
+      while ($fila = $resultado->fetch_array()) {
+        $password2 = $fila["cuantos"];
+      }
+
+      //Comprovar si coincide el password
+      if (!strcmp($password2, $password) == 0) {
+        $response->resultado = 'CKO';
+        $response->mensaje = 'Contraseña profesor incorrecta';
+      } else {
+
+        $instruccion = "select idProf as cuantos from profesores where nickname = '$nombre'";
+        $resultado = mysqli_query($con, $instruccion);
+        while ($fila = $resultado->fetch_array()) {
+          $response->id = $fila["cuantos"];
+        }
+
+        $response->mensaje = 'Login profe OK';
+        $response->resultado = 'OK';
+        $_SESSION["nombre_logueado"] = $nombre;
+      }
+    }
   //Si existe
   }else {
-    $instruccion = "select password as cuantos from usuario where nombre = '$nombre'";
+    $instruccion = "select password as cuantos from alumnos where nickname = '$nombre'";
     $resultado = mysqli_query($con, $instruccion);
     while ($fila = $resultado->fetch_array()) {
       $password2 = $fila["cuantos"];
@@ -34,10 +72,21 @@
 
     //Comprovar si coincide el password
     if (!strcmp($password2, $password) == 0) {
-      echo "Contraseña incorrecta";
+      $response->resultado = 'CKO';
+      $response->mensaje = 'Contraseña alumno incorrecta';
     } else {
-      echo "Login OK";
+      $instruccion = "select idusu as cuantos from alumnos where nickname = '$nombre'";
+      $resultado = mysqli_query($con, $instruccion);
+      while ($fila = $resultado->fetch_array()) {
+        $response->id = $fila["cuantos"];
+      }
+
+      $response->mensaje = 'Login alumno OK';
+      $response->resultado = 'OK';
       $_SESSION["nombre_logueado"] = $nombre;
     }
   }
+
+  header('Content-Type: application/json');
+  echo json_encode($response);
 ?>
