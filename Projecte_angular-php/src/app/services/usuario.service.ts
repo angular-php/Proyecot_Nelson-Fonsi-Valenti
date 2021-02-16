@@ -21,4 +21,8 @@ export class UsuarioService {
     return this.http.post(`${api}server/registroAlumno.php`, JSON.stringify(registro));
   }
 
+  registroProfesor(registro){
+    return this.http.post(`${api}server/registroProfesor.php`, JSON.stringify(registro));
+  }
+
 }

@@ -36,13 +36,13 @@
     // GENERA LOS DATOS DE RESPUESTA
 
     $response->resultado = 'OK';
-    $response->mensaje = 'registro ok';
+    $response->mensaje = 'Usuario registrado OK';
 
   }else {
 
     // GENERA LOS DATOS DE RESPUESTA
     $response->resultado = 'KO';
-    $response->mensaje = 'usuario ya registrado';
+    $response->mensaje = 'Usuario ya registrado';
 
   }
 
