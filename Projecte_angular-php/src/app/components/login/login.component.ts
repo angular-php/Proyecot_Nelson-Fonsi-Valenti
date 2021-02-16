@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
         }
     } else {
         console.log('There is a problem with the form');
+        this.router.navigateByUrl('/perfil');
     }
   }
 
