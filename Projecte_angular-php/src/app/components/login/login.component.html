@@ -1,42 +1,68 @@
 <div class="container" id="container">
-	<div class="form-container sign-in-container">
+  <div class="form-container sign-in-container">
+    <!-- Formulario de login -->
     <form [formGroup]="formLogin" (ngSubmit)="submitLogin()">
       <h1>Login</h1>
-      <br>
-			<span>Utiliza tu cuenta:</span>
-      <input type="text" formControlName="fname" placeholder="Pepe"/>
+      <br />
+      <span>Utiliza tu cuenta:</span>
+      <!-- Campos formulario -->
+      <input type="text" formControlName="fname" placeholder="Pepe" />
       <div *ngIf="!formLogin.controls.fname.valid && formLogin.dirty">
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.fname">
-            <div *ngIf="formLogin.get('fname').hasError(validation.type) && (formLogin.get('fname').dirty || formLogin.get('fname').touched)">
+            <div
+              *ngIf="
+                formLogin.get('fname').hasError(validation.type) &&
+                (formLogin.get('fname').dirty || formLogin.get('fname').touched)
+              "
+            >
               {{ validation.message }}
             </div>
           </ng-container>
         </div>
       </div>
-      <input type="password" formControlName="password" placeholder="********"/>
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="********"
+      />
       <div *ngIf="!formLogin.controls.password.valid && formLogin.dirty">
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.password">
-            <div *ngIf="formLogin.get('password').hasError(validation.type) && (formLogin.get('password').dirty || formLogin.get('password').touched)">
+            <div
+              *ngIf="
+                formLogin.get('password').hasError(validation.type) &&
+                (formLogin.get('password').dirty ||
+                  formLogin.get('password').touched)
+              "
+            >
               {{ validation.message }}
             </div>
           </ng-container>
         </div>
       </div>
-      <br>
-      <button type="submit"
-      [disabled]="!formLogin.valid" >Login</button>
+      <br />
+      <!-- Boton login -->
+      <button type="submit" [disabled]="!formLogin.valid">Login</button>
     </form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-right">
-				<h1>Hola amigo!</h1>
-				<p>Ingresa tus datos personales y comienca tu viaje con nosotros</p>
-				<button class="ghost" id="signUp" routerLink="/registro" routerLinkActive="active">Registrar</button>
-			</div>
-		</div>
-	</div>
+  </div>
+  <!-- Ir a registrar -->
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-right">
+        <h1>Hola amigo!</h1>
+        <p>Ingresa tus datos personales y comienca tu viaje con nosotros</p>
+        <button
+          class="ghost"
+          id="signUp"
+          routerLink="/registro"
+          routerLinkActive="active"
+        >
+          Registrar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
-<img src="assets/img_login.svg" alt="imgLogin" class="imgLogin">
+<!-- Imagen de fondo -->
+<img src="assets/img_login.svg" alt="imgLogin" class="imgLogin" />
