@@ -3,6 +3,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { Ranking } from 'src/app/models/ranking.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-
+  id: number;
   nickname: string;
   usuario: Usuario;
   rankingArray: Ranking[] = [];
@@ -47,10 +48,9 @@ export class PerfilComponent implements OnInit {
   };
 
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) {
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private route: ActivatedRoute) {
 
     this.perfilForm = this.formBuilder.group({
-
       fname: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lname: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.email]),
@@ -61,7 +61,10 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectUser(1);
+    this.route.paramMap.subscribe((queryParams: ParamMap) => {
+      this.id = +queryParams.get("id");
+    });
+    this.selectUser(this.id);
     this.rankingArray.push(new Ranking('BONUS_DAW', 16));
     this.rankingArray.push(new Ranking('BONUS_DAM', 21));
 

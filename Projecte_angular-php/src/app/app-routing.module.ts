@@ -7,8 +7,8 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo:"login"},
   {path: 'registro', component: RegistroComponent},
-  {path: 'perfil', component: PerfilComponent},
-  {path: 'login' , component: LoginComponent },
+  {path: 'perfil/:id', component: PerfilComponent},
+  { path: 'login' , component: LoginComponent },
   {path: "**" , redirectTo:"login"}
 ];
 
