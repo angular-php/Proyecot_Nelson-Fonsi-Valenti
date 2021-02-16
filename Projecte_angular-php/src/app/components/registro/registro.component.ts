@@ -49,6 +49,8 @@ export class RegistroComponent implements OnInit {
   });
 
   botonRegistro() {
+
+    //REGISTRO EN LA TABLA ALUMNOS
     if (this.bool == true) {
       this.usuario = new Usuario(
         this.registro.controls.nick.value,
@@ -59,6 +61,7 @@ export class RegistroComponent implements OnInit {
       );
       this.usuarioService.registroUsuario(this.usuario).subscribe((datos) => {
         const $mensaje = '';
+        // TODO HA IDO BIEN EN EL INSERT
         if (datos['resultado'] == 'OK') {
           let $mensaje = datos['mensaje'];
           Swal.fire({
@@ -73,8 +76,8 @@ export class RegistroComponent implements OnInit {
           setTimeout(() => {
             this.router.navigateByUrl('/login');
           }, 1500);
-          //this.router.navigateByUrl('/login');
-          
+
+        // ERROR EN EL INSERT
         } else if (datos['resultado'] == 'KO') {
           let $mensaje = datos['mensaje'];
           Swal.fire({
@@ -87,6 +90,7 @@ export class RegistroComponent implements OnInit {
           });
         }
       });
+    // REGISTRO TABLA PROFESORES
     } else if (this.bool == false) {
       this.usuario = new Usuario(
         this.registro.controls.nick.value,
@@ -101,6 +105,7 @@ export class RegistroComponent implements OnInit {
 
       this.usuarioService.registroProfesor(this.usuario).subscribe((datos) => {
         const $mensaje = '';
+        // TODO HA IDO BIEN EN EL INSERT
         if (datos['resultado'] == 'OK') {
           let $mensaje = datos['mensaje'];
           Swal.fire({
@@ -115,8 +120,8 @@ export class RegistroComponent implements OnInit {
           setTimeout(() => {
             this.router.navigateByUrl('/login');
           }, 1500);
-          //this.router.navigateByUrl('/login');
 
+        // ERROR EN EL INSERT
         } else if (datos['resultado'] == 'KO') {
           let $mensaje = datos['mensaje'];
           Swal.fire({
@@ -155,6 +160,4 @@ export class RegistroComponent implements OnInit {
     this.registro.controls['centro'].updateValueAndValidity();
   }
 
-  //Boton Registrar
-  botonRegistrarProf() {}
 }
