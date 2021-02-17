@@ -39,13 +39,15 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.valid) {
         try {
           //Llamamos al service
-          this.loginService.login(this.formLogin.controls.fname.value, this.formLogin.controls.password.value).subscribe(
+          this.loginService.login(this.formLogin.controls.fname.value, this.formLogin.controls.password.value, null, null).subscribe(
             value => {
+
+              console.log(value['resultado']);
 
             //Alertas i redireccionamiento
             if (value['resultado'] == "OK") {
               let id = value["id"];
-              this.router.navigateByUrl('/perfil/'+id);
+              this.router.navigateByUrl('/perfil/'+id+'/'+value["student"]);
             }else if(value['resultado'] == 'CKO') {
               Swal.fire({
                 icon: 'error',

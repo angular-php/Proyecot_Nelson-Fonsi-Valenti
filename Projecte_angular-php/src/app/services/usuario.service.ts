@@ -8,17 +8,17 @@ import { Usuario } from '../models/usuario.model';
   providedIn: 'root'
 })
 export class UsuarioService {
-  
+
   URL = "http://localhost/Proyecto_Nelson-Fonsi-Valenti/Projecte_angular-php/server/";
-  
+
   constructor(private http: HttpClient) { }
 
   getUsuario(id: number) {
     return this.http.get(`${api}server/seleccionarUsuario.php?id=${id}`);
   }
 
-  login(usuario: String, passw: String) {
-    return this.http.get(`${api}server/login.php?usuario=${usuario}&password=${passw}`);
+  login(usuario: String, passw: String, id: number, student: boolean) {
+    return this.http.post(`${api}server/login.php`, { usuario, passw, id, student });
   }
 
   getAlumno(id: number) {
