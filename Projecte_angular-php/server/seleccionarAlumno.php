@@ -5,7 +5,7 @@
   require("db.php");
   $con=retornarConexion();
 
-  $registros=mysqli_query($con,"select * from alumnos where id=$_GET[id]");
+  $registros=mysqli_query($con,"select * from alumnos where idusu=$_GET[id]");
   $vec=[];
   while ($reg=mysqli_fetch_assoc($registros))
   {

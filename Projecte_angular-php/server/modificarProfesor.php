@@ -10,13 +10,13 @@
   require("db.php");
   $con=retornarConexion();
 
-  mysqli_query($con,"update profesores set nick='$params->nickname',
+  mysqli_query($con,"update profesores set nickname='$params->nickname',
                                         password='$params->password',
                                         firstname='$params->firstname',
                                         lastname='$params->lastname',
                                         email='$params->email',
                                         centro='$params->center'
-                                        where id=$params->id");
+                                        where idProf=$params->id");
 
 
   class Result {}

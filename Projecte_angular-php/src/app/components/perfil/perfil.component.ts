@@ -12,16 +12,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  id: number;
+
   nickname: string;
   usuario: Usuario;
   rankingArray: Ranking[] = [];
-  student: boolean = false;
+
+  id: number;
+  student: boolean = true;
   hideCenter: boolean = true;
 
   perfilForm: FormGroup;
-
-
 
   validation_messages = {
     fname: [
@@ -54,7 +54,7 @@ export class PerfilComponent implements OnInit {
       fname: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lname: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(4)]),
       center: new FormControl('')
     });
 
@@ -63,7 +63,12 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((queryParams: ParamMap) => {
       this.id = +queryParams.get("id");
+      //this.student = +queryParams.get("student");
     });
+    console.log(this.id);
+    // this.route.paramMap.subscribe((queryParams: ParamMap) => {
+    //   this.student = +queryParams.get("student");
+    // });
     this.selectUser(this.id);
     this.rankingArray.push(new Ranking('BONUS_DAW', 16));
     this.rankingArray.push(new Ranking('BONUS_DAM', 21));
@@ -75,9 +80,10 @@ export class PerfilComponent implements OnInit {
     if(this.student == true){
       this.hideCenter = true;
       this.usuarioService.getAlumno(id).subscribe((resp => {
-        this.usuario = new Usuario(resp[0].id ,resp[0].nick, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray);
+        console.log(resp);
+        this.usuario = new Usuario(resp[0].idusu ,resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray);
         console.log(this.usuario);
-        this.nickname = resp[0].nick;
+        this.nickname = resp[0].nickname;
         this.perfilForm.setValue({
           fname: this.usuario.firstname,
           lname: this.usuario.lastname,
@@ -96,9 +102,9 @@ export class PerfilComponent implements OnInit {
       this.perfilForm.controls['center'].updateValueAndValidity();
 
       this.usuarioService.getProfesor(id).subscribe((resp => {
-        this.usuario = new Usuario(resp[0].id ,resp[0].nick, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray, null, resp[0].centro);
+        this.usuario = new Usuario(resp[0].idProf ,resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray, null, resp[0].centro);
         console.log(this.usuario);
-        this.nickname = resp[0].nick;
+        this.nickname = resp[0].nickname;
         this.perfilForm.setValue({
           fname: this.usuario.firstname,
           lname: this.usuario.lastname,
@@ -115,18 +121,36 @@ export class PerfilComponent implements OnInit {
   }
 
 
-
   saveUser() {
     if(this.student == true) {
-      this.usuario = new Usuario(1, this.nickname, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.password.value, this.rankingArray);
+      this.usuario = new Usuario(this.id, this.nickname, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.password.value, this.rankingArray);
+      console.log(this.usuario);
       this.usuarioService.updateAlumno(this.usuario).subscribe((resp => {
         console.log(resp);
-
+        if(resp['resultado'] == 'OK'){
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Bien!',
+            text: resp['mensaje'],
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }else {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Ups... algo ha ido mal',
+            text: "Error al guardar los datos!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }), (e => {
         console.log(e);
       }));
     }else{
-      this.usuario = new Usuario(1, this.nickname, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.password.value, this.rankingArray, null, this.perfilForm.controls.center.value);
+      this.usuario = new Usuario(this.id, this.nickname, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.password.value, this.rankingArray, null, this.perfilForm.controls.center.value);
       this.usuarioService.updateProfesor(this.usuario).subscribe((resp => {
         console.log(resp);
         if(resp['resultado'] == 'OK'){
