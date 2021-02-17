@@ -7,8 +7,12 @@
   session_start();
 
   // Obtengo los datos cargados en el formulario de login.
-  $nombre = $_GET['usuario'];
-  $password = $_GET['password'];
+  $cadena = file_get_contents('php://input');
+  $json = json_decode($cadena, true);
+
+  $nombre = $json['usuario'];
+  $password = $json['passw'];
+
   $con = retornarConexion();
   class Result {}
   $response = new Result();
@@ -55,6 +59,7 @@
         $resultado = mysqli_query($con, $instruccion);
         while ($fila = $resultado->fetch_array()) {
           $response->id = $fila["cuantos"];
+          $response->student = false;
         }
 
         $response->mensaje = 'Login profe OK';
@@ -79,6 +84,7 @@
       $resultado = mysqli_query($con, $instruccion);
       while ($fila = $resultado->fetch_array()) {
         $response->id = $fila["cuantos"];
+        $response->student = true;
       }
 
       $response->mensaje = 'Login alumno OK';

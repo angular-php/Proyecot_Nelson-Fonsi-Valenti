@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   formLogin: FormGroup;
 
+  // Mensajes de validator
   validation_messages = {
     fname: [
       { type: 'required', message: 'El campo nombre es obligatorio' }
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     ],
   };
 
+  //Requisitos validators
   constructor(private readonly fb: FormBuilder, private loginService: UsuarioService, private router: Router) {
     this.formLogin = this.fb.group({
       fname: ['', Validators.required],
@@ -31,16 +33,21 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  //Boton login
   submitLogin() {
+    //Si el formulario es correcto
     if (this.formLogin.valid) {
-        console.log(this.formLogin.getRawValue());
         try {
-          this.loginService.login(this.formLogin.controls.fname.value, this.formLogin.controls.password.value).subscribe(
+          //Llamamos al service
+          this.loginService.login(this.formLogin.controls.fname.value, this.formLogin.controls.password.value, null, null).subscribe(
             value => {
 
+              console.log(value['resultado']);
+
+            //Alertas i redireccionamiento
             if (value['resultado'] == "OK") {
               let id = value["id"];
-              this.router.navigateByUrl('/perfil/'+id);
+              this.router.navigateByUrl('/perfil/'+id+'/'+value["student"]);
             }else if(value['resultado'] == 'CKO') {
               Swal.fire({
                 icon: 'error',
@@ -63,9 +70,6 @@ export class LoginComponent implements OnInit {
             text: 'Vuelve a intentarlo en un rato!'
           })
         }
-    } else {
-        console.log('There is a problem with the form');
-        this.router.navigateByUrl('/perfil');
     }
   }
 
