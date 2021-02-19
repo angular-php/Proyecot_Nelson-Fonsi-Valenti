@@ -18,10 +18,10 @@ export class UsuarioService {
     return this.http.get(`${api}server/seleccionarUsuario.php?id=${id}`);
   }
 
-
   registroUsuario(registro) {
     // console.log(JSON.stringify(registro));
     return this.http.post(`${api}server/registroAlumno.php`, JSON.stringify(registro));
+  }
 
   login(usuario: String, passw: String, id: number, student: boolean) {
     return this.http.post(`${api}server/login.php`, { usuario, passw, id, student });
@@ -49,3 +49,4 @@ export class UsuarioService {
   }
 
 }
+

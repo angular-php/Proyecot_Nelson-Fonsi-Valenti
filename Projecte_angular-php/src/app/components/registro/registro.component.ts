@@ -53,6 +53,7 @@ export class RegistroComponent implements OnInit {
     //REGISTRO EN LA TABLA ALUMNOS
     if (this.bool == true) {
       this.usuario = new Usuario(
+        null,
         this.registro.controls.nick.value,
         this.registro.controls.firstname.value,
         this.registro.controls.lastname.value,
