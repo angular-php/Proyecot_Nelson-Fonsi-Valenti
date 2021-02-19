@@ -70,7 +70,7 @@ export class PerfilComponent implements OnInit {
     //   this.student = +queryParams.get("student");
     // });
     this.selectUser(this.id);
-    this.rankingArray.push(new Ranking('BONUS_DAW', 16));
+    this.rankingArray.push(new Ranking('BONUS_DAW', 17));
     this.rankingArray.push(new Ranking('BONUS_DAM', 21));
 
     //this.usuario = new Usuario('QuimMP','Quim','Martinez Pique', 'qmartinez@useit.es', '123456', true, this.rankingArray, null, "ILERNA");
