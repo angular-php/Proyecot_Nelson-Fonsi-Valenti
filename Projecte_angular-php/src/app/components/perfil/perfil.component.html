@@ -14,7 +14,8 @@
                     width="50%"
                   />
                 </div>
-                <p>Alumno</p>
+                <p *ngIf="student === true">Alumno</p>
+                <p *ngIf="student === false">Profesor</p>
                 <h6 class="f-w-600">{{nickname}}</h6>
                 <br>
                 <i

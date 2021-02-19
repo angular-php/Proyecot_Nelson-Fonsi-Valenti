@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
             if (value['resultado'] == "OK") {
               let id = value["id"];
               let student = value["student"];
+              //this.router.navigate(['/perfil', id, student]);
               this.router.navigate(['/perfil'], { queryParams: { id: id, student: student } });
               //this.router.navigateByUrl('/perfil/'+id+'/'+value["student"]);
             }else if(value['resultado'] == 'CKO') {

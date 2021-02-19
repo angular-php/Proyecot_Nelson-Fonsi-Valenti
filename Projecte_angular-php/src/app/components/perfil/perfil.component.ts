@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import Swal from 'sweetalert2';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-perfil',
@@ -61,14 +62,9 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((queryParams: ParamMap) => {
-      this.id = +queryParams.get("id");
-      //this.student = +queryParams.get("student");
-    });
-    console.log(this.id);
-    // this.route.paramMap.subscribe((queryParams: ParamMap) => {
-    //   this.student = +queryParams.get("student");
-    // });
+    this.id = parseInt(this.route.snapshot.queryParamMap.get('id'));
+    this.student = JSON.parse(this.route.snapshot.queryParamMap.get('student'));
+    console.log(this.id + " -- " + this.student);
     this.selectUser(this.id);
     this.rankingArray.push(new Ranking('BONUS_DAW', 17));
     this.rankingArray.push(new Ranking('BONUS_DAM', 21));

@@ -28,6 +28,7 @@ export class UsuarioService {
   }
 
   getAlumno(id: number) {
+    console.log(id);
     return this.http.get(`${api}server/seleccionarAlumno.php?id=${id}`);
   }
 

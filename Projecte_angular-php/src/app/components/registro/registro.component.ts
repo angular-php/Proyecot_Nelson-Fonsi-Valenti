@@ -93,7 +93,11 @@ export class RegistroComponent implements OnInit {
       });
     // REGISTRO TABLA PROFESORES
     } else if (this.bool == false) {
+      console.log(this.registro.controls.pass.value);
+      console.log(this.registro.controls.centro.value);
+
       this.usuario = new Usuario(
+        null,
         this.registro.controls.nick.value,
         this.registro.controls.firstname.value,
         this.registro.controls.lastname.value,
@@ -103,6 +107,7 @@ export class RegistroComponent implements OnInit {
         null,
         this.registro.controls.centro.value
       );
+      console.log(this.usuario);
 
       this.usuarioService.registroProfesor(this.usuario).subscribe((datos) => {
         const $mensaje = '';
