@@ -21,10 +21,10 @@
                 <i
                   class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
                 ></i>
-                <button type="submit" [disabled]="perfilForm.invalid" class="btn btn-light btn-floating" (click)="saveUser()">
-                  <i class="far fa-save"></i>
-                </button>
               </div>
+
+              <button type="button" class="btn btn-light btn-style" routerLink="/login">LOGOUT</button>
+
             </div>
             <div class="col-sm-8">
               <div class="card-block">
@@ -123,6 +123,14 @@
                             </div>
                           </ng-container>
                         </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">GUARDAR</p>
+                      <div class="input-group input-group-sm mb-3">
+                        <button type="submit" [disabled]="perfilForm.invalid" class="btn btn-primary btn-floating" (click)="saveUser()">
+                          <i class="far fa-save"></i>
+                        </button>
                       </div>
                     </div>
                   </div>
