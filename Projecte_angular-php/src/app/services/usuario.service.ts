@@ -23,8 +23,8 @@ export class UsuarioService {
     return this.http.post(`${api}server/registroAlumno.php`, JSON.stringify(registro));
   }
 
-  login(usuario: String, passw: String, id: number, student: boolean) {
-    return this.http.post(`${api}server/login.php`, { usuario, passw, id, student });
+  login(usuario: String, passw: String) {
+    return this.http.post(`${api}server/login.php`, { usuario, passw });
   }
 
   getAlumno(id: number) {
@@ -32,17 +32,16 @@ export class UsuarioService {
     return this.http.get(`${api}server/seleccionarAlumno.php?id=${id}`);
   }
 
-  getProfesor(id: number) {
-    return this.http.get(`${api}server/seleccionarProfesor.php?id=${id}`);
-  }
-
   updateAlumno(user: Usuario) {
     return this.http.post(`${api}server/modificarAlumno.php`, JSON.stringify(user));
   }
 
+  getProfesor(id: number) {
+    return this.http.get(`${api}server/seleccionarProfesor.php?id=${id}`);
+  }
+
   updateProfesor(user: Usuario) {
     return this.http.post(`${api}server/modificarProfesor.php`, JSON.stringify(user));
-
   }
 
   registroProfesor(registro){

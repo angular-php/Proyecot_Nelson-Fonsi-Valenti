@@ -9,10 +9,13 @@ export class Usuario {
     public lastname: string,
     public email: string,
     public password: string,
-    //public student?: boolean,
+    //center
     public ranking?: Ranking[],
     public image?: string,
     public center?: string,
+    //id
   ) { }
+
+  //posar camps no obligatoris menys nick i pass,  ID EL ULTIM
 
 }

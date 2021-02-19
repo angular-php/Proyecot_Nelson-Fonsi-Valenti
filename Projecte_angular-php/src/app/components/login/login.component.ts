@@ -39,25 +39,27 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.valid) {
         try {
           //Llamamos al service
-          this.loginService.login(this.formLogin.controls.fname.value, this.formLogin.controls.password.value, null, null).subscribe(
+          const user = this.formLogin.controls.fname.value;
+          const pass = this.formLogin.controls.password.value;
+          this.loginService.login(user, pass).subscribe(
             value => {
 
               console.log(value['resultado']);
 
             //Alertas i redireccionamiento
-            if (value['resultado'] == "OK") {
+            if (value['resultado'] === "OK") {
               let id = value["id"];
               let student = value["student"];
               //this.router.navigate(['/perfil', id, student]);
               this.router.navigate(['/perfil'], { queryParams: { id: id, student: student } });
               //this.router.navigateByUrl('/perfil/'+id+'/'+value["student"]);
-            }else if(value['resultado'] == 'CKO') {
+            }else if(value['resultado'] === 'CKO') {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Contraseña incorrecta!'
               })
-            }else if(value['resultado'] == "NE"){
+            }else if(value['resultado'] === "NE"){
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
