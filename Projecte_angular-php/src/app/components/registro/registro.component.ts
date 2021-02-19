@@ -137,6 +137,7 @@ export class RegistroComponent implements OnInit {
     }
   }
 
+
   ngOnInit(): void {}
 
   //Mostrar Formulari PROF-ALUMNO

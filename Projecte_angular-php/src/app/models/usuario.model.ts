@@ -3,6 +3,7 @@ import { Ranking } from "./ranking.model";
 export class Usuario {
 
   constructor(
+    public id: number,
     public nickname: string,
     public firstname: string,
     public lastname: string,
