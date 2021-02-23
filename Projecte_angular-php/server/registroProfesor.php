@@ -18,7 +18,11 @@
   $res = mysqli_query($con, $instruccion);
   $datos = mysqli_fetch_assoc($res);
 
-  if ($datos['rows'] == 0) {
+  $instruccion2 = "select count(*) as 'rows2' from alumnos where nickname = '$params->nickname'";
+  $res2 = mysqli_query($con, $instruccion2);
+  $datos2 = mysqli_fetch_assoc($res2);
+
+  if ($datos['rows'] == 0 && $datos2['rows2'] == 0) {
     //QUERY Insert BBDD
     mysqli_query($con,
     "insert into profesores(nickname, password, email, firstname, lastname, centro)
@@ -26,16 +30,16 @@
     );
 
     // GENERA LOS DATOS DE RESPUESTA
-
     $response->resultado = 'OK';
-    $response->mensaje = 'Profesor registrado OK';
-
-  }else {
-
+    $response->mensaje = 'Profesor registrado!';
+  }else if($datos['rows'] != 0){
     // GENERA LOS DATOS DE RESPUESTA
     $response->resultado = 'KO';
     $response->mensaje = 'Profesor ya registrado';
-
+  }else {
+    // GENERA LOS DATOS DE RESPUESTA
+    $response->resultado = 'KO';
+    $response->mensaje = 'Este nickname ya existe';
   }
 
   header('Content-Type: application/json');
