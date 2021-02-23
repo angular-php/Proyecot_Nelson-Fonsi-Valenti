@@ -6,6 +6,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import Swal from 'sweetalert2';
 import { query } from '@angular/animations';
+import { ProfesorService } from 'src/app/services/profesor.service';
 
 @Component({
   selector: 'app-perfil',
@@ -49,7 +50,7 @@ export class PerfilComponent implements OnInit {
   };
 
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private route: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private profesorService: ProfesorService, private route: ActivatedRoute) {
 
     this.perfilForm = this.formBuilder.group({
       fname: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -97,7 +98,7 @@ export class PerfilComponent implements OnInit {
         Validators.minLength(5)]);
       this.perfilForm.controls['center'].updateValueAndValidity();
 
-      this.usuarioService.getProfesor(id).subscribe((resp => {
+      this.profesorService.getProfesor(id).subscribe((resp => {
         this.usuario = new Usuario(resp[0].idProf ,resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray, null, resp[0].centro);
         console.log(this.usuario);
         this.nickname = resp[0].nickname;
@@ -119,7 +120,7 @@ export class PerfilComponent implements OnInit {
 
   saveUser() {
     if(this.student == true) {
-      this.usuario = new Usuario(this.id, this.nickname, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.password.value, this.rankingArray);
+      this.usuario = new Usuario( this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, null, this.rankingArray, null, this.id);
       console.log(this.usuario);
       this.usuarioService.updateAlumno(this.usuario).subscribe((resp => {
         console.log(resp);
@@ -146,8 +147,8 @@ export class PerfilComponent implements OnInit {
         console.log(e);
       }));
     }else{
-      this.usuario = new Usuario(this.id, this.nickname, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.password.value, this.rankingArray, null, this.perfilForm.controls.center.value);
-      this.usuarioService.updateProfesor(this.usuario).subscribe((resp => {
+      this.usuario = new Usuario( this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.center.value, this.rankingArray, null, this.id);
+      this.profesorService.updateProfesor(this.usuario).subscribe((resp => {
         console.log(resp);
         if(resp['resultado'] == 'OK'){
           Swal.fire({

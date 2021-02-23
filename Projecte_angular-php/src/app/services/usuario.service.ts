@@ -36,17 +36,7 @@ export class UsuarioService {
     return this.http.post(`${api}server/modificarAlumno.php`, JSON.stringify(user));
   }
 
-  getProfesor(id: number) {
-    return this.http.get(`${api}server/seleccionarProfesor.php?id=${id}`);
-  }
-
-  updateProfesor(user: Usuario) {
-    return this.http.post(`${api}server/modificarProfesor.php`, JSON.stringify(user));
-  }
-
-  registroProfesor(registro){
-    return this.http.post(`${api}server/registroProfesor.php`, JSON.stringify(registro));
-  }
+ 
 
 }
 
