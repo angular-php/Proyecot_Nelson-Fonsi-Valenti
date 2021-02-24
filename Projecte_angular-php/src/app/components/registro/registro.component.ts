@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder,  FormControl,  FormGroup,  Validators} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { even, RxwebValidators } from '@rxweb/reactive-form-validators';
 import { Usuario } from 'src/app/models/usuario.model';
 import { ProfesorService } from 'src/app/services/profesor.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -145,7 +145,7 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {}
 
   //Mostrar Formulari PROF-ALUMNO
-  mostrarProf() {
+  mostrarProf(event) {
     this.mostrar = false;
     this.hiddenCentro = false;
     this.alumno = false;
@@ -153,9 +153,12 @@ export class RegistroComponent implements OnInit {
 
     this.registro.controls['centro'].setValidators(Validators.required);
     this.registro.controls['centro'].updateValueAndValidity();
+
+    document.getElementById('btnP').classList.add('activado');
+    document.getElementById('btnA').classList.remove('activado');
   }
 
-  mostrarAlum() {
+  mostrarAlum(event) {
     this.mostrar = true;
     this.hiddenCentro = true;
     this.alumno = true;
@@ -163,6 +166,9 @@ export class RegistroComponent implements OnInit {
 
     this.registro.controls['centro'].setValidators([]);
     this.registro.controls['centro'].updateValueAndValidity();
+
+    document.getElementById('btnA').classList.add('activado');
+    document.getElementById('btnP').classList.remove('activado');
   }
 
 }
