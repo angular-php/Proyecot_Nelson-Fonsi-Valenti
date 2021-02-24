@@ -53,7 +53,6 @@ ul {
 
 .btnAP:hover {
   transform: scale(1.1);
-  color: #4778ff;
   transition: all 0.5s;
 }
 
@@ -928,4 +927,12 @@ body {
 
 .text-danger {
   top: 0;
+}
+
+.activado{
+  color: #00B0FF;
+}
+
+.activadoP{
+  color: #00B0FF;
 }

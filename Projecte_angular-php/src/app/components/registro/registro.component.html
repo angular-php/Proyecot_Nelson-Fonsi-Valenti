@@ -15,8 +15,8 @@
 
       <!-- Botones PROFE-ALUMNO -->
       <div class="botonesPA input-group">
-        <h4 class="btnAP"><a (click)="mostrarAlum()">Alumno</a></h4>
-        <h4 class="btnAP"><a (click)="mostrarProf()">Profesor</a></h4>
+        <h4 id="btnA" class="btnAP activado"><a (click)="mostrarAlum($event)">Alumno</a></h4>
+        <h4 id="btnP" class="btnAP"><a (click)="mostrarProf($event)">Profesor</a></h4>
       </div>
 
       <!-- Nick -->
