@@ -27,6 +27,8 @@
 
             </div>
             <div class="col-sm-8">
+              <button (click)="mostrarInfo()">Mostrar</button>
+              <button (click)="editarInfo()">Editar</button>
               <div class="card-block">
                 <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Información</h6>
                 <form [formGroup]="perfilForm">
@@ -37,7 +39,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control text-muted f-w-400" placeholder="Nombre" formControlName="fname" >
+                        <input type="text" class="form-control text-muted f-w-400" placeholder="Nombre" formControlName="fname" [disabled]="disableForm">
                       </div>
                       <div *ngIf="!perfilForm.controls.fname.valid && perfilForm.dirty">
                         <div class="validation-errors">
