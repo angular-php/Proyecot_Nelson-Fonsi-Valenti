@@ -55,11 +55,11 @@ export class PerfilComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private profesorService: ProfesorService, private route: ActivatedRoute) {
 
     this.perfilForm = this.formBuilder.group({
-      fname: new FormControl({value:'' , disabled: this.disableForm}, [Validators.required, Validators.minLength(3)]),
-      lname: new FormControl({value: '', disabled: this.disableForm}, [Validators.required, Validators.minLength(3)]),
-      email: new FormControl({value: '', disabled: this.disableForm}, [Validators.required, Validators.minLength(5), Validators.email]),
-      password: new FormControl({value: '', disabled: this.disableForm}, [Validators.required, Validators.minLength(4)]),
-      center: new FormControl({value: '', disabled: this.disableForm})
+      fname: new FormControl({value:'' , disabled: true}, [Validators.required, Validators.minLength(3)]),
+      lname: new FormControl({value: '', disabled: true}, [Validators.required, Validators.minLength(3)]),
+      email: new FormControl({value: '', disabled: true}, [Validators.required, Validators.minLength(5), Validators.email]),
+      password: new FormControl({value: '', disabled: true}, [Validators.required, Validators.minLength(4)]),
+      center: new FormControl({value: '', disabled: true})
     });
 
   }
@@ -174,17 +174,20 @@ export class PerfilComponent implements OnInit {
         console.log(e);
       }));
     }
+    this.perfilForm.get('fname').disable();
+    this.perfilForm.get('lname').disable();
+    this.perfilForm.get('email').disable();
+    this.perfilForm.get('password').disable();
+    this.perfilForm.get('center').disable();
 
-  }
-
-  mostrarInfo(){
-    this.disableForm = true;
-    console.log(this.disableForm);
   }
 
   editarInfo(){
-    this.disableForm = false;
-    console.log(this.disableForm);
+    this.perfilForm.get('fname').enable();
+    this.perfilForm.get('lname').enable();
+    this.perfilForm.get('email').enable();
+    this.perfilForm.get('password').enable();
+    this.perfilForm.get('center').enable();
   }
 
   savePassword() {
