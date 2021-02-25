@@ -99,9 +99,6 @@
                           <span class="input-group-text" id="basic-addon3"><i class="fas fa-unlock-alt"></i></span>
                         </div>
                         <input type="password" class="form-control text-muted f-w-400" placeholder="Contraseña" formControlName="password">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-secondary" type="button" (click)="savePassword()"><i class="far fa-edit"></i></button>
-                        </div>
                       </div>
                       <div *ngIf="!perfilForm.controls.password.valid && perfilForm.dirty">
                         <div class="validation-errors">
