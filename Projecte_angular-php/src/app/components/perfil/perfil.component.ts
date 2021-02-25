@@ -13,6 +13,9 @@ import { ProfesorService } from 'src/app/services/profesor.service';
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
+
+
+
 export class PerfilComponent implements OnInit {
 
   nickname: string;
@@ -22,7 +25,7 @@ export class PerfilComponent implements OnInit {
   id: number;
   student: boolean = true;
   hideCenter: boolean = true;
-
+  disableForm:boolean = true;
   perfilForm: FormGroup;
 
   validation_messages = {
@@ -49,15 +52,14 @@ export class PerfilComponent implements OnInit {
     ],
   };
 
-
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private profesorService: ProfesorService, private route: ActivatedRoute) {
 
     this.perfilForm = this.formBuilder.group({
-      fname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      lname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      center: new FormControl('')
+      fname: new FormControl({value:'' , disabled: true}, [Validators.required, Validators.minLength(3)]),
+      lname: new FormControl({value: '', disabled: true}, [Validators.required, Validators.minLength(3)]),
+      email: new FormControl({value: '', disabled: true}, [Validators.required, Validators.minLength(5), Validators.email]),
+      password: new FormControl({value: '', disabled: true}, [Validators.required, Validators.minLength(4)]),
+      center: new FormControl({value: '', disabled: true})
     });
 
   }
@@ -117,7 +119,6 @@ export class PerfilComponent implements OnInit {
 
   }
 
-
   saveUser() {
     if(this.student == true) {
       this.usuario = new Usuario( this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, null, this.rankingArray, null, this.id);
@@ -173,7 +174,20 @@ export class PerfilComponent implements OnInit {
         console.log(e);
       }));
     }
+    this.perfilForm.get('fname').disable();
+    this.perfilForm.get('lname').disable();
+    this.perfilForm.get('email').disable();
+    this.perfilForm.get('password').disable();
+    this.perfilForm.get('center').disable();
 
+  }
+
+  editarInfo(){
+    this.perfilForm.get('fname').enable();
+    this.perfilForm.get('lname').enable();
+    this.perfilForm.get('email').enable();
+    this.perfilForm.get('password').enable();
+    this.perfilForm.get('center').enable();
   }
 
   savePassword() {

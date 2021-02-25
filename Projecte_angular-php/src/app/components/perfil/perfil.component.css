@@ -2,6 +2,9 @@
   padding: 3rem !important
 }
 
+.edit{
+  margin-left: 40%;
+}
 
 .user-card-full {
   overflow: hidden
