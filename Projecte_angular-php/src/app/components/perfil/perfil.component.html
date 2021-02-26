@@ -29,12 +29,7 @@
             <div class="col-sm-8">
               <!-- <button (click)="editarInfo()">Editar</button> -->
               <div class="card-block">
-                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Información
-                  <button type="submit" class="btn btn-primary edit" (click)="editarInfo()">
-                    Editar
-                    <i class="far fa-edit"></i>
-                  </button>
-                </h6>
+                <h4 class="m-b-20 p-b-5 b-b-default f-w-600">Información</h4>
                 <form [formGroup]="perfilForm">
                   <div class="row">
                     <div class="col-sm-6">
@@ -129,20 +124,25 @@
                       </div>
                     </div>
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">GUARDAR</p>
-                      <div class="input-group input-group-sm mb-3">
+                      <div class="input-group input-group-sm mb-3 boton">
                         <button type="submit" [disabled]="perfilForm.invalid" class="btn btn-primary btn-floating" (click)="saveUser()">
+                          Guardar
                           <i class="far fa-save"></i>
+                        </button>
+                        <button type="submit" class="btn btn-primary edit" (click)="editarInfo()">
+                          Editar
+                          <i class="far fa-edit"></i>
                         </button>
                       </div>
                     </div>
                   </div>
                 </form>
-                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
+                <h4 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
                   Rankings
-                </h6>
+                </h4>
                 <div class="row" >
-                  <div class="col-sm-6" *ngFor="let rank of rankingArray">
+                  <button type="submit" class="btn btn-primary" routerLink="/vista" routerLinkActive="active">Ver</button>
+                  <!-- <div class="col-sm-6" *ngFor="let rank of rankingArray">
                     <p class="m-b-10 f-w-600">{{rank.name}}</p>
                     <h6 class="text-muted f-w-400">{{rank.numStudents}} usuarios</h6>
                   </div>
@@ -153,7 +153,7 @@
                       width="50%"
                     />
                   </div>
-                  <!-- <div class="col-sm-12">
+                  <div class="col-sm-12">
                     <img
                       src="assets/img/professor.svg"
                       alt="professor profile"
