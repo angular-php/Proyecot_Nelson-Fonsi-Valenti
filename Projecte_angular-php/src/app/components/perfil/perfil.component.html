@@ -7,20 +7,14 @@
             <div class="col-sm-4 bg-c-lite-green user-profile">
               <div class="card-block text-center text-white">
                 <div class="m-b-25">
-                  <img
-                    src="https://img.icons8.com/bubbles/100/000000/user.png"
-                    class="img-radius"
-                    alt="User-Profile-Image"
-                    width="50%"
-                  />
+                  <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius"
+                    alt="User-Profile-Image" width="50%" />
                 </div>
                 <p *ngIf="student === true">Alumno</p>
                 <p *ngIf="student === false">Profesor</p>
                 <h6 class="f-w-600">{{nickname}}</h6>
                 <br>
-                <i
-                  class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
-                ></i>
+                <i class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
               </div>
 
               <button type="button" class="btn btn-light btn-style" routerLink="/login">LOGOUT</button>
@@ -38,12 +32,14 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control text-muted f-w-400" placeholder="Nombre" formControlName="fname">
+                        <input type="text" class="form-control text-muted f-w-400" placeholder="Nombre"
+                          formControlName="fname">
                       </div>
                       <div *ngIf="!perfilForm.controls.fname.valid && perfilForm.dirty">
                         <div class="validation-errors">
                           <ng-container *ngFor="let validation of validation_messages.fname">
-                            <div *ngIf="perfilForm.get('fname').hasError(validation.type) && (perfilForm.get('fname').dirty || perfilForm.get('fname').touched)">
+                            <div
+                              *ngIf="perfilForm.get('fname').hasError(validation.type) && (perfilForm.get('fname').dirty || perfilForm.get('fname').touched)">
                               {{ validation.message }}
                             </div>
                           </ng-container>
@@ -57,12 +53,14 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon2"><i class="far fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control text-muted f-w-400" placeholder="Apellidos" formControlName="lname">
+                        <input type="text" class="form-control text-muted f-w-400" placeholder="Apellidos"
+                          formControlName="lname">
                       </div>
                       <div *ngIf="!perfilForm.controls.lname.valid && perfilForm.dirty">
                         <div class="validation-errors">
                           <ng-container *ngFor="let validation of validation_messages.lname">
-                            <div *ngIf="perfilForm.get('lname').hasError(validation.type) && (perfilForm.get('lname').dirty || perfilForm.get('lname').touched)">
+                            <div
+                              *ngIf="perfilForm.get('lname').hasError(validation.type) && (perfilForm.get('lname').dirty || perfilForm.get('lname').touched)">
                               {{ validation.message }}
                             </div>
                           </ng-container>
@@ -75,12 +73,14 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon3"><i class="far fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control text-muted f-w-400" placeholder="Email" formControlName="email">
+                        <input type="email" class="form-control text-muted f-w-400" placeholder="Email"
+                          formControlName="email">
                       </div>
                       <div *ngIf="!perfilForm.controls.email.valid && perfilForm.dirty">
                         <div class="validation-errors">
                           <ng-container *ngFor="let validation of validation_messages.email">
-                            <div *ngIf="perfilForm.get('email').hasError(validation.type) && (perfilForm.get('email').dirty || perfilForm.get('email').touched)">
+                            <div
+                              *ngIf="perfilForm.get('email').hasError(validation.type) && (perfilForm.get('email').dirty || perfilForm.get('email').touched)">
                               {{ validation.message }}
                             </div>
                           </ng-container>
@@ -93,12 +93,14 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon3"><i class="fas fa-unlock-alt"></i></span>
                         </div>
-                        <input type="password" class="form-control text-muted f-w-400" placeholder="Contraseña" formControlName="password">
+                        <input type="password" class="form-control text-muted f-w-400" placeholder="Contraseña"
+                          formControlName="password">
                       </div>
                       <div *ngIf="!perfilForm.controls.password.valid && perfilForm.dirty">
                         <div class="validation-errors">
                           <ng-container *ngFor="let validation of validation_messages.password">
-                            <div *ngIf="perfilForm.get('password').hasError(validation.type) && (perfilForm.get('password').dirty || perfilForm.get('password').touched)">
+                            <div
+                              *ngIf="perfilForm.get('password').hasError(validation.type) && (perfilForm.get('password').dirty || perfilForm.get('password').touched)">
                               {{ validation.message }}
                             </div>
                           </ng-container>
@@ -111,12 +113,14 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon5"><i class="fas fa-school"></i></span>
                         </div>
-                        <input type="text" class="form-control text-muted f-w-400" placeholder="Centro" formControlName="center">
+                        <input type="text" class="form-control text-muted f-w-400" placeholder="Centro"
+                          formControlName="center">
                       </div>
                       <div *ngIf="!perfilForm.controls.center.valid && perfilForm.dirty">
                         <div class="validation-errors">
                           <ng-container *ngFor="let validation of validation_messages.center">
-                            <div *ngIf="perfilForm.get('center').hasError(validation.type) && (perfilForm.get('center').dirty || perfilForm.get('center').touched)">
+                            <div
+                              *ngIf="perfilForm.get('center').hasError(validation.type) && (perfilForm.get('center').dirty || perfilForm.get('center').touched)">
                               {{ validation.message }}
                             </div>
                           </ng-container>
@@ -125,7 +129,8 @@
                     </div>
                     <div class="col-sm-6">
                       <div class="input-group input-group-sm mb-3 boton">
-                        <button type="submit" [disabled]="perfilForm.invalid" class="btn btn-primary btn-floating" (click)="saveUser()">
+                        <button type="submit" [disabled]="perfilForm.invalid" class="btn btn-primary btn-floating"
+                          (click)="saveUser()">
                           Guardar
                           <i class="far fa-save"></i>
                         </button>
@@ -140,26 +145,33 @@
                 <h4 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
                   Rankings
                 </h4>
-                <div class="row" >
-                  <button type="submit" class="btn btn-primary" routerLink="/vista" routerLinkActive="active">Ver</button>
-                  <!-- <div class="col-sm-6" *ngFor="let rank of rankingArray">
-                    <p class="m-b-10 f-w-600">{{rank.name}}</p>
-                    <h6 class="text-muted f-w-400">{{rank.numStudents}} usuarios</h6>
+                <!-- <button type="submit" class="btn btn-primary" routerLink="/vista" routerLinkActive="active">Ver</button> -->
+                <!-- <div class="col-sm-6" *ngFor="let rank of rankingArray"> -->
+                <!-- <p class="m-b-10 f-w-600">{{rank.name}}</p>
+                    <h6 class="text-muted f-w-400">{{rank.numStudents}} usuarios</h6> -->
+                <div class="row">
+                  <div class="col-12">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nombre del Ranking</th>
+                          <th scope="col">Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let rank of rankingArray">
+                        <tr>
+                          <td>{{rank.name}}</td>
+                          <td>
+                            <button type="button" class="btn btn-primary bt" routerLink="/vista" routerLinkActive="active"> Ver <i class="fas fa-eye"></i></button>
+                            <button type="button" *ngIf="student === false" class="btn btn-success bt"> Editar <i class="fas fa-edit"></i></button>
+                            <!-- <button type="button" class="btn btn-danger"> Borrar <i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-info"> Añadir <i class="far fa-plus-square"></i></button> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
                   </div>
-                  <div class="col-sm-12">
-                    <img
-                      src="assets/img/student.svg"
-                      alt="student profile"
-                      width="50%"
-                    />
-                  </div>
-                  <div class="col-sm-12">
-                    <img
-                      src="assets/img/professor.svg"
-                      alt="professor profile"
-                      width="50%"
-                    />
-                  </div> -->
                 </div>
               </div>
             </div>
