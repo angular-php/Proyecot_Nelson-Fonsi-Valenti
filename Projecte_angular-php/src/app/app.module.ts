@@ -7,6 +7,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { FormRankingComponent } from './components/form-ranking/form-ranking.component';
 import { VistaRankingComponent } from './components/vista-ranking/vista-ranking.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { VistaRankingComponent } from './components/vista-ranking/vista-ranking.
     LoginComponent,
     RegistroComponent,
     PerfilComponent,
+    FormRankingComponent,
     VistaRankingComponent
   ],
   imports: [
