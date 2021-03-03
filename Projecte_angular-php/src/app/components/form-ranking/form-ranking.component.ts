@@ -8,6 +8,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class FormRankingComponent implements OnInit {
 
+  formRanking: FormGroup;
+
   constructor() { }
 
   ngOnInit(): void {
