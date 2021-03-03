@@ -7,6 +7,12 @@
   margin: 5%;
 }
 
+#btnAgregar {
+  position: absolute;
+  left: 70%;
+  transform: translateY(-50%);
+}
+
 .edit{
   position: relative;
   margin: 5%;
@@ -17,6 +23,7 @@
 }
 
 .card {
+  width: 100%;
   margin-top: 8%;
   border-radius: 5px;
   -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.46);
