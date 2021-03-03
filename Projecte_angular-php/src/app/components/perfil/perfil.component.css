@@ -4,11 +4,12 @@
 
 .boton{
   margin-top: 15%;
+  margin: 5%;
 }
 
 .edit{
   position: relative;
-  margin-left: 15%;
+  margin: 5%;
 }
 
 .user-card-full {
