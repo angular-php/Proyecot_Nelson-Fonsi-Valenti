@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from './auth/auth.guard';
 import { VistaRankingComponent } from './components/vista-ranking/vista-ranking.component';
+import { FormRankingComponent } from './components/form-ranking/form-ranking.component';
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo:"login"},
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'login' , component: LoginComponent },
   {path: 'perfil', component: PerfilComponent},
   {path: 'vista', component: VistaRankingComponent},
+  {path: 'formRanking', component: FormRankingComponent},
   {path: "**" , redirectTo:"login"}
 ];
 
