@@ -2,6 +2,15 @@
   padding: 3rem !important
 }
 
+.boton{
+  margin-top: 15%;
+  margin: 5%;
+}
+
+.edit{
+  position: relative;
+  margin: 5%;
+}
 
 .user-card-full {
   overflow: hidden
@@ -28,10 +37,8 @@
 }
 
 .bg-c-lite-green {
-background: -webkit-linear-gradient(to right, #0044ff, #00B0FF);
+  background: -webkit-linear-gradient(to right, #0044ff, #00B0FF);
   background: linear-gradient(to right, #0044ff, #00B0FF);
-  /*background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
-  background: linear-gradient(to right, #ee5a6f, #f29263)*/
 }
 
 .user-profile {
@@ -143,7 +150,15 @@ font-size: 12px;
 .btn-style {
   left: 50%;
   transform: translateX(-50%);
-  position: absolute;
+  position: relative;
   margin-top: 50%;
   font-weight: 600;
+}
+
+.table{
+  vertical-align: middle;
+}
+
+.bt{
+  margin: 2%;
 }
