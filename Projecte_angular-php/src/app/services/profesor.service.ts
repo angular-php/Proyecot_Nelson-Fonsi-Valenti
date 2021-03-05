@@ -24,4 +24,8 @@ export class ProfesorService {
     return this.http.post(`${api}server/registroProfesor.php`, JSON.stringify(registro));
   }
 
+  listarRankings(id: number): Promise<any> {
+    return this.http.get(`${api}server/verRankingProfe.php?id=${id}`).toPromise();
+  }
+
 }

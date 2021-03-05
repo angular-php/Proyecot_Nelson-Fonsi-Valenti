@@ -16,8 +16,8 @@ import { VistaRankingComponent } from './components/vista-ranking/vista-ranking.
     LoginComponent,
     RegistroComponent,
     PerfilComponent,
+    VistaRankingComponent,
     FormRankingComponent,
-    VistaRankingComponent
   ],
   imports: [
     BrowserModule,
