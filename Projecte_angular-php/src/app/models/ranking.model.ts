@@ -2,7 +2,8 @@ export class Ranking {
 
   constructor(
     public name: string,
-    public numStudents: number,
+    public codigo: string,
+    public idProfe: number
   ) { }
 
 }

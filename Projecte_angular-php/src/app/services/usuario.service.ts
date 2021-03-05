@@ -11,6 +11,8 @@ import { Usuario } from '../models/usuario.model';
 })
 export class UsuarioService {
 
+  id: number;
+  student: boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +38,20 @@ export class UsuarioService {
     return this.http.post(`${api}server/modificarAlumno.php`, JSON.stringify(user));
   }
 
- 
+  setMemoryUsuario(id: number, student: boolean) {
+    this.id = id;
+    this.student = student;
+  }
+
+  getMemoryId() {
+    return this.id;
+  }
+
+  getMemoryStudent() {
+    return this.student;
+  }
+
+
 
 }
 

@@ -67,10 +67,11 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
     this.id = parseInt(this.route.snapshot.queryParamMap.get('id'));
     this.student = JSON.parse(this.route.snapshot.queryParamMap.get('student'));
+    this.usuarioService.setMemoryUsuario(this.id, this.student);
     console.log(this.id + " -- " + this.student);
     this.selectUser(this.id);
-    this.rankingArray.push(new Ranking('BONUS_DAW', 17));
-    this.rankingArray.push(new Ranking('BONUS_DAM', 21));
+    this.rankingArray.push(new Ranking('BONUS_DAW', 'fasgfasdgf'));
+    this.rankingArray.push(new Ranking('BONUS_DAM', 'sdfsfsdfsa'));
 
     //this.usuario = new Usuario('QuimMP','Quim','Martinez Pique', 'qmartinez@useit.es', '123456', true, this.rankingArray, null, "ILERNA");
   }
@@ -149,6 +150,7 @@ export class PerfilComponent implements OnInit {
       }));
     }else{
       this.usuario = new Usuario( this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.center.value, this.rankingArray, null, this.id);
+
       this.profesorService.updateProfesor(this.usuario).subscribe((resp => {
         console.log(resp);
         if(resp['resultado'] == 'OK'){
