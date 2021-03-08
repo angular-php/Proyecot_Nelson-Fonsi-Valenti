@@ -1,6 +1,6 @@
 <div class="container">
   <header>
-    <h1>RANKING DE PRUEBA</h1>
+    <h1>{{nombreRanking}}</h1>
   </header>
   <div class="wrapper">
     <table>
@@ -14,39 +14,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let alumno of alumnos">
           <td>
             <img src="assets/img/Insignias/radiant.png" alt="Insignia" class="icono">
           </td>
           <td class="rank">1</td>
-          <td class="team">Marc Batalla Tapia</td>
-          <td class="points">1460</td>
-          <td class="up-down">ninguno</td>
-        </tr>
-      </tbody>
-      <tbody>
-        <tr>
-          <td>
-            <img src="assets/img/Insignias/inmortal.png" alt="Insignia" class="icono">
-          </td>
-          <td class="rank">2</td>
-          <td class="team">Quim Martinez Piqué</td>
-          <td class="points">1460</td>
-          <td class="up-down">ninguno</td>
-        </tr>
-      </tbody>
-      <tbody>
-        <tr>
-          <td>
-            <img src="assets/img/Insignias/diamante.png" alt="Insignia" class="icono">
-          </td>
-          <td class="rank">3</td>
-          <td class="team">Victor Barbé Garrofe</td>
-          <td class="points">1460</td>
-          <td class="up-down">ninguno</td>
+          <td class="team">{{alumno.fname + " " + alumno.lname}}</td>
+          <td class="points">{{alumno.puntos}}</td>
+          <td class="up-down">{{alumno.nombreEquipo}}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <button type="button" class="btn btn-primary atras" routerLink="/perfil" routerLinkActive="active">Atrás</button>
+  <button type="button" class="btn btn-primary atras" routerLinkActive="active" (click)="btnAtras()">Atrás</button>
 </div>

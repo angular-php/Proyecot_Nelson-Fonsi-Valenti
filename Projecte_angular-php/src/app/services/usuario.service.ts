@@ -11,6 +11,8 @@ import { Usuario } from '../models/usuario.model';
 })
 export class UsuarioService {
 
+  id: number;
+  student: boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +38,30 @@ export class UsuarioService {
     return this.http.post(`${api}server/modificarAlumno.php`, JSON.stringify(user));
   }
 
- 
+  setMemoryUsuario(id: number, student: boolean) {
+    this.id = id;
+    this.student = student;
+  }
+
+  getMemoryID() {
+    return this.id;
+  }
+
+  getMemoryStudent() {
+    return this.student;
+  }
+
+  listarRankings(){
+
+  }
+
+  verRanking(id: number){
+    return this.http.get(`${api}server/verRanking.php?id=${id}`);
+  }
+
+  verAlumnosRanking(id: number): Promise<any> {
+    return this.http.get(`${api}server/verDetalleRanking.php?id=${id}`).toPromise();
+  }
 
 }
 
