@@ -43,15 +43,25 @@ export class UsuarioService {
     this.student = student;
   }
 
-  getMemoryId() {
+  getMemoryID() {
     return this.id;
   }
 
   getMemoryStudent() {
     return this.student;
   }
+  
+  listarRankings(){
 
+  }
 
+  verRanking(id: number){
+    return this.http.get(`${api}server/verRanking.php?id=${id}`);
+  }
+
+  verAlumnosRanking(id: number): Promise<any> {
+    return this.http.get(`${api}server/verDetalleRanking.php?id=${id}`).toPromise();
+  }
 
 }
 

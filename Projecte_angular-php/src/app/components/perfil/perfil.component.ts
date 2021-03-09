@@ -3,7 +3,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { Ranking } from 'src/app/models/ranking.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { query } from '@angular/animations';
 import { ProfesorService } from 'src/app/services/profesor.service';
@@ -52,7 +52,13 @@ export class PerfilComponent implements OnInit {
     ],
   };
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private profesorService: ProfesorService, private route: ActivatedRoute) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private usuarioService: UsuarioService,
+    private profesorService: ProfesorService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
 
     this.perfilForm = this.formBuilder.group({
       fname: new FormControl({value:'' , disabled: true}, [Validators.required, Validators.minLength(3)]),
@@ -70,6 +76,13 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.setMemoryUsuario(this.id, this.student);
     console.log(this.id + " -- " + this.student);
     this.selectUser(this.id);
+    
+    this.profesorService.listarRankings(this.id).then(ranks => {
+      for(let i=0;i<ranks.length; i++) {
+        this.rankingArray.push(new Ranking(ranks[i].nombreRanking, ranks[i].codigo, ranks[i].idRanking, ranks[i].idProfe, null));
+      }
+
+    })
 
     //this.usuario = new Usuario('QuimMP','Quim','Martinez Pique', 'qmartinez@useit.es', '123456', true, this.rankingArray, null, "ILERNA");
   }
@@ -193,6 +206,10 @@ export class PerfilComponent implements OnInit {
   savePassword() {
     const pass = this.perfilForm.controls.password.value;
     console.log(pass);
+  }
+
+  verRanking(idRank) {
+    this.router.navigate(['/vista'], { queryParams: { id: idRank} });
   }
 
 }
