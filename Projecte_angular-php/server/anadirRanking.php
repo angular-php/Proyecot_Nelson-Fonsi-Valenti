@@ -10,7 +10,7 @@
   $json = json_decode($cadena, true);
 
   $nombreRanking = $json['name'];
-  $codigo = $json['codigo'];
+  $codigo = $json['code'];
   $idProfe = $json['idProfe'];
 
   $con = retornarConexion();
