@@ -34,7 +34,7 @@ export class FormRankingComponent implements OnInit {
       nRanking: ['', Validators.required]
     });
 
-    this.id = this.usuarioService.getMemoryId();
+    this.id = this.usuarioService.getMemoryID();
     this.student = this.usuarioService.getMemoryStudent();
   }
 
@@ -47,10 +47,13 @@ export class FormRankingComponent implements OnInit {
       this.ranking = new Ranking(
         this.formRanking.controls.nRanking.value,
         this.codigo = '',
+        null,
         this.id
       );
 
       console.log(this.ranking);
+
+
 
       try {
         this.formRankingService.crearRanking(this.ranking).subscribe((value) => {

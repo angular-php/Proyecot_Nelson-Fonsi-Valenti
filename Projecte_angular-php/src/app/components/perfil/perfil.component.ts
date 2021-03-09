@@ -74,9 +74,8 @@ export class PerfilComponent implements OnInit {
     this.id = parseInt(this.route.snapshot.queryParamMap.get('id'));
     this.student = JSON.parse(this.route.snapshot.queryParamMap.get('student'));
     this.usuarioService.setMemoryUsuario(this.id, this.student);
-    console.log(this.id + " -- " + this.student);
     this.selectUser(this.id);
-    
+
     this.profesorService.listarRankings(this.id).then(ranks => {
       for(let i=0;i<ranks.length; i++) {
         this.rankingArray.push(new Ranking(ranks[i].nombreRanking, ranks[i].codigo, ranks[i].idRanking, ranks[i].idProfe, null));
@@ -91,9 +90,7 @@ export class PerfilComponent implements OnInit {
     if(this.student == true){
       this.hideCenter = true;
       this.usuarioService.getAlumno(id).subscribe((resp => {
-        console.log(resp);
         this.usuario = new Usuario(resp[0].idusu ,resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray);
-        console.log(this.usuario);
         this.nickname = resp[0].nickname;
         this.perfilForm.setValue({
           fname: this.usuario.firstname,
@@ -114,7 +111,6 @@ export class PerfilComponent implements OnInit {
 
       this.profesorService.getProfesor(id).subscribe((resp => {
         this.usuario = new Usuario(resp[0].idProf ,resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray, null, resp[0].centro);
-        console.log(this.usuario);
         this.nickname = resp[0].nickname;
         this.perfilForm.setValue({
           fname: this.usuario.firstname,
@@ -134,9 +130,7 @@ export class PerfilComponent implements OnInit {
   saveUser() {
     if(this.student == true) {
       this.usuario = new Usuario( this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, null, this.rankingArray, null, this.id);
-      console.log(this.usuario);
       this.usuarioService.updateAlumno(this.usuario).subscribe((resp => {
-        console.log(resp);
         if(resp['resultado'] == 'OK'){
           Swal.fire({
             position: 'center',
@@ -163,7 +157,6 @@ export class PerfilComponent implements OnInit {
       this.usuario = new Usuario( this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.center.value, this.rankingArray, null, this.id);
 
       this.profesorService.updateProfesor(this.usuario).subscribe((resp => {
-        console.log(resp);
         if(resp['resultado'] == 'OK'){
           Swal.fire({
             position: 'center',
@@ -205,7 +198,6 @@ export class PerfilComponent implements OnInit {
 
   savePassword() {
     const pass = this.perfilForm.controls.password.value;
-    console.log(pass);
   }
 
   verRanking(idRank) {
