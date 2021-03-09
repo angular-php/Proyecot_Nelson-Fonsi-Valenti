@@ -76,14 +76,13 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.setMemoryUsuario(this.id, this.student);
     console.log(this.id + " -- " + this.student);
     this.selectUser(this.id);
+    
     this.profesorService.listarRankings(this.id).then(ranks => {
       for(let i=0;i<ranks.length; i++) {
         this.rankingArray.push(new Ranking(ranks[i].nombreRanking, ranks[i].codigo, ranks[i].idRanking, ranks[i].idProfe, null));
       }
 
     })
-    /*this.rankingArray.push(new Ranking('BONUS_DAW', 17));
-    this.rankingArray.push(new Ranking('BONUS_DAM', 21));*/
 
     //this.usuario = new Usuario('QuimMP','Quim','Martinez Pique', 'qmartinez@useit.es', '123456', true, this.rankingArray, null, "ILERNA");
   }
@@ -162,6 +161,7 @@ export class PerfilComponent implements OnInit {
       }));
     }else{
       this.usuario = new Usuario( this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.center.value, this.rankingArray, null, this.id);
+
       this.profesorService.updateProfesor(this.usuario).subscribe((resp => {
         console.log(resp);
         if(resp['resultado'] == 'OK'){

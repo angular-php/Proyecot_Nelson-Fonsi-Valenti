@@ -9,7 +9,6 @@ export class Ranking {
     public idRank?: number,
     public idProfe?: number,
     public usuarios?: alumnoRanking[],
-
   ) { }
 
 }
