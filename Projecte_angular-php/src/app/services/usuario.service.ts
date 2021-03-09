@@ -50,7 +50,7 @@ export class UsuarioService {
   getMemoryStudent() {
     return this.student;
   }
-
+  
   listarRankings(){
 
   }
