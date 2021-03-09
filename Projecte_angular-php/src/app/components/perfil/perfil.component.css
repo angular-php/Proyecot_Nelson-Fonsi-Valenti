@@ -169,3 +169,19 @@ font-size: 12px;
 .bt{
   margin: 2%;
 }
+
+#btnRanking, #bntPerfil {
+  margin-right: 25px;
+}
+
+#btnRanking, #bntPerfil {
+  margin-right: 25px;
+}
+
+.btnActivado {
+  color: #00B0FF;
+}
+
+.btnActivado:hover {
+  color: #00B0FF;
+}
