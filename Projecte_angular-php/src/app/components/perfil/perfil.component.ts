@@ -21,6 +21,7 @@ export class PerfilComponent implements OnInit {
   nickname: string;
   usuario: Usuario;
   rankingArray: Ranking[] = [];
+  ventana = "ranking";
 
   id: number;
   student: boolean = true;
@@ -202,6 +203,18 @@ export class PerfilComponent implements OnInit {
 
   verRanking(idRank) {
     this.router.navigate(['/vista'], { queryParams: { id: idRank} });
+  }
+
+  mostrarPerfil() {
+    this.ventana = 'perfil';
+    document.getElementById('btnPerfil').classList.add('btnActivado');
+    document.getElementById('btnRanking').classList.remove('btnActivado');
+  }
+
+  mostrarRanking() {
+    this.ventana = 'ranking'
+    document.getElementById('btnRanking').classList.add('btnActivado');
+    document.getElementById('btnPerfil').classList.remove('btnActivado');
   }
 
 }

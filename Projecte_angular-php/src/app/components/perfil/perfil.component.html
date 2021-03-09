@@ -23,156 +23,149 @@
             <div class="col-sm-8">
               <!-- <button (click)="editarInfo()">Editar</button> -->
               <div class="card-block">
-                <h4 class="m-b-20 p-b-5 b-b-default f-w-600">Información</h4>
-                <form [formGroup]="perfilForm">
+                <h4 class="m-b-20 p-b-5 b-b-default f-w-600"><a class="btnActivado" id="btnRanking" (click)="mostrarRanking()">Rankings</a><a id="btnPerfil" (click)="mostrarPerfil()">Información</a></h4>
+                <ng-container *ngIf="ventana === 'ranking'">
                   <div class="row">
-                    <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">Nombre</p>
-                      <div class="input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
-                        </div>
-                        <input type="text" class="form-control text-muted f-w-400" placeholder="Nombre"
-                          formControlName="fname">
-                      </div>
-                      <div *ngIf="!perfilForm.controls.fname.valid && perfilForm.dirty">
-                        <div class="validation-errors">
-                          <ng-container *ngFor="let validation of validation_messages.fname">
-                            <div
-                              *ngIf="perfilForm.get('fname').hasError(validation.type) && (perfilForm.get('fname').dirty || perfilForm.get('fname').touched)">
-                              {{ validation.message }}
-                            </div>
-                          </ng-container>
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">Apellidos</p>
-                      <div class="input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon2"><i class="far fa-user"></i></span>
-                        </div>
-                        <input type="text" class="form-control text-muted f-w-400" placeholder="Apellidos"
-                          formControlName="lname">
-                      </div>
-                      <div *ngIf="!perfilForm.controls.lname.valid && perfilForm.dirty">
-                        <div class="validation-errors">
-                          <ng-container *ngFor="let validation of validation_messages.lname">
-                            <div
-                              *ngIf="perfilForm.get('lname').hasError(validation.type) && (perfilForm.get('lname').dirty || perfilForm.get('lname').touched)">
-                              {{ validation.message }}
-                            </div>
-                          </ng-container>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">Email</p>
-                      <div class="input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon3"><i class="far fa-envelope"></i></span>
-                        </div>
-                        <input type="email" class="form-control text-muted f-w-400" placeholder="Email"
-                          formControlName="email">
-                      </div>
-                      <div *ngIf="!perfilForm.controls.email.valid && perfilForm.dirty">
-                        <div class="validation-errors">
-                          <ng-container *ngFor="let validation of validation_messages.email">
-                            <div
-                              *ngIf="perfilForm.get('email').hasError(validation.type) && (perfilForm.get('email').dirty || perfilForm.get('email').touched)">
-                              {{ validation.message }}
-                            </div>
-                          </ng-container>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">Contraseña</p>
-                      <div class="input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon3"><i class="fas fa-unlock-alt"></i></span>
-                        </div>
-                        <input type="password" class="form-control text-muted f-w-400" placeholder="Contraseña"
-                          formControlName="password">
-                      </div>
-                      <div *ngIf="!perfilForm.controls.password.valid && perfilForm.dirty">
-                        <div class="validation-errors">
-                          <ng-container *ngFor="let validation of validation_messages.password">
-                            <div
-                              *ngIf="perfilForm.get('password').hasError(validation.type) && (perfilForm.get('password').dirty || perfilForm.get('password').touched)">
-                              {{ validation.message }}
-                            </div>
-                          </ng-container>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6" [hidden]="hideCenter">
-                      <p class="m-b-10 f-w-600">Centro</p>
-                      <div class="input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon5"><i class="fas fa-school"></i></span>
-                        </div>
-                        <input type="text" class="form-control text-muted f-w-400" placeholder="Centro"
-                          formControlName="center">
-                      </div>
-                      <div *ngIf="!perfilForm.controls.center.valid && perfilForm.dirty">
-                        <div class="validation-errors">
-                          <ng-container *ngFor="let validation of validation_messages.center">
-                            <div
-                              *ngIf="perfilForm.get('center').hasError(validation.type) && (perfilForm.get('center').dirty || perfilForm.get('center').touched)">
-                              {{ validation.message }}
-                            </div>
-                          </ng-container>
-                        </div>
-                      </div>
-                    </div>
                     <div class="col-12">
-                      <button type="submit" [disabled]="perfilForm.invalid" class="btn btn-primary"
-                          (click)="saveUser()">
-                          Guardar
-                          <i class="far fa-save"></i>
-                        </button>
-                        <button type="submit" class="btn btn-primary edit" (click)="editarInfo()">
-                          Editar
-                          <i class="far fa-edit"></i>
-                        </button>
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre del Ranking</th>
+                            <th scope="col">Acciones<button *ngIf="student == false" id="btnAgregar" type="button"  class="btn btn-success bt" routerLink="/formRanking"  routerLinkActive="active"> Añadir <i class="fas fa-plus"></i></button></th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let rank of rankingArray">
+                          <tr>
+                            <td>{{rank.name}}</td>
+                            <td>
+                              <button type="button" class="btn btn-primary bt" (click)="verRanking(rank.idRank)"> Ver <i class="fas fa-eye"></i></button>
+                              <button type="button" *ngIf="student === false" class="btn btn-success bt"> Editar <i class="fas fa-edit"></i></button>
+                              <button type="button" *ngIf="student === false" class="btn btn-danger bt"> Eliminar <i class="fas fa-remove"></i></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
                     </div>
                   </div>
-                </form>
-                <h4 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
-                  Rankings
-                  <button *ngIf="student == false" id="btnAgregar" type="button"  class="btn btn-success bt" routerLink="/formRanking"  routerLinkActive="active"> Añadir <i class="fas fa-plus"></i></button>
-                </h4>
-                <!-- <button type="submit" class="btn btn-primary" routerLink="/vista" routerLinkActive="active">Ver</button> -->
-                <!-- <div class="col-sm-6" *ngFor="let rank of rankingArray"> -->
-                <!-- <p class="m-b-10 f-w-600">{{rank.name}}</p>
-                    <h6 class="text-muted f-w-400">{{rank.numStudents}} usuarios</h6> -->
-                <div class="row">
-                  <div class="col-12">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th scope="col">Nombre del Ranking</th>
-                          <th scope="col">Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody *ngFor="let rank of rankingArray">
-                        <tr>
-                          <td>{{rank.name}}</td>
-                          <td>
-                            <button type="button" class="btn btn-primary bt" (click)="verRanking(rank.idRank)"> Ver <i class="fas fa-eye"></i></button>
-                            <button type="button" *ngIf="student === false" class="btn btn-success bt"> Editar <i class="fas fa-edit"></i></button>
-                            <button type="button" *ngIf="student === false" class="btn btn-danger bt"> Eliminar <i class="fas fa-remove"></i></button>
-                            <!-- <button type="button" class="btn btn-danger"> Borrar <i class="fas fa-trash-alt"></i></button>
-                            <button type="button" class="btn btn-info"> Añadir <i class="far fa-plus-square"></i></button> -->
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                  </div>
-                </div>
+                </ng-container>
+                <ng-container *ngIf="ventana === 'perfil'">
+                  <form [formGroup]="perfilForm">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Nombre</p>
+                        <div class="input-group input-group-sm mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
+                          </div>
+                          <input type="text" class="form-control text-muted f-w-400" placeholder="Nombre"
+                            formControlName="fname">
+                        </div>
+                        <div *ngIf="!perfilForm.controls.fname.valid && perfilForm.dirty">
+                          <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.fname">
+                              <div
+                                *ngIf="perfilForm.get('fname').hasError(validation.type) && (perfilForm.get('fname').dirty || perfilForm.get('fname').touched)">
+                                {{ validation.message }}
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Apellidos</p>
+                        <div class="input-group input-group-sm mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon2"><i class="far fa-user"></i></span>
+                          </div>
+                          <input type="text" class="form-control text-muted f-w-400" placeholder="Apellidos"
+                            formControlName="lname">
+                        </div>
+                        <div *ngIf="!perfilForm.controls.lname.valid && perfilForm.dirty">
+                          <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.lname">
+                              <div
+                                *ngIf="perfilForm.get('lname').hasError(validation.type) && (perfilForm.get('lname').dirty || perfilForm.get('lname').touched)">
+                                {{ validation.message }}
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Email</p>
+                        <div class="input-group input-group-sm mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3"><i class="far fa-envelope"></i></span>
+                          </div>
+                          <input type="email" class="form-control text-muted f-w-400" placeholder="Email"
+                            formControlName="email">
+                        </div>
+                        <div *ngIf="!perfilForm.controls.email.valid && perfilForm.dirty">
+                          <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.email">
+                              <div
+                                *ngIf="perfilForm.get('email').hasError(validation.type) && (perfilForm.get('email').dirty || perfilForm.get('email').touched)">
+                                {{ validation.message }}
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Contraseña</p>
+                        <div class="input-group input-group-sm mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3"><i class="fas fa-unlock-alt"></i></span>
+                          </div>
+                          <input type="password" class="form-control text-muted f-w-400" placeholder="Contraseña"
+                            formControlName="password">
+                        </div>
+                        <div *ngIf="!perfilForm.controls.password.valid && perfilForm.dirty">
+                          <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.password">
+                              <div
+                                *ngIf="perfilForm.get('password').hasError(validation.type) && (perfilForm.get('password').dirty || perfilForm.get('password').touched)">
+                                {{ validation.message }}
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6" [hidden]="hideCenter">
+                        <p class="m-b-10 f-w-600">Centro</p>
+                        <div class="input-group input-group-sm mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon5"><i class="fas fa-school"></i></span>
+                          </div>
+                          <input type="text" class="form-control text-muted f-w-400" placeholder="Centro"
+                            formControlName="center">
+                        </div>
+                        <div *ngIf="!perfilForm.controls.center.valid && perfilForm.dirty">
+                          <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.center">
+                              <div
+                                *ngIf="perfilForm.get('center').hasError(validation.type) && (perfilForm.get('center').dirty || perfilForm.get('center').touched)">
+                                {{ validation.message }}
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <button type="submit" [disabled]="perfilForm.invalid" class="btn btn-primary"
+                            (click)="saveUser()">
+                            Guardar
+                            <i class="far fa-save"></i>
+                          </button>
+                          <button type="submit" class="btn btn-primary edit" (click)="editarInfo()">
+                            Editar
+                            <i class="far fa-edit"></i>
+                          </button>
+                      </div>
+                    </div>
+                  </form>
+                </ng-container>
               </div>
             </div>
           </div>
