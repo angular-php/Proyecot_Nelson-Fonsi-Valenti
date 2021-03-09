@@ -4,7 +4,6 @@
   header("Content-Type: text/html;charset=utf-8");
 
   require("db.php");
-  session_start();
 
   // Obtengo los datos cargados en el formulario de login.
   $cadena = file_get_contents('php://input');
@@ -12,7 +11,7 @@
 
   $nombreRanking = $json['name'];
   $codigo = $json['codigo'];
-  $idProfe = $json['id'];
+  $idProfe = $json['idProfe'];
 
   $con = retornarConexion();
   class Result {}
@@ -44,7 +43,7 @@
     } while ($numero != 0);
 
     //Comprovar que exista
-    $instruccion = "INSERT INTO rankings(`nombreRanking`, `idProfe`, `codigo`) VALUES ('"$nombreRanking"', "$idProfe", '"$codigo"');";
+    $instruccion = "INSERT INTO rankings(`nombreRanking`, `idProfe`, `codigo`) VALUES ('".$nombreRanking."', ".$idProfe.", '".$codigo."');";
     $resultado = mysqli_query($con, $instruccion);
 
     $response->resultado = 'OK';

@@ -46,8 +46,8 @@ export class FormRankingComponent implements OnInit {
     if (this.formRanking.valid) {
       this.ranking = new Ranking(
         this.formRanking.controls.nRanking.value,
-        this.codigo = 'AAABBB',
-        this.idProfe = this.usuarioService.getMemoryId()
+        this.codigo = '',
+        this.id
       );
 
       console.log(this.ranking);

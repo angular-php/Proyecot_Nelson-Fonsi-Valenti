@@ -70,8 +70,6 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.setMemoryUsuario(this.id, this.student);
     console.log(this.id + " -- " + this.student);
     this.selectUser(this.id);
-    this.rankingArray.push(new Ranking('BONUS_DAW', 'fasgfasdgf'));
-    this.rankingArray.push(new Ranking('BONUS_DAM', 'sdfsfsdfsa'));
 
     //this.usuario = new Usuario('QuimMP','Quim','Martinez Pique', 'qmartinez@useit.es', '123456', true, this.rankingArray, null, "ILERNA");
   }
