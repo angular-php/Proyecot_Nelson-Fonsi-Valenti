@@ -170,12 +170,15 @@ font-size: 12px;
   margin: 2%;
 }
 
-#btnRanking, #bntPerfil {
+#btnRanking, #btnPerfil {
   margin-right: 25px;
 }
 
-#btnRanking, #bntPerfil {
-  margin-right: 25px;
+#btnRanking:hover{
+  cursor:pointer;
+}
+#btnPerfil:hover {
+  cursor:pointer;
 }
 
 .btnActivado {
