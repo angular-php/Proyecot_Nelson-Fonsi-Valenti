@@ -14,8 +14,6 @@ import { ProfesorService } from 'src/app/services/profesor.service';
   styleUrls: ['./perfil.component.css']
 })
 
-
-
 export class PerfilComponent implements OnInit {
 
   nickname: string;
@@ -203,6 +201,10 @@ export class PerfilComponent implements OnInit {
 
   verRanking(idRank) {
     this.router.navigate(['/vista'], { queryParams: { id: idRank} });
+  }
+
+  editarRanking(idRank) {
+    this.router.navigate(['modificarRanking'], { queryParams: {id: idRank} });
   }
 
   mostrarPerfil() {

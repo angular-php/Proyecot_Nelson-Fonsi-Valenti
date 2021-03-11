@@ -1,0 +1,40 @@
+<div class="container">
+  <header>
+    <h1>{{nombreRanking}}</h1>
+  </header>
+  <button type="button" class="btn btn-dark atras" routerLinkActive="active" (click)="btnAtras()"><i class="far fa-arrow-alt-circle-left"></i> Atrás</button>
+  <button type="submit" class="btn btn-dark guardar" routerLinkActive="active" (click)="btnGuardar()"><i class="far fa-save"></i> Guardar</button>
+
+  <div class="wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Num</th>
+          <th>Nick</th>
+          <th>Alumno</th>
+          <th>Puntuación</th>
+          <th>Equipo</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let alumno of alumnos">
+          <td class="rank">{{alumno.posicion}}</td>
+          <td class="nick">{{alumno.nick}}</td>
+          <td class="name">{{alumno.fname + " " + alumno.lname}}</td>
+          <td class="points">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-trophy"></i></span>
+              </div>
+              <input type="number" class="form-control" value="{{alumno.puntos}}" name="points">
+            </div>
+          </td>
+          <td class="team">{{alumno.nombreEquipo}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
