@@ -18,6 +18,8 @@ export class VistaRankingComponent implements OnInit {
   ranking: Ranking;
   alumnos: alumnoRanking[] = [];
   nombreRanking: string;
+  posicion: number = 0;
+  url: string = "";
 
 
   constructor(private router: Router, private usuarioService: UsuarioService, private route: ActivatedRoute) {
@@ -47,12 +49,43 @@ export class VistaRankingComponent implements OnInit {
   }
 
   getAlumnosRanking(){
-    this.usuarioService.verAlumnosRanking(this.idRanking).then(alum => {
-      for(let i=0;i<alum.length; i++) { 
-        this.alumnos.push(new alumnoRanking(alum[i].nickname, alum[i].password, alum[i].email, alum[i].firstname, alum[i].lastname, alum[i].nombreEquipo, alum[i].puntos));
-      }
-    })
-  }
 
+    this.usuarioService.verAlumnosRanking(this.idRanking).then(alum => {
+
+      for(let i=0;i<alum.length; i++) {
+
+        this.posicion = i+1;
+        if (this.posicion == 1 ) {
+          alum.img = "assets/img/Insignias/radiant.png";
+        }else if (this.posicion == 2) {
+          alum.img = "assets/img/Insignias/inmortal.png";
+        } else if (this.posicion == 3 || this.posicion == 4) {
+          alum.img = "assets/img/Insignias/diamante.png";
+        }else if (this.posicion == 5 || this.posicion == 6) {
+          alum.img = "assets/img/Insignias/platino.png";
+        }else if (this.posicion > 7 || this.posicion <= 10) {
+          alum.img = "assets/img/Insignias/oro.png";
+        }else if (this.posicion>10) {
+          alum.img = "assets/img/Insignias/plata.png";
+        }
+
+        this.alumnos.push(
+          new alumnoRanking(
+            alum[i].nickname,
+            alum[i].password,
+            alum[i].email,
+            alum[i].firstname,
+            alum[i].lastname,
+            alum[i].nombreEquipo,
+            alum[i].puntos,
+            alum.posicion = this.posicion,
+            alum.img
+        ));
+
+      }
+
+    })
+
+  }
 
 }

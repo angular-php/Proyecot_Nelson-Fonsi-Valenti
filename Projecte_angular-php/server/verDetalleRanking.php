@@ -5,7 +5,16 @@
   require("db.php");
   $con=retornarConexion();
 
-  $registros=mysqli_query($con,"select a.*, ae.idEquipo, e.nombreEquipo, ra.puntos FROM rankings r INNER JOIN rankingalumnos ra ON r.idRanking = ra.idRanking INNER JOIN alumnos a ON a.idusu = ra.idAlumno INNER JOIN alumnosequipos ae ON ae.idAlumno = a.idusu INNER JOIN equipos e ON e.idEquipo = ae.idEquipo WHERE r.idRanking=$_GET[id]");
+  $registros=mysqli_query(
+    $con,
+    " select a.*, ae.idEquipo, e.nombreEquipo, ra.puntos
+      FROM rankings r INNER JOIN rankingalumnos ra ON r.idRanking = ra.idRanking
+      INNER JOIN alumnos a ON a.idusu = ra.idAlumno
+      INNER JOIN alumnosequipos ae ON ae.idAlumno = a.idusu
+      INNER JOIN equipos e ON e.idEquipo = ae.idEquipo
+      WHERE r.idRanking=$_GET[id]
+      ORDER BY ra.puntos DESC
+    ");
 
   $vec=[];
   while ($reg=mysqli_fetch_assoc($registros))
