@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { alumnoRanking } from 'src/app/models/alumnosRanking.model';
 import { Ranking } from 'src/app/models/ranking.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modificar-ranking',
@@ -20,10 +22,12 @@ export class ModificarRankingComponent implements OnInit {
   posicion: number = 0;
   url: string = "";
 
+  result: string;
+  msg: string;
+
   constructor(private router: Router, private usuarioService: UsuarioService, private route: ActivatedRoute) {
     this.idRanking = parseInt(this.route.snapshot.queryParamMap.get('id'));
     console.log(this.idRanking);
-
     this.id = this.usuarioService.getMemoryID();
     this.student = this.usuarioService.getMemoryStudent();
   }
@@ -33,24 +37,41 @@ export class ModificarRankingComponent implements OnInit {
     this.getRanking();
   }
 
-
   btnAtras() {
     this.router.navigate(['/perfil'], { queryParams: { id: this.id, student: this.student } });
   }
 
-  onSubmitPoints(ev) {
-    const points = ev.target.points.value;
-    console.log(points);
-    //this.alumnos.map(alum => alum.puntos = points)
-  }
 
   btnGuardar() {
 
     for(let i=0;i<this.alumnos.length; i++) {
-      this.usuarioService.modificarPuntuacionesRanking(this.alumnos[i]).subscribe(puntuaciones => {
-        console.log(puntuaciones)
+      this.usuarioService.modificarPuntuacionesRanking(this.alumnos[i]).subscribe(res => {
+        console.log(res);
+        const result = res['resultado'];
+        const msg = res['mensaje'];
+        if(i==0) {
+          if(result !== 'OK'){
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Puntuaciones modificadas!',
+              text: msg,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }else{
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Error al modificar puntuaciones!',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        }
       });
     }
+
   }
 
   getRanking() {
