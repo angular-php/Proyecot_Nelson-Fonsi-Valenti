@@ -2,10 +2,30 @@
   <header>
     <h1>{{nombreRanking}}</h1>
   </header>
-  <button type="button" class="btn btn-dark atras" routerLinkActive="active" (click)="btnAtras()"><i class="far fa-arrow-alt-circle-left"></i> Atrás</button>
-  <button type="submit" class="btn btn-dark guardar" routerLinkActive="active" (click)="btnGuardar()"><i class="far fa-save"></i> Guardar</button>
+  <div>
+    <button type="button" class="btn btn-dark atras" routerLinkActive="active" (click)="btnAtras()"><i class="far fa-arrow-alt-circle-left"></i> Atrás</button>
+    <button type="submit" class="btn btn-dark guardar" routerLinkActive="active" (click)="btnGuardar()"><i class="far fa-save"></i> Guardar</button>
+  </div>
 
   <div class="wrapper">
+    <select class="form-select" aria-label="Default select example" [(ngModel)]="numEjercicio" (change)="cambiarEjercicio()">
+      <option selected>Selecciona un ejercicio</option>
+      <option value="1">Ejercicio 1</option>
+      <option value="2">Ejercicio 2</option>
+      <option value="3">Ejercicio 3</option>
+      <option value="4">Ejercicio 4</option>
+      <option value="5">Ejercicio 5</option>
+      <option value="6">Ejercicio 6</option>
+      <option value="7">Ejercicio 7</option>
+      <option value="8">Ejercicio 8</option>
+      <option value="9">Ejercicio 9</option>
+      <option value="10">Ejercicio 10</option>
+      <option value="11">Ejercicio 11</option>
+      <option value="12">Ejercicio 12</option>
+      <option value="13">Ejercicio 13</option>
+      <option value="14">Ejercicio 14</option>
+      <option value="15">Ejercicio 15</option>
+    </select>
     <table>
       <thead>
         <tr>
@@ -38,3 +58,6 @@
     </table>
   </div>
 </div>
+
+
+

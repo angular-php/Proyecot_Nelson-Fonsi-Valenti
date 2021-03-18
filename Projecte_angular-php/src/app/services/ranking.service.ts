@@ -17,4 +17,8 @@ export class RankingService {
     return this.http.post(`${api}server/anadirRanking.php`, JSON.stringify(ranking));
   }
 
+  /*mostrarPuntuacionesRanking(idRank: number, idEjercicio: number): Promise<any> {
+    return this.http.get(`${api}server/mostrarPuntuaciones.php?id=${idRank}?idEj=${idEjercicio}`).toPromise();
+  }*/
+
 }

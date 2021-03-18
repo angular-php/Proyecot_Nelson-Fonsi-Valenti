@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { alumnoRanking } from 'src/app/models/alumnosRanking.model';
+import { Ejercicio } from 'src/app/models/ejercicio.model';
 import { Ranking } from 'src/app/models/ranking.model';
+import { RankingService } from 'src/app/services/ranking.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
 
@@ -25,7 +27,10 @@ export class ModificarRankingComponent implements OnInit {
   result: string;
   msg: string;
 
-  constructor(private router: Router, private usuarioService: UsuarioService, private route: ActivatedRoute) {
+  ejercicioSeleccionado: string = "ejercicio";
+  numEjercicio: number = 0;
+
+  constructor(private router: Router, private usuarioService: UsuarioService, private route: ActivatedRoute, private rankingService: RankingService) {
     this.idRanking = parseInt(this.route.snapshot.queryParamMap.get('id'));
     console.log(this.idRanking);
     this.id = this.usuarioService.getMemoryID();
@@ -50,7 +55,7 @@ export class ModificarRankingComponent implements OnInit {
         const result = res['resultado'];
         const msg = res['mensaje'];
         if(i==0) {
-          if(result !== 'OK'){
+          if(result === 'OK'){
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -82,8 +87,14 @@ export class ModificarRankingComponent implements OnInit {
     });
   }
 
+  cambiarEjercicio(){
+    console.log(this.numEjercicio);
+  }
+
+
   getAlumnosRanking(){
 
+    console.log(this.numEjercicio);
     this.usuarioService.verAlumnosRankingModificar(this.idRanking).then(alum => {
 
       for(let i=0;i<alum.length; i++) {
@@ -98,6 +109,7 @@ export class ModificarRankingComponent implements OnInit {
             alum[i].lastname,
             alum[i].nombreEquipo,
             alum[i].puntos,
+            alum[i].ejercicio1,
             alum.posicion = this.posicion,
             alum.img,
             alum[i].idAlumno,
@@ -110,6 +122,8 @@ export class ModificarRankingComponent implements OnInit {
     })
 
   }
+
+
 
 
 }

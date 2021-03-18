@@ -5,9 +5,10 @@
   require("db.php");
   $con=retornarConexion();
 
+
   $registros=mysqli_query(
     $con,
-    " select a.*, ae.idEquipo, ra.idAlumno, e.nombreEquipo, ra.puntos
+    " select a.*, ae.idEquipo, ra.idAlumno, ra.ejercicio1 ,e.nombreEquipo, ra.puntos
       FROM rankings r INNER JOIN rankingalumnos ra ON r.idRanking = ra.idRanking
       INNER JOIN alumnos a ON a.idusu = ra.idAlumno
       INNER JOIN alumnosequipos ae ON ae.idAlumno = a.idusu
