@@ -26,8 +26,7 @@
           <input
             name="nick"
             [class.is-invalid]="
-              registro.get('nick').touched && registro.get('nick').invalid
-            "
+              registro.get('nick').touched && registro.get('nick').invalid"
             type="text"
             class="form-control"
             formControlName="nick"
@@ -242,18 +241,15 @@
           registro.get('lastname').invalid &&
           registro.get('lastname').errors &&
           (registro.get('lastname').dirty || registro.get('lastname').touched)
-        "
-      >
+        ">
         <small
           class="text-danger"
-          *ngIf="registro.get('lastname').hasError('required')"
-        >
+          *ngIf="registro.get('lastname').hasError('required')">
           Introduce un Apellido (Obligatorio)
         </small>
         <small
           class="text-danger"
-          *ngIf="registro.get('lastname').hasError('minlength')"
-        >
+          *ngIf="registro.get('lastname').hasError('minlength')">
           Minimo de
           {{ registro.get("lastname").errors.minlength.requiredLength }}
           caracteres.

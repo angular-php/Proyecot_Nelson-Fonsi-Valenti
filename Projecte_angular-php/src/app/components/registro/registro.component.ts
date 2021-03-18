@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder,  FormControl,  FormGroup,  Validators} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { even, RxwebValidators } from '@rxweb/reactive-form-validators';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { Usuario } from 'src/app/models/usuario.model';
 import { ProfesorService } from 'src/app/services/profesor.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
