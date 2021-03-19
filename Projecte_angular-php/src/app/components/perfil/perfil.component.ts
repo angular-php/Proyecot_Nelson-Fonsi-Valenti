@@ -7,6 +7,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { query } from '@angular/animations';
 import { ProfesorService } from 'src/app/services/profesor.service';
+import { RankingService } from 'src/app/services/ranking.service';
 
 @Component({
   selector: 'app-perfil',
@@ -20,6 +21,7 @@ export class PerfilComponent implements OnInit {
 
   nickname: string;
   usuario: Usuario;
+  ranking: Ranking;
   rankingArray: Ranking[] = [];
   ventana = "ranking";
 
@@ -56,6 +58,7 @@ export class PerfilComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
+    private rankingService: RankingService,
     private profesorService: ProfesorService,
     private route: ActivatedRoute,
     private router: Router
@@ -203,6 +206,32 @@ export class PerfilComponent implements OnInit {
 
   verRanking(idRank) {
     this.router.navigate(['/vista'], { queryParams: { id: idRank} });
+  }
+
+  eliminarRanking(ranking: Ranking) {
+    console.log(ranking);
+    this.rankingService.eliminarRanking(ranking).subscribe((resp => {
+      if(resp['resultado'] == 'OK'){
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Bien!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }else if(resp['resultado'] == 'KO'){
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Ups... algo ha ido mal',
+          text: "Error al guardar los datos!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    }), (e => {
+      console.log(e);
+    }));
   }
 
   mostrarPerfil() {

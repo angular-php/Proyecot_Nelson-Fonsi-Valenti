@@ -17,4 +17,10 @@ export class RankingService {
     return this.http.post(`${api}server/anadirRanking.php`, JSON.stringify(ranking));
   }
 
+  eliminarRanking(ranking: Ranking) {
+    console.log(ranking.idRank);
+    const id = ranking.idRank;
+    return this.http.post(`${api}server/login.php`, { id });
+  }
+
 }

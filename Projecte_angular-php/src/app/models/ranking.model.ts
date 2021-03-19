@@ -1,5 +1,4 @@
 import { alumnoRanking } from "./alumnosRanking.model";
-import { Usuario } from "./usuario.model";
 
 export class Ranking {
 
