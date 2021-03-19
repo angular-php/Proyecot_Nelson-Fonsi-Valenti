@@ -205,12 +205,12 @@ export class PerfilComponent implements OnInit {
   }
 
   verRanking(idRank) {
-    this.router.navigate(['/vista'], { queryParams: { id: idRank} });
+    this.router.navigate(['/perfil'], { queryParams: { id: idRank} });
   }
 
-  eliminarRanking(ranking: Ranking) {
-    console.log(ranking);
-    this.rankingService.eliminarRanking(ranking).subscribe((resp => {
+   eliminarRanking(id: number) {
+    console.log(id);
+     this.rankingService.eliminarRanking(id).subscribe((resp => {
       if(resp['resultado'] == 'OK'){
         Swal.fire({
           position: 'center',
@@ -219,6 +219,8 @@ export class PerfilComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
+
+        window.location.reload();
       }else if(resp['resultado'] == 'KO'){
         Swal.fire({
           position: 'center',
