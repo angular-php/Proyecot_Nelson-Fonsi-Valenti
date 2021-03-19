@@ -40,7 +40,7 @@
                             <td>
                               <button type="button" class="btn btn-primary bt" (click)="verRanking(rank.idRank)"> Ver <i class="fas fa-eye"></i></button>
                               <button type="button" *ngIf="student === false" class="btn btn-success bt"> Editar <i class="fas fa-edit"></i></button>
-                              <button type="button" *ngIf="student === false" class="btn btn-danger bt"> Eliminar <i class="fas fa-remove"></i></button>
+                              <button type="button" *ngIf="student === false" class="btn btn-danger bt" (click)="eliminarRanking(rank.idRank)"> Eliminar <i class="fas fa-remove"></i></button>
                             </td>
                           </tr>
                         </tbody>
