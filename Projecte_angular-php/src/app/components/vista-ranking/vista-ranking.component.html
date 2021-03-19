@@ -2,6 +2,7 @@
   <header>
     <h1>{{nombreRanking}}</h1>
   </header>
+  <button type="button" class="btn btn-dark atras" routerLinkActive="active" (click)="btnAtras()"><i class="far fa-arrow-alt-circle-left"></i> Atrás</button>
   <div class="wrapper">
     <table>
       <thead>
@@ -16,15 +17,14 @@
       <tbody>
         <tr *ngFor="let alumno of alumnos">
           <td>
-            <img src="assets/img/Insignias/radiant.png" alt="Insignia" class="icono">
+            <img src={{alumno.img}} alt="Insignia" class="icono">
           </td>
-          <td class="rank">1</td>
+          <td class="rank">{{alumno.posicion}}</td>
           <td class="team">{{alumno.fname + " " + alumno.lname}}</td>
           <td class="points">{{alumno.puntos}}</td>
-          <td class="up-down">{{alumno.nombreEquipo}}</td>
+          <td class="team">{{alumno.nombreEquipo}}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <button type="button" class="btn btn-primary atras" routerLinkActive="active" (click)="btnAtras()">Atrás</button>
 </div>

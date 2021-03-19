@@ -29,8 +29,8 @@ body, html {
 	line-height: 1.5em;
 	margin: 0 auto;
 	padding: 2em 0 3em;
-	width: 90%;
-	max-width: 2000px;
+	width: 80%;
+	max-width: 90%;
 	overflow: hidden;
 }
 
@@ -72,5 +72,10 @@ td.rank {
 }
 
 .atras{
+  background: #43C6AC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #F8FFAE, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #F8FFAE, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: black;
+  transform: translateX(50%);
   margin-bottom: 2%;
 }
