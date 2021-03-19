@@ -27,6 +27,8 @@ export class ModificarRankingComponent implements OnInit {
   result: string;
   msg: string;
 
+  ejercicios: Ejercicio[] = [];
+
   ejercicioSeleccionado: string = "ejercicio";
   numEjercicio: number = 0;
 
@@ -38,8 +40,9 @@ export class ModificarRankingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAlumnosRanking();
+   // this.getAlumnosRanking();
     this.getRanking();
+    this.dropdownEjercicios();
   }
 
   btnAtras() {
@@ -87,12 +90,21 @@ export class ModificarRankingComponent implements OnInit {
     });
   }
 
+  dropdownEjercicios(){
+    this.rankingService.selectEjercicios().then(values => {
+      for(const value of values){
+        this.ejercicios.push(value);
+      }
+    });
+    console.log(this.ejercicios);
+  }
+
   cambiarEjercicio(){
     console.log(this.numEjercicio);
   }
 
 
-  getAlumnosRanking(){
+  /*getAlumnosRanking(){
 
     console.log(this.numEjercicio);
     this.usuarioService.verAlumnosRankingModificar(this.idRanking).then(alum => {
@@ -109,7 +121,6 @@ export class ModificarRankingComponent implements OnInit {
             alum[i].lastname,
             alum[i].nombreEquipo,
             alum[i].puntos,
-            alum[i].ejercicio1,
             alum.posicion = this.posicion,
             alum.img,
             alum[i].idAlumno,
@@ -121,7 +132,7 @@ export class ModificarRankingComponent implements OnInit {
 
     })
 
-  }
+  }*/
 
 
 
