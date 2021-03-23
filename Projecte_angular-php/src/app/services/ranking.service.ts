@@ -22,7 +22,6 @@ export class RankingService {
   }
   eliminarRanking(id: number) {
     return this.http.get(`${api}server/eliminarRanking.php?id=${id}`);
-
   }
 
 }
