@@ -4,11 +4,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FormRankingComponent } from './components/form-ranking/form-ranking.component';
 import { VistaRankingComponent } from './components/vista-ranking/vista-ranking.component';
+import { ModificarRankingComponent } from './components/modificar-ranking/modificar-ranking.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,13 @@ import { VistaRankingComponent } from './components/vista-ranking/vista-ranking.
     PerfilComponent,
     VistaRankingComponent,
     FormRankingComponent,
+    ModificarRankingComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

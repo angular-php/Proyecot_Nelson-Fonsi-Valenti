@@ -15,8 +15,6 @@ import { RankingService } from 'src/app/services/ranking.service';
   styleUrls: ['./perfil.component.css']
 })
 
-
-
 export class PerfilComponent implements OnInit {
 
   nickname: string;
@@ -234,6 +232,10 @@ export class PerfilComponent implements OnInit {
     }), (e => {
       console.log(e);
     }));
+  }
+
+  editarRanking(idRank) {
+    this.router.navigate(['modificarRanking'], { queryParams: {id: idRank} });
   }
 
   mostrarPerfil() {
