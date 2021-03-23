@@ -203,7 +203,7 @@ export class PerfilComponent implements OnInit {
   }
 
   verRanking(idRank) {
-    this.router.navigate(['/perfil'], { queryParams: { id: idRank} });
+    this.router.navigate(['/vista'], { queryParams: { id: idRank} });
   }
 
    eliminarRanking(id: number) {
@@ -235,7 +235,7 @@ export class PerfilComponent implements OnInit {
   }
 
   editarRanking(idRank) {
-    this.router.navigate(['modificarRanking'], { queryParams: {id: idRank} });
+    this.router.navigate(['/modificarRanking'], { queryParams: {id: idRank} });
   }
 
   mostrarPerfil() {
