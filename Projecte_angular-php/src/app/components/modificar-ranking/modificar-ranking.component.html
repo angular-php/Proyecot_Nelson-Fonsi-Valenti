@@ -9,8 +9,7 @@
 
   <div class="wrapper">
 
-    <select class="form-select" aria-label="Default select example" [(ngModel)]="numEjercicio" (change)="cambiarEjercicio()">
-      <option selected>Selecciona un ejercicio</option>
+    <select class="form-select" aria-label="Default select example" [value]="idEj" (change)="cambiarEjercicio($event.target.value)">
       <ng-container  *ngFor="let ejercicio of ejercicios">
         <option value="{{ejercicio.idEjercicio}}">{{ejercicio.nombre}}</option>
       </ng-container>

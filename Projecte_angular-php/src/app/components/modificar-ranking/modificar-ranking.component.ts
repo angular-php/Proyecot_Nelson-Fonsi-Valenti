@@ -29,8 +29,7 @@ export class ModificarRankingComponent implements OnInit {
 
   ejercicios: Ejercicio[] = [];
 
-  ejercicioSeleccionado: string = "ejercicio";
-  numEjercicio: number = 0;
+  idEj: number = 1;
 
   constructor(private router: Router, private usuarioService: UsuarioService, private route: ActivatedRoute, private rankingService: RankingService) {
     this.idRanking = parseInt(this.route.snapshot.queryParamMap.get('id'));
@@ -40,7 +39,7 @@ export class ModificarRankingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   // this.getAlumnosRanking();
+    this.getAlumnosRanking();
     this.getRanking();
     this.dropdownEjercicios();
   }
@@ -99,15 +98,18 @@ export class ModificarRankingComponent implements OnInit {
     console.log(this.ejercicios);
   }
 
-  cambiarEjercicio(){
-    console.log(this.numEjercicio);
+  cambiarEjercicio(value: any){
+    this.idEj = value;
+    this.getAlumnosRanking();
   }
 
 
-  /*getAlumnosRanking(){
+  getAlumnosRanking(){
+    this.alumnos = [];
+    this.usuarioService.verAlumnosRankingModificar(this.idRanking, this.idEj).then(alum => {
 
-    console.log(this.numEjercicio);
-    this.usuarioService.verAlumnosRankingModificar(this.idRanking).then(alum => {
+      console.log(alum);
+
 
       for(let i=0;i<alum.length; i++) {
 
@@ -123,8 +125,9 @@ export class ModificarRankingComponent implements OnInit {
             alum[i].puntos,
             alum.posicion = this.posicion,
             alum.img,
-            alum[i].idAlumno,
-            this.idRanking
+            alum[i].idusu,
+            this.idRanking,
+            this.idEj
         ));
 
       }
@@ -132,7 +135,7 @@ export class ModificarRankingComponent implements OnInit {
 
     })
 
-  }*/
+  }
 
 
 
