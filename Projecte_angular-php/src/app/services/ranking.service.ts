@@ -20,5 +20,9 @@ export class RankingService {
   selectEjercicios(): Promise<any> {
     return this.http.get(`${api}server/seleccionarEjercicios.php`).toPromise();
   }
+  eliminarRanking(id: number) {
+    return this.http.get(`${api}server/eliminarRanking.php?id=${id}`);
+
+  }
 
 }
