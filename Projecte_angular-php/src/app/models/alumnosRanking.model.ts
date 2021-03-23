@@ -9,6 +9,7 @@ export class alumnoRanking{
     public puntos: number,
     public posicion?: number,
     public img?: string,
-    public idAlum?: number
+    public idAlum?: number,
+    public idRank?: number
   ){}
 }

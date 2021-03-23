@@ -45,7 +45,6 @@ export class VistaRankingComponent implements OnInit {
       this.ranking = new Ranking(res[0].nombreRanking, res[0].codigo, res[0].idRanking, res[0].idProfe, this.alumnos);
       console.log(this.ranking);
     });
-
   }
 
   getAlumnosRanking(){
