@@ -10,8 +10,7 @@
   require("db.php");
   $con=retornarConexion();
 
-  mysqli_query($con, "update rankingalumnos set puntos = $params->puntos
-                      where idAlumno = $params->idAlum AND idRanking = $params->idRank");
+  mysqli_query($con, "update ejerciciosranking set puntos = $params->puntos WHERE idRanking = $params->idRank AND idAlumno = $params->idAlum AND idEjercicio = $params->idEj");
 
 
   class Result {}
