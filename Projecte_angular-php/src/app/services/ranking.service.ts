@@ -24,4 +24,8 @@ export class RankingService {
     return this.http.get(`${api}server/eliminarRanking.php?id=${id}`);
   }
 
+  actualizarCodigo(id: number) {
+    return this.http.get(`${api}server/actualizarCodigo.php?id=${id}`);
+  }
+
 }
