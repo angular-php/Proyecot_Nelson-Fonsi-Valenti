@@ -52,7 +52,7 @@ export class PerfilComponent implements OnInit {
       { type: 'minlength', message: 'El campo centro debe contener como mínimo 5 carácteres' },
     ],
   };
-  formRankingService: any;
+  //formRankingService: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -251,22 +251,20 @@ export class PerfilComponent implements OnInit {
     document.getElementById('btnPerfil').classList.remove('btnActivado');
   }
 
-  actualizarCodigo(idRank) {
+  actualizarCodigo(ranking: Ranking) {
     try {
-      this.formRankingService.actualizarCodigo(idRank).subscribe((value) => {
+      this.rankingService.actualizarCodigo(ranking).subscribe((value) => {
         //Alertas i redireccionamiento
+
         if (value['resultado'] === "OK") {
           Swal.fire({
             icon: 'success',
             title: value['mensaje'],
             text: value['codigo']
-          })
-        } else if (value['resultado'] === 'KO') {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: value['mensaje']
-          })
+          }).then(function(){
+            window.location.reload();
+          });
+
         } else {
           Swal.fire({
             icon: 'error',
