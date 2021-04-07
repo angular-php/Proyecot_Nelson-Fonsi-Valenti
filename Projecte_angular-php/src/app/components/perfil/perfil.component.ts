@@ -142,6 +142,8 @@ export class PerfilComponent implements OnInit {
             text: resp['mensaje'],
             showConfirmButton: false,
             timer: 1500,
+          }).then(function(){
+            window.location.reload();
           });
         } else {
           Swal.fire({
@@ -168,6 +170,8 @@ export class PerfilComponent implements OnInit {
             text: resp['mensaje'],
             showConfirmButton: false,
             timer: 1500,
+          }).then(function(){
+            window.location.reload();
           });
         } else {
           Swal.fire({

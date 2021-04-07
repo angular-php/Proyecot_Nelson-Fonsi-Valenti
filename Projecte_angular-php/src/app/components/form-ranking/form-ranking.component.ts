@@ -25,13 +25,14 @@ export class FormRankingComponent implements OnInit {
   // Mensajes de validator
   validation_messages = {
     nRanking: [
-      { type: 'required', message: 'El campo nombre es obligatorio' }
+      { type: 'required', message: 'El campo nombre es obligatorio' },
+      { type: 'maxLength', message: 'Maximo 10 caracteres'}
     ]
   };
 
   constructor(private readonly fb: FormBuilder, private formRankingService: RankingService, private router: Router, private usuarioService: UsuarioService) {
     this.formRanking = this.fb.group({
-      nRanking: ['', Validators.required]
+      nRanking: ['', Validators.required, Validators.maxLength(10)]
     });
 
     this.id = this.usuarioService.getMemoryID();
@@ -64,6 +65,7 @@ export class FormRankingComponent implements OnInit {
               title: value['mensaje'],
               text: value['codigo']
             })
+            this.router.navigate(['/perfil'], { queryParams: { id: this.id, student: this.student } });
           } else if (value['resultado'] === 'KO') {
             Swal.fire({
               icon: 'error',
