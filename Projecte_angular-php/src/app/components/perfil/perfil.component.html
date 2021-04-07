@@ -1,3 +1,4 @@
+
 <div class="page-content page-container" id="page-content" class="bg">
   <div class="padding">
     <div class="row container-l d-flex justify-content-center">
@@ -117,13 +118,14 @@
                       </div>
                       <div class="col-sm-6">
                         <p class="m-b-10 f-w-600">Contraseña</p>
-                        <div class="input-group input-group-sm mb-3">
+                        <div class="input-group input-group-sm mb-3" id="show_hide_password">
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"><i class="fas fa-unlock-alt"></i></span>
                           </div>
-                          <input type="password" class="form-control text-muted f-w-400" placeholder="Contraseña"
+                          <input [type]="show ? 'text' : 'password'" id="passw" class="form-control text-muted f-w-400" placeholder="Contraseña"
                             formControlName="password">
                         </div>
+                        <input type="checkbox" (click)="password()"> Mostrar Contraseña
                         <div *ngIf="!perfilForm.controls.password.valid && perfilForm.dirty">
                           <div class="validation-errors">
                             <ng-container *ngFor="let validation of validation_messages.password">

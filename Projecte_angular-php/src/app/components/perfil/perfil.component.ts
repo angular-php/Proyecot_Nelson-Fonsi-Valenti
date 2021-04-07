@@ -17,6 +17,7 @@ import { RankingService } from 'src/app/services/ranking.service';
 
 export class PerfilComponent implements OnInit {
 
+  show: boolean;
   nickname: string;
   usuario: Usuario;
   ranking: Ranking;
@@ -52,6 +53,7 @@ export class PerfilComponent implements OnInit {
       { type: 'minlength', message: 'El campo centro debe contener como mínimo 5 carácteres' },
     ],
   };
+  verpasswdn2: boolean= true;
   //formRankingService: any;
 
   constructor(
@@ -62,6 +64,8 @@ export class PerfilComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
+
+    this.show = false;
 
     this.perfilForm = this.formBuilder.group({
       fname: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
@@ -87,6 +91,10 @@ export class PerfilComponent implements OnInit {
     })
 
     //this.usuario = new Usuario('QuimMP','Quim','Martinez Pique', 'qmartinez@useit.es', '123456', true, this.rankingArray, null, "ILERNA");
+  }
+
+  password() {
+    this.show = !this.show;
   }
 
   selectUser(id) {
