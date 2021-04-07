@@ -31,7 +31,7 @@
         <tr *ngFor="let alumno of alumnos">
           <td class="rank">{{alumno.posicion}}</td>
           <td class="nick">{{alumno.nick}}</td>
-          <td class="name">{{alumno.fname + " " + alumno.lname}}</td>
+          <td class="name">{{alumno.lname+ ", " +alumno.fname}}</td>
           <td class="points">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
