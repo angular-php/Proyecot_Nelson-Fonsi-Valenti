@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ranking } from 'src/app/models/ranking.model';
 import { Usuario } from 'src/app/models/usuario.model';
@@ -31,7 +31,7 @@ export class FormRankingComponent implements OnInit {
 
   constructor(private readonly fb: FormBuilder, private formRankingService: RankingService, private router: Router, private usuarioService: UsuarioService) {
     this.formRanking = this.fb.group({
-      nRanking: ['', Validators.required]
+      nRanking: new FormControl('', [Validators.required]),
     });
 
     this.id = this.usuarioService.getMemoryID();
@@ -64,6 +64,7 @@ export class FormRankingComponent implements OnInit {
               title: value['mensaje'],
               text: value['codigo']
             })
+            this.router.navigate(['/perfil'], { queryParams: { id: this.id, student: this.student } });
           } else if (value['resultado'] === 'KO') {
             Swal.fire({
               icon: 'error',
