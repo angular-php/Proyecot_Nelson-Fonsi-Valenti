@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ranking } from 'src/app/models/ranking.model';
 import { Usuario } from 'src/app/models/usuario.model';
@@ -25,14 +25,13 @@ export class FormRankingComponent implements OnInit {
   // Mensajes de validator
   validation_messages = {
     nRanking: [
-      { type: 'required', message: 'El campo nombre es obligatorio' },
-      { type: 'maxLength', message: 'Maximo 10 caracteres'}
+      { type: 'required', message: 'El campo nombre es obligatorio' }
     ]
   };
 
   constructor(private readonly fb: FormBuilder, private formRankingService: RankingService, private router: Router, private usuarioService: UsuarioService) {
     this.formRanking = this.fb.group({
-      nRanking: ['', Validators.required, Validators.maxLength(10)]
+      nRanking: new FormControl('', [Validators.required]),
     });
 
     this.id = this.usuarioService.getMemoryID();
