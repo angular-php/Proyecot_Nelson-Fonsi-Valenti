@@ -83,14 +83,19 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.setMemoryUsuario(this.id, this.student);
     this.selectUser(this.id);
 
-    this.profesorService.listarRankings(this.id).then(ranks => {
+    this.usuarioService.listarRankingsAlumno(this.id).then(ranks => {
       for (let i = 0; i < ranks.length; i++) {
         this.rankingArray.push(new Ranking(ranks[i].nombreRanking, ranks[i].codigo, ranks[i].idRanking, ranks[i].idProfe, null));
       }
 
     })
 
-    //this.usuario = new Usuario('QuimMP','Quim','Martinez Pique', 'qmartinez@useit.es', '123456', true, this.rankingArray, null, "ILERNA");
+    this.profesorService.listarRankings(this.id).then(ranks => {
+      for (let i = 0; i < ranks.length; i++) {
+        this.rankingArray.push(new Ranking(ranks[i].nombreRanking, ranks[i].codigo, ranks[i].idRanking, ranks[i].idProfe, null));
+      }
+
+    })
   }
 
   password() {
