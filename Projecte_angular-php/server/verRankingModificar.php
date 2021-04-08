@@ -8,14 +8,14 @@
 
   $registros=mysqli_query(
     $con,
-    " select a.*, ae.idEquipo, ra.idAlumno, ra.ejercicio1 ,e.nombreEquipo, ra.puntos
-      FROM rankings r INNER JOIN rankingalumnos ra ON r.idRanking = ra.idRanking
-      INNER JOIN alumnos a ON a.idusu = ra.idAlumno
-      INNER JOIN alumnosequipos ae ON ae.idAlumno = a.idusu
-      INNER JOIN equipos e ON e.idEquipo = ae.idEquipo
-      WHERE r.idRanking=$_GET[id]
-      ORDER BY a.lastname ASC
-    ");
+    " SELECT a.*, ejr.puntos, eq.nombreEquipo FROM ejercicios e
+      INNER JOIN ejerciciosranking ejr ON e.idEjercicio = ejr.idEjercicio
+      INNER JOIN alumnos a ON a.idusu = ejr.idAlumno
+      INNER JOIN alumnosequipos ae ON a.idusu = ae.idAlumno
+      INNER JOIN equipos eq ON eq.idEquipo = ae.idEquipo
+      WHERE idRanking=$_GET[idRank] AND e.idEjercicio=$_GET[idEj]
+      ORDER BY a.lastname");
+
 
   $vec=[];
   while ($reg=mysqli_fetch_assoc($registros))

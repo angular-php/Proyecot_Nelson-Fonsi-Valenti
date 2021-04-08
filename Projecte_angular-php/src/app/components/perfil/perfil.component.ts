@@ -17,6 +17,7 @@ import { RankingService } from 'src/app/services/ranking.service';
 
 export class PerfilComponent implements OnInit {
 
+  show: boolean;
   nickname: string;
   usuario: Usuario;
   ranking: Ranking;
@@ -26,7 +27,7 @@ export class PerfilComponent implements OnInit {
   id: number;
   student: boolean = true;
   hideCenter: boolean = true;
-  disableForm:boolean = true;
+  disableForm: boolean = true;
   perfilForm: FormGroup;
 
   validation_messages = {
@@ -52,6 +53,8 @@ export class PerfilComponent implements OnInit {
       { type: 'minlength', message: 'El campo centro debe contener como mínimo 5 carácteres' },
     ],
   };
+  verpasswdn2: boolean= true;
+  //formRankingService: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,12 +65,14 @@ export class PerfilComponent implements OnInit {
     private router: Router
   ) {
 
+    this.show = false;
+
     this.perfilForm = this.formBuilder.group({
-      fname: new FormControl({value:'' , disabled: true}, [Validators.required, Validators.minLength(3)]),
-      lname: new FormControl({value: '', disabled: true}, [Validators.required, Validators.minLength(3)]),
-      email: new FormControl({value: '', disabled: true}, [Validators.required, Validators.minLength(5), Validators.email]),
-      password: new FormControl({value: '', disabled: true}, [Validators.required, Validators.minLength(4)]),
-      center: new FormControl({value: '', disabled: true})
+      fname: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
+      lname: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
+      email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(5), Validators.email]),
+      password: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(4)]),
+      center: new FormControl({ value: '', disabled: true })
     });
 
   }
@@ -79,7 +84,7 @@ export class PerfilComponent implements OnInit {
     this.selectUser(this.id);
 
     this.profesorService.listarRankings(this.id).then(ranks => {
-      for(let i=0;i<ranks.length; i++) {
+      for (let i = 0; i < ranks.length; i++) {
         this.rankingArray.push(new Ranking(ranks[i].nombreRanking, ranks[i].codigo, ranks[i].idRanking, ranks[i].idProfe, null));
       }
 
@@ -88,11 +93,15 @@ export class PerfilComponent implements OnInit {
     //this.usuario = new Usuario('QuimMP','Quim','Martinez Pique', 'qmartinez@useit.es', '123456', true, this.rankingArray, null, "ILERNA");
   }
 
+  password() {
+    this.show = !this.show;
+  }
+
   selectUser(id) {
-    if(this.student == true){
+    if (this.student == true) {
       this.hideCenter = true;
       this.usuarioService.getAlumno(id).subscribe((resp => {
-        this.usuario = new Usuario(resp[0].idusu ,resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray);
+        this.usuario = new Usuario(resp[0].idusu, resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray);
         this.nickname = resp[0].nickname;
         this.perfilForm.setValue({
           fname: this.usuario.firstname,
@@ -105,14 +114,14 @@ export class PerfilComponent implements OnInit {
       }), (e => {
         console.log(e);
       }));
-    }else{
+    } else {
       this.hideCenter = false;
       this.perfilForm.controls["center"].setValidators([Validators.required,
-        Validators.minLength(5)]);
+      Validators.minLength(5)]);
       this.perfilForm.controls['center'].updateValueAndValidity();
 
       this.profesorService.getProfesor(id).subscribe((resp => {
-        this.usuario = new Usuario(resp[0].idProf ,resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray, null, resp[0].centro);
+        this.usuario = new Usuario(resp[0].idProf, resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray, null, resp[0].centro);
         this.nickname = resp[0].nickname;
         this.perfilForm.setValue({
           fname: this.usuario.firstname,
@@ -130,10 +139,10 @@ export class PerfilComponent implements OnInit {
   }
 
   saveUser() {
-    if(this.student == true) {
-      this.usuario = new Usuario( this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, null, this.rankingArray, null, this.id);
+    if (this.student == true) {
+      this.usuario = new Usuario(this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, null, this.rankingArray, null, this.id);
       this.usuarioService.updateAlumno(this.usuario).subscribe((resp => {
-        if(resp['resultado'] == 'OK'){
+        if (resp['resultado'] == 'OK') {
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -141,8 +150,10 @@ export class PerfilComponent implements OnInit {
             text: resp['mensaje'],
             showConfirmButton: false,
             timer: 1500,
+          }).then(function(){
+            window.location.reload();
           });
-        }else {
+        } else {
           Swal.fire({
             position: 'center',
             icon: 'error',
@@ -155,11 +166,11 @@ export class PerfilComponent implements OnInit {
       }), (e => {
         console.log(e);
       }));
-    }else{
-      this.usuario = new Usuario( this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.center.value, this.rankingArray, null, this.id);
+    } else {
+      this.usuario = new Usuario(this.nickname, this.perfilForm.controls.password.value, this.perfilForm.controls.fname.value, this.perfilForm.controls.lname.value, this.perfilForm.controls.email.value, this.perfilForm.controls.center.value, this.rankingArray, null, this.id);
 
       this.profesorService.updateProfesor(this.usuario).subscribe((resp => {
-        if(resp['resultado'] == 'OK'){
+        if (resp['resultado'] == 'OK') {
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -167,8 +178,10 @@ export class PerfilComponent implements OnInit {
             text: resp['mensaje'],
             showConfirmButton: false,
             timer: 1500,
+          }).then(function(){
+            window.location.reload();
           });
-        }else {
+        } else {
           Swal.fire({
             position: 'center',
             icon: 'error',
@@ -190,7 +203,7 @@ export class PerfilComponent implements OnInit {
 
   }
 
-  editarInfo(){
+  editarInfo() {
     this.perfilForm.get('fname').enable();
     this.perfilForm.get('lname').enable();
     this.perfilForm.get('email').enable();
@@ -203,13 +216,13 @@ export class PerfilComponent implements OnInit {
   }
 
   verRanking(idRank) {
-    this.router.navigate(['/vista'], { queryParams: { id: idRank} });
+    this.router.navigate(['/vista'], { queryParams: { id: idRank } });
   }
 
-   eliminarRanking(id: number) {
+  eliminarRanking(id: number) {
     console.log(id);
-     this.rankingService.eliminarRanking(id).subscribe((resp => {
-      if(resp['resultado'] == 'OK'){
+    this.rankingService.eliminarRanking(id).subscribe((resp => {
+      if (resp['resultado'] == 'OK') {
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -219,7 +232,7 @@ export class PerfilComponent implements OnInit {
         });
 
         window.location.reload();
-      }else if(resp['resultado'] == 'KO'){
+      } else if (resp['resultado'] == 'KO') {
         Swal.fire({
           position: 'center',
           icon: 'error',
@@ -235,7 +248,7 @@ export class PerfilComponent implements OnInit {
   }
 
   editarRanking(idRank) {
-    this.router.navigate(['/modificarRanking'], { queryParams: {id: idRank} });
+    this.router.navigate(['/modificarRanking'], { queryParams: { id: idRank } });
   }
 
   mostrarPerfil() {
@@ -249,5 +262,40 @@ export class PerfilComponent implements OnInit {
     document.getElementById('btnRanking').classList.add('btnActivado');
     document.getElementById('btnPerfil').classList.remove('btnActivado');
   }
+
+  actualizarCodigo(ranking: Ranking) {
+    try {
+      this.rankingService.actualizarCodigo(ranking).subscribe((value) => {
+        //Alertas i redireccionamiento
+
+        if (value['resultado'] === "OK") {
+          Swal.fire({
+            icon: 'success',
+            title: value['mensaje'],
+            text: value['codigo']
+          }).then(function(){
+            window.location.reload();
+          });
+
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo ha ido mal!'
+          })
+        }
+      }), (e => {
+        console.log(e);
+      });
+    } catch (error) {
+      //Sweetalert
+      Swal.fire({
+        icon: 'error',
+        title: 'Algo ha ido mal',
+        text: 'Vuelve a intentarlo en un rato!'
+      })
+    }
+  }
+
 
 }

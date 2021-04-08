@@ -1,3 +1,4 @@
+
 <div class="page-content page-container" id="page-content" class="bg">
   <div class="padding">
     <div class="row container-l d-flex justify-content-center">
@@ -31,17 +32,19 @@
                         <thead>
                           <tr>
                             <th scope="col">Nombre del Ranking</th>
+                            <th scope="col">Code</th>
                             <th scope="col">Acciones<button *ngIf="student == false" id="btnAgregar" type="button"  class="btn btn-success bt" routerLink="/formRanking"  routerLinkActive="active"> Añadir <i class="fas fa-plus"></i></button></th>
                           </tr>
                         </thead>
                         <tbody *ngFor="let rank of rankingArray">
                           <tr>
                             <td>{{rank.name}}</td>
+                            <td>{{rank.code}}</td>
                             <td>
                               <button type="button" class="btn btn-primary bt" (click)="verRanking(rank.idRank)"> Ver <i class="fas fa-eye"></i></button>
-
-                              <button type="button" *ngIf="student === false" class="btn btn-success bt" (click)="editarRanking(rank.idRank)"> Editar <i class="fas fa-edit"></i></button>
-                              <button type="button" *ngIf="student === false" class="btn btn-danger bt" (click)="eliminarRanking(rank.idRank)"> Eliminar <i class="fas fa-remove"></i></button>
+                              <button type="button" *ngIf="student === false" class="btn btn-success bt" (click)="editarRanking(rank.idRank)">  <i class="fas fa-edit"></i></button>
+                              <button type="button" *ngIf="student === false" class="btn btn-danger bt" (click)="eliminarRanking(rank.idRank)">  <i class="fas fa-remove"></i></button>
+                              <button type="button" *ngIf="student === false" class="btn btn-warning bt" (click)="actualizarCodigo(rank)">  <i class="fas fa-spinner"></i></button>
                             </td>
                           </tr>
                         </tbody>
@@ -115,13 +118,14 @@
                       </div>
                       <div class="col-sm-6">
                         <p class="m-b-10 f-w-600">Contraseña</p>
-                        <div class="input-group input-group-sm mb-3">
+                        <div class="input-group input-group-sm mb-3" id="show_hide_password">
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"><i class="fas fa-unlock-alt"></i></span>
                           </div>
-                          <input type="password" class="form-control text-muted f-w-400" placeholder="Contraseña"
+                          <input [type]="show ? 'text' : 'password'" id="passw" class="form-control text-muted f-w-400" placeholder="Contraseña"
                             formControlName="password">
                         </div>
+                        <input type="checkbox" (click)="password()"> Mostrar Contraseña
                         <div *ngIf="!perfilForm.controls.password.valid && perfilForm.dirty">
                           <div class="validation-errors">
                             <ng-container *ngFor="let validation of validation_messages.password">

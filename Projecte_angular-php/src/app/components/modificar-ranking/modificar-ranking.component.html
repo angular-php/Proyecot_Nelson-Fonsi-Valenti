@@ -9,8 +9,7 @@
 
   <div class="wrapper">
 
-    <select class="form-select" aria-label="Default select example" [(ngModel)]="numEjercicio" (change)="cambiarEjercicio()">
-      <option selected>Selecciona un ejercicio</option>
+    <select class="form-select" aria-label="Default select example" [value]="idEj" (change)="cambiarEjercicio($event.target.value)">
       <ng-container  *ngFor="let ejercicio of ejercicios">
         <option value="{{ejercicio.idEjercicio}}">{{ejercicio.nombre}}</option>
       </ng-container>
@@ -32,7 +31,7 @@
         <tr *ngFor="let alumno of alumnos">
           <td class="rank">{{alumno.posicion}}</td>
           <td class="nick">{{alumno.nick}}</td>
-          <td class="name">{{alumno.fname + " " + alumno.lname}}</td>
+          <td class="name">{{alumno.lname+ ", " +alumno.fname}}</td>
           <td class="points">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
