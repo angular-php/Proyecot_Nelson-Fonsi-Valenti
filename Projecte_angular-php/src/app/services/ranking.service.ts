@@ -17,6 +17,10 @@ export class RankingService {
     return this.http.post(`${api}server/anadirRanking.php`, JSON.stringify(ranking));
   }
 
+  comprobarCodigo(codigo: string){
+    return this.http.get(`${api}server/comprobarCodigoRanking.php?codigo=${codigo}`);
+  }
+
   selectEjercicios(): Promise<any> {
     return this.http.get(`${api}server/seleccionarEjercicios.php`).toPromise();
   }
