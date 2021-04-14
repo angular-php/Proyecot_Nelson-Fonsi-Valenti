@@ -19,12 +19,14 @@
           <td>
             <img src={{alumno.img}} alt="Insignia" class="icono">
           </td>
-          <td id="alumActual" class="rank">{{alumno.posicion}}</td>
-          <td id="alumActual" class="team">{{alumno.fname + " " + alumno.lname}}</td>
-          <td id="alumActual" class="points">{{alumno.puntos}}</td>
-          <td id="alumActual" class="team">{{alumno.nombreEquipo}}</td>
+          <td class="rank">{{alumno.posicion}}</td>
+          <td id="alumActual" class="team" [ngClass]="{'alumActualColor' : alumno.actual}" >{{alumno.fname + " " + alumno.lname}}</td>
+          <td class="points">{{alumno.puntos}}</td>
+          <td class="team">{{alumno.nombreEquipo}}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+<!-- [class]="{'alumActualColor': id === alumno.idAlum}" -->

@@ -93,8 +93,6 @@ export class RegistroComponent implements OnInit {
       });
     // REGISTRO TABLA PROFESORES
     } else if (this.alumno == false) {
-      console.log(this.registro.controls.pass.value);
-      console.log(this.registro.controls.centro.value);
 
       this.usuario = new Usuario(
 
@@ -105,7 +103,6 @@ export class RegistroComponent implements OnInit {
         this.registro.controls.email.value,
         this.registro.controls.centro.value
       );
-      console.log(this.usuario);
 
       this.profesorService.registroProfesor(this.usuario).subscribe((datos) => {
         const $mensaje = '';
@@ -149,7 +146,6 @@ export class RegistroComponent implements OnInit {
     this.mostrar = false;
     this.hiddenCentro = false;
     this.alumno = false;
-    console.log('Professor = ', this.alumno);
 
     this.registro.controls['centro'].setValidators(Validators.required);
     this.registro.controls['centro'].updateValueAndValidity();
@@ -162,7 +158,6 @@ export class RegistroComponent implements OnInit {
     this.mostrar = true;
     this.hiddenCentro = true;
     this.alumno = true;
-    console.log('Alumno = ', this.alumno);
 
     this.registro.controls['centro'].setValidators([]);
     this.registro.controls['centro'].updateValueAndValidity();

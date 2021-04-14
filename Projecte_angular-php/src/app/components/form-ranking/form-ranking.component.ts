@@ -51,8 +51,6 @@ export class FormRankingComponent implements OnInit {
         this.id
       );
 
-      console.log(this.ranking);
-
 
 
       try {

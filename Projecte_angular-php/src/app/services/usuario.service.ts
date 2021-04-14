@@ -22,7 +22,6 @@ export class UsuarioService {
   }
 
   registroUsuario(registro) {
-    // console.log(JSON.stringify(registro));
     return this.http.post(`${api}server/registroAlumno.php`, JSON.stringify(registro));
   }
 
@@ -31,7 +30,6 @@ export class UsuarioService {
   }
 
   getAlumno(id: number) {
-    console.log(id);
     return this.http.get(`${api}server/seleccionarAlumno.php?id=${id}`);
   }
 

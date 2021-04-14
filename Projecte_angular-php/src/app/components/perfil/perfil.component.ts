@@ -225,7 +225,6 @@ export class PerfilComponent implements OnInit {
   }
 
   eliminarRanking(id: number) {
-    console.log(id);
     this.rankingService.eliminarRanking(id).subscribe((resp => {
       if (resp['resultado'] == 'OK') {
         Swal.fire({
