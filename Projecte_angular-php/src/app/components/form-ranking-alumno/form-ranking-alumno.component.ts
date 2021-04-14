@@ -42,9 +42,6 @@ export class FormRankingAlumnoComponent implements OnInit {
   }
 
   btnInscribirse(){
-    console.log('Funcione');
-    console.log(this.formRankingAlumno.controls.cRanking.value);
-
     if (this.formRankingAlumno.valid) {
       try {
         this.frService.comprobarCodigo(this.formRankingAlumno.controls.cRanking.value).subscribe((value) =>{
@@ -55,8 +52,10 @@ export class FormRankingAlumnoComponent implements OnInit {
               title: value['mensaje'],
               showConfirmButton: false,
               timer: 1500,
-            })
-            this.insertAlum();
+            });
+            setTimeout(() => {
+              this.insertAlum();
+            }, 1500);
           }else if (value['resultado'] === "KO") {
             Swal.fire({
               position: 'center',
@@ -75,15 +74,47 @@ export class FormRankingAlumnoComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Algo ha ido mal',
-          text: 'Vuelve a intentarlo en un rato!'
+          text: 'Vuelve a intentarlo en un rato!',
+          showConfirmButton: false,
+              timer: 1500,
         })
       }
     }
   }
 
   insertAlum(){
-    console.log('Ara el insert');
+    try {
+      this.frService.insertarAlumnoRanking(this.formRankingAlumno.controls.cRanking.value, this.id).subscribe((value)=>{
+        console.log(value);
 
+        if (value['resultado'] === "OK") {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: value['mensaje']
+          })
+          this.router.navigate(['/perfil'], { queryParams: { id: this.id, student: this.student } });
+        }else if (value['resultado'] === "KO") {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Oops...',
+            text: value['mensaje']
+          })
+        }
+      }), (e => {
+        console.log(e);
+      });
+    } catch (error) {
+      //Sweetalert
+      Swal.fire({
+        icon: 'error',
+        title: 'Algo ha ido mal',
+        text: 'Vuelve a intentarlo en un rato!',
+        showConfirmButton: false,
+            timer: 1500,
+      })
+    }
   }
 
   btnAtras() {

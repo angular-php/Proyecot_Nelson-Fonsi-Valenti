@@ -5,15 +5,9 @@
 
   require("db.php");
 
-  // Obtengo los datos cargados en el formulario de login.
-  // $cadena = file_get_contents('php://input');
-
   $con = retornarConexion();
   class Result {}
   $response = new Result();
-
-  // $codigo = $_GET[codigo];
-  // echo $codigo;
 
   $instruccion = "select count(*) as cuantos from rankings where codigo = '$_GET[codigo]'";
   $resultado = mysqli_query($con, $instruccion);
