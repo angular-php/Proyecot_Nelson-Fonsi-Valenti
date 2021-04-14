@@ -4,8 +4,12 @@
 
   require("db.php");
   $con=retornarConexion();
-  
-  $registros=mysqli_query($con,"select * from rankings WHERE idRanking = $_GET[id] ");
+
+  $registros=mysqli_query($con,
+    "SELECT ra.*, r.idRanking, r.nombreRanking, r.codigo
+    FROM rankingalumnos ra
+	  INNER JOIN rankings r ON ra.idRanking = r.idRanking
+    WHERE idAlumno = $_GET[id]");
 
   $vec=[];
   while ($reg=mysqli_fetch_assoc($registros))

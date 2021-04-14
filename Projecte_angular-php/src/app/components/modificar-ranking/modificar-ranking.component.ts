@@ -33,7 +33,6 @@ export class ModificarRankingComponent implements OnInit {
 
   constructor(private router: Router, private usuarioService: UsuarioService, private route: ActivatedRoute, private rankingService: RankingService) {
     this.idRanking = parseInt(this.route.snapshot.queryParamMap.get('id'));
-    console.log(this.idRanking);
     this.id = this.usuarioService.getMemoryID();
     this.student = this.usuarioService.getMemoryStudent();
   }
@@ -53,7 +52,6 @@ export class ModificarRankingComponent implements OnInit {
 
     for(let i=0;i<this.alumnos.length; i++) {
       this.usuarioService.modificarPuntuacionesRanking(this.alumnos[i]).subscribe(res => {
-        console.log(res);
         const result = res['resultado'];
         const msg = res['mensaje'];
         if(i==0) {
@@ -85,7 +83,6 @@ export class ModificarRankingComponent implements OnInit {
     this.usuarioService.verRanking(this.idRanking).subscribe(res => {
       this.nombreRanking = res[0].nombreRanking;
       this.ranking = new Ranking(res[0].nombreRanking, res[0].codigo, res[0].idRanking, res[0].idProfe, this.alumnos);
-      console.log(this.ranking);
     });
   }
 
@@ -95,7 +92,6 @@ export class ModificarRankingComponent implements OnInit {
         this.ejercicios.push(value);
       }
     });
-    console.log(this.ejercicios);
   }
 
   cambiarEjercicio(value: any){
@@ -107,9 +103,6 @@ export class ModificarRankingComponent implements OnInit {
   getAlumnosRanking(){
     this.alumnos = [];
     this.usuarioService.verAlumnosRankingModificar(this.idRanking, this.idEj).then(alum => {
-
-      console.log(alum);
-
 
       for(let i=0;i<alum.length; i++) {
 
@@ -126,12 +119,12 @@ export class ModificarRankingComponent implements OnInit {
             alum.posicion = this.posicion,
             alum.img,
             alum[i].idusu,
+            alum[i].actual,
             this.idRanking,
             this.idEj
         ));
 
       }
-      console.log(this.alumnos);
 
     })
 
