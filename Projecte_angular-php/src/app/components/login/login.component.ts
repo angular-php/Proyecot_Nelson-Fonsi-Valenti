@@ -43,9 +43,6 @@ export class LoginComponent implements OnInit {
           const pass = this.formLogin.controls.password.value;
           this.loginService.login(user, pass).subscribe(
             value => {
-
-              console.log(value['resultado']);
-
             //Alertas i redireccionamiento
             if (value['resultado'] === "OK") {
               let id = value["id"];

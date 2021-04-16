@@ -79,3 +79,7 @@ td.rank {
   transform: translateX(50%);
   margin-bottom: 2%;
 }
+
+.alumActualColor {
+  color: red;
+}

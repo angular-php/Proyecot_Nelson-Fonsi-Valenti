@@ -13,7 +13,8 @@
       INNER JOIN alumnos a ON a.idusu = ejr.idAlumno
       INNER JOIN alumnosequipos ae ON a.idusu = ae.idAlumno
       INNER JOIN equipos eq ON eq.idEquipo = ae.idEquipo
-      WHERE idRanking=$_GET[idRank] AND e.idEjercicio=$_GET[idEj]");
+      WHERE idRanking=$_GET[idRank] AND e.idEjercicio=$_GET[idEj]
+      ORDER BY a.lastname");
 
 
   $vec=[];

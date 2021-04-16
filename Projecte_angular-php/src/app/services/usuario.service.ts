@@ -22,7 +22,6 @@ export class UsuarioService {
   }
 
   registroUsuario(registro) {
-    // console.log(JSON.stringify(registro));
     return this.http.post(`${api}server/registroAlumno.php`, JSON.stringify(registro));
   }
 
@@ -31,7 +30,6 @@ export class UsuarioService {
   }
 
   getAlumno(id: number) {
-    console.log(id);
     return this.http.get(`${api}server/seleccionarAlumno.php?id=${id}`);
   }
 
@@ -52,12 +50,12 @@ export class UsuarioService {
     return this.student;
   }
 
-  listarRankings(){
-
-  }
-
   verRanking(id: number){
     return this.http.get(`${api}server/verRanking.php?id=${id}`);
+  }
+
+  listarRankingsAlumno(id: number): Promise<any> {
+    return this.http.get(`${api}server/verRankingAlumno.php?id=${id}`).toPromise();
   }
 
   verAlumnosRanking(id: number): Promise<any> {

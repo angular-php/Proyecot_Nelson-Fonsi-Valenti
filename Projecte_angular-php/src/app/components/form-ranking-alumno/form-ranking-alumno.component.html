@@ -2,11 +2,11 @@
   <div class="container-login100">
     <div class="wrap-login100">
       <div class="login100-pic js-tilt" data-tilt>
-        <img src="assets/img/formRanking.svg" alt="IMG" />
+        <img class="imgForm" src="assets/img/formRankingAlumno.svg" alt="IMG" />
       </div>
 
-      <form [formGroup]="formRanking" class="login100-form validate-form">
-        <span class="login100-form-title"> Crear ranking: </span>
+      <form [formGroup]="formRankingAlumno" class="login100-form validate-form">
+        <span class="login100-form-title">Unirse Ranking:</span>
 
         <div
           class="wrap-input100 validate-input"
@@ -15,21 +15,21 @@
           <input
             class="input100"
             type="text"
-            formControlName="nRanking"
-            placeholder="Nombre"
+            formControlName="cRanking"
+            placeholder="Codigo Ranking"
             maxlength="15"
           />
           <span class="focus-input100"></span>
         </div>
 
-        <div *ngIf="!formRanking.controls.nRanking.valid && formRanking.dirty">
+        <div *ngIf="!formRankingAlumno.controls.cRanking.valid && formRankingAlumno.dirty">
           <div class="validation-errors">
-            <ng-container *ngFor="let validation of validation_messages.nRanking">
+            <ng-container *ngFor="let validation of validation_messages.cRanking">
               <div
                 *ngIf="
-                  formRanking.get('nRanking').hasError(validation.type) &&
-                  (formRanking.get('nRanking').dirty ||
-                    formRanking.get('nRanking').touched)
+                  formRanking.get('cRanking').hasError(validation.type) &&
+                  (formRanking.get('cRanking').dirty ||
+                    formRanking.get('cRanking').touched)
                 "
               >
                 {{ validation.message }}
@@ -39,7 +39,7 @@
         </div>
 
         <div class="container-login100-form-btn">
-          <button class="login100-form-btn" type="submit" (click)="btnAnadir()" [disabled]="!formRanking.valid">Crear</button>
+          <button class="login100-form-btn" type="submit" (click)="btnInscribirse()" [disabled]="!formRankingAlumno.valid">Inscribirse</button>
         </div>
         <div class="container-login100-form-btn">
           <button class="login100-form-btn btnAtras" type="button"  (click)="btnAtras()">Atras</button>

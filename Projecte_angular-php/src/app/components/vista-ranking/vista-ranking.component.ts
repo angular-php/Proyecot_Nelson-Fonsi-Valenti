@@ -14,18 +14,18 @@ export class VistaRankingComponent implements OnInit {
 
   idRanking: number;
   id: number;
+  idComparar: number;
   student: boolean;
   ranking: Ranking;
   alumnos: alumnoRanking[] = [];
   nombreRanking: string;
   posicion: number = 0;
   url: string = "";
+  alumActualColor: string = "";
 
 
   constructor(private router: Router, private usuarioService: UsuarioService, private route: ActivatedRoute) {
     this.idRanking = parseInt(this.route.snapshot.queryParamMap.get('id'));
-    console.log(this.idRanking);
-
     this.id = this.usuarioService.getMemoryID();
     this.student = this.usuarioService.getMemoryStudent();
   }
@@ -43,14 +43,12 @@ export class VistaRankingComponent implements OnInit {
     this.usuarioService.verRanking(this.idRanking).subscribe(res => {
       this.nombreRanking = res[0].nombreRanking;
       this.ranking = new Ranking(res[0].nombreRanking, res[0].codigo, res[0].idRanking, res[0].idProfe, this.alumnos);
-      console.log(this.ranking);
     });
   }
 
   getAlumnosRanking(){
 
     this.usuarioService.verAlumnosRanking(this.idRanking).then(alum => {
-
       for(let i=0;i<alum.length; i++) {
 
         this.posicion = i+1;
@@ -78,13 +76,18 @@ export class VistaRankingComponent implements OnInit {
             alum[i].nombreEquipo,
             alum[i].puntos,
             alum.posicion = this.posicion,
-            alum.img
+            alum.img,
+            alum[i].idusu,
+            alum[i].actual = false
         ));
 
-      }
 
-    })
+        if(this.id == this.alumnos[i].idAlum) {
+          this.alumnos[i].actual = true;
+        }
+
+      }
+    });
 
   }
-
 }
