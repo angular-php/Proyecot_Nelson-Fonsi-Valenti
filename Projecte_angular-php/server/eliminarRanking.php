@@ -6,11 +6,11 @@
 
   $con = retornarConexion();
 
-  $sql = "delete from equipos where idRanking=$_GET[id]";
-  mysqli_query($con, $sql);
+  // $sql = "delete from equipos where idRanking=$_GET[id]";
+  // mysqli_query($con, $sql);
 
-  $sql = "delete from rankingalumnos where idRanking=$_GET[id]";
-  mysqli_query($con, $sql);
+  // $sql = "delete from rankingalumnos where idRanking=$_GET[id]";
+  // mysqli_query($con, $sql);
 
   $sql = "delete from rankings where idRanking=$_GET[id]";
   mysqli_query($con, $sql);
