@@ -2,6 +2,7 @@
   header("Access-Control-Allow-Origin: *");
   header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
   header("Content-Type: text/html;charset=utf-8");
+  header('Content-Type: application/json');
 
   require("db.php");
 
@@ -42,7 +43,5 @@
     $response->mensaje = 'Codigo actualizado!';
     $response->codigo = 'Codigo: '.$codigo;
 
-
-  header('Content-Type: application/json');
   echo json_encode($response);
 ?>
