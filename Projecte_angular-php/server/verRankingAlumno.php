@@ -10,7 +10,9 @@
     "SELECT ra.*, r.idRanking, r.nombreRanking, r.codigo
     FROM rankingalumnos ra
 	  INNER JOIN rankings r ON ra.idRanking = r.idRanking
-    WHERE idAlumno = $_GET[id]");
+    WHERE idAlumno = $_GET[id]
+    ORDER BY r.nombreRanking
+    ");
 
   $vec=[];
   while ($reg=mysqli_fetch_assoc($registros))

@@ -6,7 +6,7 @@
   require("db.php");
   $con=retornarConexion();
 
-  $registros=mysqli_query($con,"select * from rankings WHERE idProfe = $_GET[id] ");
+  $registros=mysqli_query($con,"select * from rankings WHERE idProfe = $_GET[id] ORDER BY nombreRanking");
 
   $vec=[];
   while ($reg=mysqli_fetch_assoc($registros))
