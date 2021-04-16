@@ -21,12 +21,13 @@
   $instruccion2 = "select count(*) as 'rows2' from alumnos where nickname = '$params->nickname'";
   $res2 = mysqli_query($con, $instruccion2);
   $datos2 = mysqli_fetch_assoc($res2);
+  $paswEnc = password_hash($params->password, PASSWORD_DEFAULT);
 
   if ($datos['rows'] == 0 && $datos2['rows2'] == 0) {
     //QUERY Insert BBDD
     mysqli_query($con,
     "insert into profesores(nickname, password, email, firstname, lastname, centro)
-    values ('$params->nickname','$params->password','$params->email','$params->firstname','$params->lastname', '$params->center')"
+    values ('$params->nickname', '$paswEnc','$params->email','$params->firstname','$params->lastname', '$params->center')"
     );
 
     // GENERA LOS DATOS DE RESPUESTA

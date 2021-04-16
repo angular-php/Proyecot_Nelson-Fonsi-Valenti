@@ -49,7 +49,7 @@
       }
 
       //Comprovar si coincide el password
-      if (!strcmp($password2, $password) == 0) {
+      if (!password_verify($password, $password2)) {
         $response->resultado = 'CKO';
         $response->mensaje = 'Contraseña profesor incorrecta';
       } else {
@@ -75,7 +75,7 @@
     }
 
     //Comprovar si coincide el password
-    if (!strcmp($password2, $password) == 0) {
+    if (!password_verify($password, $password2)) {
       $response->resultado = 'CKO';
       $response->mensaje = 'Contraseña alumno incorrecta';
     } else {
