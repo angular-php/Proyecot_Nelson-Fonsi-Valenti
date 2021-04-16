@@ -27,8 +27,8 @@
                 <h4 class="m-b-20 p-b-5 b-b-default f-w-600"><a class="btnActivado" id="btnRanking" (click)="mostrarRanking()">Rankings</a><a id="btnPerfil" (click)="mostrarPerfil()">Información</a></h4>
                 <ng-container *ngIf="ventana === 'ranking'">
                   <div class="row">
-                    <button *ngIf="student == true" type="button"  class="btn btn-success bi" routerLink="/formRankingAlumno"  routerLinkActive="active"> Unirse <i class="fas fa-plus"></i></button>
-                    <button *ngIf="student == false" type="button"  class="btn btn-success bi" routerLink="/formRanking"  routerLinkActive="active"> Añadir <i class="fas fa-plus"></i></button>
+                    <button *ngIf="student == true" type="button"  class="btn btn-success bi" routerLink="/formRankingAlumno"  routerLinkActive="active"> Unirse Ranking <i class="fas fa-plus"></i></button>
+                    <button *ngIf="student == false" type="button"  class="btn btn-success bi" routerLink="/formRanking"  routerLinkActive="active"> Crear Ranking <i class="fas fa-plus"></i></button>
                     <div class="col-12">
                       <table class="table table-bordered">
                         <thead>
