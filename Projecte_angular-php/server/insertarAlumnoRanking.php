@@ -29,11 +29,31 @@
   }
 
   if ($numero == 0) {
-    $instruccion = "INSERT INTO rankingalumnos (idRanking, idAlumno, puntos) VALUES ('".$idRanking."', ".$idAlumno.", '".$codigo."');";
-    $resultado = mysqli_query($con, $instruccion);
 
+    //INSTRUCCIO PER SUMAR PUNTOS(AL VER DETALLE RANKING)
+    $instruccion = "SELECT SUM(puntos) AS TotalPuntos FROM ejerciciosranking WHERE idRanking = ".$idRanking." AND idAlumno = ".$idAlumno.";";
+    $resultado = mysqli_query($con, $instruccion);
+    while ($fila = $resultado->fetch_array()) {
+      $totalPuntos = $fila["TotalPuntos"];
+    }
+
+    $instruccion = "INSERT INTO rankingalumnos (idRanking, idAlumno, puntos) VALUES ('".$idRanking."', ".$idAlumno.", '".$totalPuntos."');";
+    $resultado = mysqli_query($con, $instruccion);
     $response->resultado = "OK";
     $response->mensaje = "Alumno insertado en ranking";
+
+    for ($i=1; $i <= 50; $i++) {
+      $instruccion2 = "SELECT COUNT(*) AS cuantos FROM ejerciciosranking WHERE idEjercicio = ".$i." AND idRanking = ".$idRanking." AND idAlumno = ".$idAlumno.";";
+      $resultado2 = mysqli_query($con, $instruccion2);
+      //Comprovar que exista
+      while ($fila = $resultado2->fetch_array()) {
+        $numero2 = $fila["cuantos"];
+      }
+      if($numero2 == 0){
+        $instruccion3 = "INSERT ejerciciosranking VALUES (".$i.", 0 ,". $idRanking.", ".$idAlumno.");";
+        $resultado3 = mysqli_query($con, $instruccion3);
+      }
+    }
 
   }elseif($numero != 0){
 
