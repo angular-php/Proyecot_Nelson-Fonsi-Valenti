@@ -13,6 +13,15 @@
 
   mysqli_query($con, "update ejerciciosranking set puntos = $params->puntos WHERE idRanking = $params->idRank AND idAlumno = $params->idAlum AND idEjercicio = $params->idEj");
 
+  $instruccion = mysqli_query($con, "SELECT SUM(er.puntos) AS 'totalP' FROM ejerciciosranking er, alumnos a WHERE er.idAlumno = a.idusu AND er.idRanking = $params->idRank AND er.idAlumno = $params->idAlum");
+
+  while ($fila = $instruccion->fetch_array()) {
+    $totalPuntos = $fila["totalP"];
+  }
+
+  mysqli_query($con, "UPDATE rankingalumnos SET puntos = $totalPuntos WHERE idAlumno = $params->idAlum AND idRanking = $params->idRank;");
+
+
 
   class Result {}
 

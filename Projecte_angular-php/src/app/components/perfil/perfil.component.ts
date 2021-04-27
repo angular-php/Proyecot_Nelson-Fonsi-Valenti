@@ -83,19 +83,21 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.setMemoryUsuario(this.id, this.student);
     this.selectUser(this.id);
 
-    this.usuarioService.listarRankingsAlumno(this.id).then(ranks => {
-      for (let i = 0; i < ranks.length; i++) {
-        this.rankingArray.push(new Ranking(ranks[i].nombreRanking, ranks[i].codigo, ranks[i].idRanking, ranks[i].idProfe, null));
-      }
+    if(this.student === true){
+      this.usuarioService.listarRankingsAlumno(this.id).then(ranks => {
+        for (let i = 0; i < ranks.length; i++) {
+          this.rankingArray.push(new Ranking(ranks[i].nombreRanking, ranks[i].codigo, ranks[i].idRanking, ranks[i].idProfe, null));
+        }
 
-    })
+      })
+    }else{
+      this.profesorService.listarRankings(this.id).then(ranks => {
+        for (let i = 0; i < ranks.length; i++) {
+          this.rankingArray.push(new Ranking(ranks[i].nombreRanking, ranks[i].codigo, ranks[i].idRanking, ranks[i].idProfe, null));
+        }
+      })
+    }
 
-    this.profesorService.listarRankings(this.id).then(ranks => {
-      for (let i = 0; i < ranks.length; i++) {
-        this.rankingArray.push(new Ranking(ranks[i].nombreRanking, ranks[i].codigo, ranks[i].idRanking, ranks[i].idProfe, null));
-      }
-
-    })
   }
 
   password() {
@@ -106,7 +108,8 @@ export class PerfilComponent implements OnInit {
     if (this.student == true) {
       this.hideCenter = true;
       this.usuarioService.getAlumno(id).subscribe((resp => {
-        this.usuario = new Usuario(resp[0].idusu, resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray);
+        console.log(resp);
+        this.usuario = new Usuario(resp[0].nickname, resp[0].password, resp[0].firstname, resp[0].lastname, resp[0].email, null, this.rankingArray, null, resp[0].idusu);
         this.nickname = resp[0].nickname;
         this.perfilForm.setValue({
           fname: this.usuario.firstname,
@@ -126,7 +129,8 @@ export class PerfilComponent implements OnInit {
       this.perfilForm.controls['center'].updateValueAndValidity();
 
       this.profesorService.getProfesor(id).subscribe((resp => {
-        this.usuario = new Usuario(resp[0].idProf, resp[0].nickname, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].password, this.rankingArray, null, resp[0].centro);
+        console.log(resp);
+        this.usuario = new Usuario(resp[0].nickname, resp[0].password, resp[0].firstname, resp[0].lastname, resp[0].email, resp[0].centro, this.rankingArray, null, resp[0].idProf);
         this.nickname = resp[0].nickname;
         this.perfilForm.setValue({
           fname: this.usuario.firstname,
