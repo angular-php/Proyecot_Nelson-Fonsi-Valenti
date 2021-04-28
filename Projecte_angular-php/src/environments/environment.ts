@@ -8,7 +8,6 @@ export const environment = {
   url: "http://localhost/Proyecto_Nelson-Fonsi-Valenti/Projecte_angular-php/"
 
 
-
 };
 
 /*
