@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
 
-  url: "http://localhost/Proyecto_Nelson-Fonsi-Valenti/Projecte_angular-php/"
+  url: "http://localhost:80/Proyecto_Nelson-Fonsi-Valenti/Projecte_angular-php/"
 
 
 };
