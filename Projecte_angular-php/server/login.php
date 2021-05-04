@@ -11,7 +11,7 @@
   $json = json_decode($cadena, true);
 
   $nombre = $json['usuario'];
-  $password = $json['passw'];
+  $password = str_replace(' ', '', $json['passw']);
 
   $con = retornarConexion();
   class Result {}
