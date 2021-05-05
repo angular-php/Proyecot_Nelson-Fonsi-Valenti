@@ -1,6 +1,7 @@
 <?php
   header('Access-Control-Allow-Origin: *');
   header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+  header('Content-Type: application/json');
 
   $json = file_get_contents('php://input');
 
@@ -11,7 +12,7 @@
   $con=retornarConexion();
 
   mysqli_query($con,"update profesores set nickname='$params->nickname',
-                                        password='$params->password',
+                                        password='".password_hash($params->password, PASSWORD_DEFAULT)."',
                                         firstname='$params->firstname',
                                         lastname='$params->lastname',
                                         email='$params->email',
@@ -25,6 +26,5 @@
   $response->resultado = 'OK';
   $response->mensaje = 'Datos guardados';
 
-  header('Content-Type: application/json');
   echo json_encode($response);
 ?>

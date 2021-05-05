@@ -38,7 +38,7 @@ export class ModificarRankingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAlumnosRanking();
+    this.getAlumnosRanking(this.idEj);
     this.getRanking();
     this.dropdownEjercicios();
   }
@@ -49,6 +49,8 @@ export class ModificarRankingComponent implements OnInit {
 
 
   btnGuardar() {
+
+
 
     for(let i=0;i<this.alumnos.length; i++) {
       this.usuarioService.modificarPuntuacionesRanking(this.alumnos[i]).subscribe(res => {
@@ -95,14 +97,15 @@ export class ModificarRankingComponent implements OnInit {
   }
 
   cambiarEjercicio(value: any){
+    console.log(value);
     this.idEj = value;
-    this.getAlumnosRanking();
+    this.getAlumnosRanking(this.idEj);
   }
 
 
-  getAlumnosRanking(){
+  getAlumnosRanking(idEj: number){
     this.alumnos = [];
-    this.usuarioService.verAlumnosRankingModificar(this.idRanking, this.idEj).then(alum => {
+    this.usuarioService.verAlumnosRankingModificar(this.idRanking, idEj).then(alum => {
 
       for(let i=0;i<alum.length; i++) {
 

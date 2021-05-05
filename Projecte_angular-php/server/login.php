@@ -2,6 +2,7 @@
   header('Access-Control-Allow-Origin: *');
   header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
   header("Content-Type: text/html;charset=utf-8");
+  header('Content-Type: application/json');
 
   require("db.php");
 
@@ -10,7 +11,7 @@
   $json = json_decode($cadena, true);
 
   $nombre = $json['usuario'];
-  $password = $json['passw'];
+  $password = str_replace(' ', '', $json['passw']);
 
   $con = retornarConexion();
   class Result {}
@@ -49,7 +50,7 @@
       }
 
       //Comprovar si coincide el password
-      if (!strcmp($password2, $password) == 0) {
+      if (!password_verify($password, $password2)) {
         $response->resultado = 'CKO';
         $response->mensaje = 'Contraseña profesor incorrecta';
       } else {
@@ -75,7 +76,7 @@
     }
 
     //Comprovar si coincide el password
-    if (!strcmp($password2, $password) == 0) {
+    if (!password_verify($password, $password2)) {
       $response->resultado = 'CKO';
       $response->mensaje = 'Contraseña alumno incorrecta';
     } else {
@@ -92,6 +93,5 @@
     }
   }
 
-  header('Content-Type: application/json');
   echo json_encode($response);
 ?>

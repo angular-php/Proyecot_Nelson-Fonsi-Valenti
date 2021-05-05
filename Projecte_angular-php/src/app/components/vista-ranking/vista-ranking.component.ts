@@ -4,6 +4,7 @@ import { alumnoRanking } from 'src/app/models/alumnosRanking.model';
 import { Ranking } from 'src/app/models/ranking.model';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-vista-ranking',
@@ -89,5 +90,41 @@ export class VistaRankingComponent implements OnInit {
       }
     });
 
+  }
+
+  // Mostrar info Skills
+  infoCooperacionBtn() {
+    Swal.fire({
+      title: 'Cooperacion',
+      text: 'Habilidad de interaccionar de forma constructiva y a partir de la escucha, con el objetivo de conseguir una meta común y consensuada.',
+    })
+  }
+
+  infoEmocionesBtn() {
+    Swal.fire({
+      title: 'Emociones',
+      text: 'Habilidad de percibir y aceptar las emociones propias y las de los demás, con el objetivo de desarrollar estrategias de gestión personal eficaces.',
+    })
+  }
+
+  infoIniciativaBtn() {
+    Swal.fire({
+      title: 'Iniciativa',
+      text: 'Habilidad de emprender acciones e implicarse en las actividades, utilizando los recursos propios, y de saber cuándo pedir ayuda.',
+    })
+  }
+
+  infoPensamientoBtn() {
+    Swal.fire({
+      title: 'Pensamiento',
+      text: 'Habilidad de relacionar, cuestionar, generar y exponer ideas.',
+    })
+  }
+
+  infoResponsabilidadBtn() {
+    Swal.fire({
+      title: 'Responsabilidad',
+      text: 'Habilidad de lograr con calidad las tareas asignadas, en el lugar y el momento adecuados, con el objetivo de responder a nuestros compromisos y respetando las normas acordadas.',
+    })
   }
 }
