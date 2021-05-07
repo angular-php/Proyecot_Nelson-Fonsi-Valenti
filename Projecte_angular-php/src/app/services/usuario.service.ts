@@ -66,6 +66,10 @@ export class UsuarioService {
     return this.http.get(`${api}server/verRankingModificar.php?idRank=${idRank}&idEj=${idEj}`).toPromise();
   }
 
+  verAlumnosRankingSkills(idRank: number): Promise<any> {
+    return this.http.get(`${api}server/verRankingSkills.php?idRank=${idRank}`).toPromise();
+  }
+
   modificarPuntuacionesRanking(alumnoRanking: alumnoRanking) {
     return this.http.post(`${api}server/modificarPuntuacionesRanking.php`, JSON.stringify(alumnoRanking));
   }

@@ -1,4 +1,5 @@
 import { alumnoRanking } from "./alumnosRanking.model";
+import { alumnoSkills } from "./alumnosSkills.model";
 
 export class Ranking {
 
@@ -8,6 +9,7 @@ export class Ranking {
     public idRank?: number,
     public idProfe?: number,
     public usuarios?: alumnoRanking[],
+    public usuariosSkills?: alumnoSkills[],
   ) { }
 
 }

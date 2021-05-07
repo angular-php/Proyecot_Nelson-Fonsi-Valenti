@@ -12,6 +12,6 @@ export class alumnoRanking{
     public idAlum?: number,
     public actual?: boolean,
     public idRank?: number,
-    public idEj?: number
+    public idEj?: number,
   ){}
 }

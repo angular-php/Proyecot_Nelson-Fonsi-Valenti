@@ -9,20 +9,23 @@
 
   <div class="wrapper">
 
-    <select class="form-select" aria-label="Default select example" [value]="idEj" (change)="cambiarEjercicio($event.target.value)">
-      <ng-container  *ngFor="let ejercicio of ejercicios">
-        <option value="{{ejercicio.idEjercicio}}">{{ejercicio.nombre}}</option>
+    <!-- <select class="form-select" aria-label="Default select example" [value]="idEj" (change)="cambiarSkill($event.target.value)">
+      <ng-container  *ngFor="let skill of skills; let i=index">
+        <option value="{{i}}">{{skill}}</option>
       </ng-container>
-    </select>
+    </select> -->
 
-    <table>
+    <table class="table table-responsive">
       <thead>
         <tr>
           <th>Num</th>
           <th>Nick</th>
           <th>Alumno</th>
-          <th>Puntuación</th>
-          <th>Equipo</th>
+          <th>Cooperacion</th>
+          <th>Emociones</th>
+          <th>Pensamiento</th>
+          <th>Iniciativa</th>
+          <th>Responsabilidad</th>
         </tr>
       </thead>
 
@@ -30,22 +33,38 @@
 
         <tr *ngFor="let alumno of alumnos">
           <td class="rank">{{alumno.posicion}}</td>
-          <td class="nick">{{alumno.nick}}</td>
-          <td class="name">{{alumno.lname+ ", " +alumno.fname}}</td>
+          <td class="nick">{{alumno.nickname}}</td>
+          <td class="name">{{alumno.lastname+ ", " +alumno.firstname}}</td>
           <td class="points">
             <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-trophy"></i></span>
-              </div>
-
-              <input type="number" class="form-control" [(ngModel)]="alumno.puntos">
+              <input type="number" class="form-control" [(ngModel)]="alumno.cooperacion">
             </div>
           </td>
-          <td class="team">{{alumno.nombreEquipo}}</td>
+          <td class="points">
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" [(ngModel)]="alumno.emociones">
+            </div>
+          </td>
+          <td class="points">
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" [(ngModel)]="alumno.pensamiento">
+            </div>
+          </td>
+          <td class="points">
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" [(ngModel)]="alumno.iniciativa">
+            </div>
+          </td>
+          <td class="points">
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" [(ngModel)]="alumno.responsabilidad">
+            </div>
+          </td>
         </tr>
 
       </tbody>
     </table>
+    <p style="text-align: center; font-weight: 700; margin-top: 20px;">Punto a repartir: {{puntos}}</p>
   </div>
 </div>
 

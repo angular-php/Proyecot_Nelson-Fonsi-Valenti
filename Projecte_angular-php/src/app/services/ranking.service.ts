@@ -40,4 +40,8 @@ export class RankingService {
     return this.http.post(`${api}server/actualizarCodigo.php`, JSON.stringify(ranking));
   }
 
+  getPuntosRepartir(idUsuario: number, idRank: number){
+    return this.http.get(`${api}server/getPuntosSkills.php?id=${idUsuario}&idRank=${idRank}`);
+  }
+
 }
