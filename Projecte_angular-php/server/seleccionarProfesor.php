@@ -8,6 +8,7 @@
 
   $registros=mysqli_query($con,"select * from profesores where idProf=$_GET[id]");
   $vec=[];
+
   while ($reg=mysqli_fetch_assoc($registros))
   {
     $vec[]=$reg;

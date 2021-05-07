@@ -49,9 +49,10 @@ export class FormRankingAlumnoComponent implements OnInit {
             Swal.fire({
               position: 'center',
               icon: 'success',
+              timerProgressBar: true,
               title: value['mensaje'],
               showConfirmButton: false,
-              timer: 1500,
+              timer: 6500,
             });
             setTimeout(() => {
               this.insertAlum();

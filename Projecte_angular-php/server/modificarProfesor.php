@@ -12,7 +12,7 @@
   $con=retornarConexion();
 
   mysqli_query($con,"update profesores set nickname='$params->nickname',
-                                        password='$params->password',
+                                        password='".password_hash($params->password, PASSWORD_DEFAULT)."',
                                         firstname='$params->firstname',
                                         lastname='$params->lastname',
                                         email='$params->email',

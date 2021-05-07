@@ -4,7 +4,7 @@
   </header>
   <button type="button" class="btn btn-dark atras" routerLinkActive="active" (click)="btnAtras()"><i class="far fa-arrow-alt-circle-left"></i> Atrás</button>
   <div class="wrapper">
-    <table>
+    <table class="table table-responsive">
       <thead>
         <tr>
           <th>Insignia</th>
@@ -28,12 +28,11 @@
           <td id="alumActual" class="team" [ngClass]="{'alumActualColor' : alumno.actual}" >{{alumno.fname + " " + alumno.lname}}</td>
           <td class="points">{{alumno.puntos}}</td>
           <td class="team">{{alumno.nombreEquipo}}</td>
-          <td></td>
-          <td><img src="assets/Skills/Cooperacion/Cooperacion1.svg" width="20px"></td>
-          <td><img src="assets/Skills/Emociones/Emociones3.svg" width="20px"></td>
-          <td><img src="assets/Skills/Iniciativa/Iniciativa1.svg" width="20px"></td>
-          <td><img src="assets/Skills/Pensamiento/Pensamiento1.svg" width="20px"></td>
-          <td><img src="assets/Skills/Responsabilidad/Responsabilidad1.svg" width="20px"></td>
+          <td><img src="../../../assets/Skills/Cooperacion/Cooperacion1.png" colspan = 4 alt="" height=45 width=28 (click)="infoCooperacionBtn()" ></td>
+          <td><img src="assets/Skills/Emociones/Emociones1.png" colspan = 4 alt="" height=45 width=40 (click)="infoEmocionesBtn()"></td>
+          <td><img src="assets/Skills/Iniciativa/Iniciativa1.png" colspan = 4 alt="" height=45 width=35 (click)="infoIniciativaBtn()"></td>
+          <td><img src="assets/Skills/Pensamiento/Pensamiento1.png" colspan = 4 alt="" height=45 width=45 (click)="infoPensamientoBtn()"></td>
+          <td><img src="assets/Skills/Responsabilidad/Responsabilidad1.png" colspan = 4 alt="" height=45 width=40 (click)="infoResponsabilidadBtn()"></td>
         </tr>
       </tbody>
     </table>

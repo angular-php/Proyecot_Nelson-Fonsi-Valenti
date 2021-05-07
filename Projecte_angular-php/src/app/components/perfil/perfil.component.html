@@ -47,6 +47,8 @@
                               <button type="button" *ngIf="student === false" class="btn btn-success bt" (click)="editarRanking(rank.idRank)">  <i class="fas fa-edit"></i></button>
                               <button type="button" *ngIf="student === false" class="btn btn-danger bt" (click)="eliminarRanking(rank.idRank)">  <i class="fas fa-remove"></i></button>
                               <button type="button" *ngIf="student === false" class="btn btn-warning bt" (click)="actualizarCodigo(rank)">  <i class="fas fa-spinner"></i></button>
+                              <button type="button" *ngIf="student === true" class="btn btn-success bt" > Skills <i class="fas fa-edit"></i></button>
+                              <button type="button" *ngIf="student === false" class="btn btn-info bt" >  <i class="fas fa-history"></i></button>
                             </td>
                           </tr>
                         </tbody>
@@ -118,27 +120,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-6">
-                        <p class="m-b-10 f-w-600">Contraseña</p>
-                        <div class="input-group input-group-sm mb-3" id="show_hide_password">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3"><i class="fas fa-unlock-alt"></i></span>
-                          </div>
-                          <input [type]="show ? 'text' : 'password'" id="passw" class="form-control text-muted f-w-400" placeholder="Contraseña"
-                            formControlName="password">
-                        </div>
-                        <input type="checkbox" (click)="password()"> Mostrar Contraseña
-                        <div *ngIf="!perfilForm.controls.password.valid && perfilForm.dirty">
-                          <div class="validation-errors">
-                            <ng-container *ngFor="let validation of validation_messages.password">
-                              <div
-                                *ngIf="perfilForm.get('password').hasError(validation.type) && (perfilForm.get('password').dirty || perfilForm.get('password').touched)">
-                                {{ validation.message }}
-                              </div>
-                            </ng-container>
-                          </div>
-                        </div>
-                      </div>
+
                       <div class="col-sm-6" [hidden]="hideCenter">
                         <p class="m-b-10 f-w-600">Centro</p>
                         <div class="input-group input-group-sm mb-3">
