@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { alumnoRanking } from 'src/app/models/alumnosRanking.model';
+import { Ejercicio } from 'src/app/models/ejercicio.model';
 import { Ranking } from 'src/app/models/ranking.model';
 import { RankingService } from 'src/app/services/ranking.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
