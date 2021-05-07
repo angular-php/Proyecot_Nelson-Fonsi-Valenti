@@ -11,6 +11,7 @@ import { FormRankingComponent } from './components/form-ranking/form-ranking.com
 import { VistaRankingComponent } from './components/vista-ranking/vista-ranking.component';
 import { ModificarRankingComponent } from './components/modificar-ranking/modificar-ranking.component';
 import { FormRankingAlumnoComponent } from './components/form-ranking-alumno/form-ranking-alumno.component';
+import { SkillsComponent } from './components/skills/skills.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormRankingAlumnoComponent } from './components/form-ranking-alumno/for
     FormRankingComponent,
     ModificarRankingComponent,
     FormRankingAlumnoComponent,
+    SkillsComponent,
   ],
   imports: [
     BrowserModule,

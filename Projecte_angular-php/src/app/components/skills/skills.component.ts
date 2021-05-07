@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { alumnoRanking } from 'src/app/models/alumnosRanking.model';
-import { Ejercicio } from 'src/app/models/ejercicio.model';
 import { Ranking } from 'src/app/models/ranking.model';
 import { RankingService } from 'src/app/services/ranking.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-modificar-ranking',
-  templateUrl: './modificar-ranking.component.html',
-  styleUrls: ['./modificar-ranking.component.css']
+  selector: 'app-skills',
+  templateUrl: './skills.component.html',
+  styleUrls: ['./skills.component.css']
 })
-export class ModificarRankingComponent implements OnInit {
+export class SkillsComponent implements OnInit {
 
   idRanking: number;
   id: number;
@@ -42,11 +40,6 @@ export class ModificarRankingComponent implements OnInit {
     this.getRanking();
     this.dropdownEjercicios();
   }
-
-  btnAtras() {
-    this.router.navigate(['/perfil'], { queryParams: { id: this.id, student: this.student } });
-  }
-
 
   btnGuardar() {
     for(let i=0;i<this.alumnos.length; i++) {
@@ -103,9 +96,7 @@ export class ModificarRankingComponent implements OnInit {
   getAlumnosRanking(idEj: number){
     this.alumnos = [];
     this.usuarioService.verAlumnosRankingModificar(this.idRanking, idEj).then(alum => {
-
       for(let i=0;i<alum.length; i++) {
-
         this.posicion = i+1;
         this.alumnos.push(
           new alumnoRanking(
@@ -123,14 +114,9 @@ export class ModificarRankingComponent implements OnInit {
             this.idRanking,
             this.idEj
         ));
-
       }
-
     })
-
   }
-
-
 
 
 }
