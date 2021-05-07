@@ -11,6 +11,16 @@ export class alumnoRanking{
     public img?: string,
     public idAlum?: number,
     public actual?: boolean,
+    public cooperacion?: any,
+    public emociones?: any,
+    public iniciativa?: any,
+    public pensamiento?: any,
+    public responsabilidad?: any,
+    public lvlCooperacion?: number,
+    public lvlEmociones?: number,
+    public lvlIniciativa?: number,
+    public lvlPensamiento?: number,
+    public lvlResponsabilidad?: number,
     public idRank?: number,
     public idEj?: number
   ){}
