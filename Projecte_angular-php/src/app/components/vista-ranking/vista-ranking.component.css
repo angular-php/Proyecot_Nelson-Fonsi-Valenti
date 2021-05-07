@@ -59,6 +59,11 @@ tr>td {
   text-align: center;
 }
 
+td {
+  margin-top: 15px;
+  min-width: 100px;
+}
+
 tbody tr:nth-child(2n-1) {
   background-color: #dddddd;
   transition: all .125s ease-in-out;
