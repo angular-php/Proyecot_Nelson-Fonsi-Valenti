@@ -24,6 +24,8 @@ export class SkillsComponent implements OnInit {
   posicion: number = 0;
   url: string = "";
 
+  puntosRepartidos: number = 0;
+
   result: string;
   msg: string;
 
@@ -49,9 +51,17 @@ export class SkillsComponent implements OnInit {
     this.router.navigate(['/perfil'], { queryParams: { id: this.id, student: this.student } });
   }
 
-  /*btnGuardar() {
+  btnGuardar() {
     for(let i=0;i<this.alumnos.length; i++) {
-      this.usuarioService.modificarPuntuacionesRanking(this.alumnos[i]).subscribe(res => {
+      console.log(this.alumnos[i]);
+      const a = this.alumnos[i].cooperacion;
+      const e = this.alumnos[i].emociones;
+      const s = this.alumnos[i].iniciativa;
+      const o = this.alumnos[i].pensamiento;
+      const u = this.alumnos[i].responsabilidad;
+      this.puntosRepartidos = this.puntosRepartidos + a + e + s + o + u;
+      this.usuarioService.modificarSkills(this.alumnos[i], this.idRanking).subscribe(res => {
+        console.log(this.puntosRepartidos);
         const result = res['resultado'];
         const msg = res['mensaje'];
         if(i==0) {
@@ -64,6 +74,7 @@ export class SkillsComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500,
             });
+
           }else{
             Swal.fire({
               position: 'center',
@@ -77,7 +88,19 @@ export class SkillsComponent implements OnInit {
       });
     }
 
-  }*/
+    const puntosAlumno = {
+      id: this.id,
+      idRank: this.idRanking,
+      puntosRepartidos : this.puntosRepartidos,
+    }
+
+    console.log(puntosAlumno);
+
+    this.usuarioService.modificarPuntosAlumno(puntosAlumno).subscribe(resp => {
+      this.getPuntosSkills();
+    })
+
+  }
 
   getRanking() {
     this.usuarioService.verRanking(this.idRanking).subscribe(res => {
@@ -108,6 +131,11 @@ export class SkillsComponent implements OnInit {
         this.alumnos.push(new alumnoSkills(alum[i]));
         this.alumnos[i].posicion = this.posicion;
         console.log(this.alumnos);
+        this.alumnos[i].cooperacion = 0;
+        this.alumnos[i].emociones = 0;
+        this.alumnos[i].responsabilidad = 0;
+        this.alumnos[i].pensamiento = 0;
+        this.alumnos[i].iniciativa = 0;
       }
     })
   }
