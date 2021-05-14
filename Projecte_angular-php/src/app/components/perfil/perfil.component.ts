@@ -259,6 +259,11 @@ export class PerfilComponent implements OnInit {
     this.router.navigate(['/modificarRanking'], { queryParams: { id: idRank } });
   }
 
+  editarSkills(idRank) {
+    this.router.navigate(['/skills'], { queryParams: { id: idRank } });
+  }
+
+
   mostrarPerfil() {
     this.ventana = 'perfil';
     document.getElementById('btnPerfil').classList.add('btnActivado');

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { alumnoRanking } from 'src/app/models/alumnosRanking.model';
+import { alumnoSkills } from 'src/app/models/alumnosSkills.model';
 import { Ejercicio } from 'src/app/models/ejercicio.model';
 import { Ranking } from 'src/app/models/ranking.model';
 import { RankingService } from 'src/app/services/ranking.service';
@@ -18,17 +19,21 @@ export class SkillsComponent implements OnInit {
   id: number;
   student: boolean;
   ranking: Ranking;
-  alumnos: alumnoRanking[] = [];
+  alumnos: alumnoSkills[] = [];
   nombreRanking: string;
   posicion: number = 0;
   url: string = "";
 
+  puntosRepartidos: number = 0;
+
   result: string;
   msg: string;
 
-  ejercicios: Ejercicio[] = [];
+  //skills: string[] = ['Cooperacion', 'Emociones', 'Iniciativa', 'Pensamiento', 'Responsabilidad'];
 
-  idEj: number = 1;
+  //idSkill: number = 0;
+
+  puntos: number;
 
   constructor(private router: Router, private usuarioService: UsuarioService, private route: ActivatedRoute, private rankingService: RankingService) {
     this.idRanking = parseInt(this.route.snapshot.queryParamMap.get('id'));
@@ -37,14 +42,26 @@ export class SkillsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAlumnosRanking(this.idEj);
+    this.getAlumnosRanking();
     this.getRanking();
-    this.dropdownEjercicios();
+    this.getPuntosSkills();
+  }
+
+  btnAtras() {
+    this.router.navigate(['/perfil'], { queryParams: { id: this.id, student: this.student } });
   }
 
   btnGuardar() {
     for(let i=0;i<this.alumnos.length; i++) {
-      this.usuarioService.modificarPuntuacionesRanking(this.alumnos[i]).subscribe(res => {
+      console.log(this.alumnos[i]);
+      const a = this.alumnos[i].cooperacion;
+      const e = this.alumnos[i].emociones;
+      const s = this.alumnos[i].iniciativa;
+      const o = this.alumnos[i].pensamiento;
+      const u = this.alumnos[i].responsabilidad;
+      this.puntosRepartidos = this.puntosRepartidos + a + e + s + o + u;
+      this.usuarioService.modificarSkills(this.alumnos[i], this.idRanking).subscribe(res => {
+        console.log(this.puntosRepartidos);
         const result = res['resultado'];
         const msg = res['mensaje'];
         if(i==0) {
@@ -57,6 +74,7 @@ export class SkillsComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500,
             });
+
           }else{
             Swal.fire({
               position: 'center',
@@ -70,51 +88,54 @@ export class SkillsComponent implements OnInit {
       });
     }
 
+    const puntosAlumno = {
+      id: this.id,
+      idRank: this.idRanking,
+      puntosRepartidos : this.puntosRepartidos,
+    }
+
+    console.log(puntosAlumno);
+
+    this.usuarioService.modificarPuntosAlumno(puntosAlumno).subscribe(resp => {
+      this.getPuntosSkills();
+    })
+
   }
 
   getRanking() {
     this.usuarioService.verRanking(this.idRanking).subscribe(res => {
       this.nombreRanking = res[0].nombreRanking;
-      this.ranking = new Ranking(res[0].nombreRanking, res[0].codigo, res[0].idRanking, res[0].idProfe, this.alumnos);
+      this.ranking = new Ranking(res[0].nombreRanking, res[0].codigo, res[0].idRanking, res[0].idProfe, null, this.alumnos);
     });
   }
 
-  dropdownEjercicios(){
-    this.rankingService.selectEjercicios().then(values => {
-      for(const value of values){
-        this.ejercicios.push(value);
-      }
-    });
+  getPuntosSkills(){
+    this.rankingService.getPuntosRepartir(this.id, this.idRanking).subscribe(res => {
+      this.puntos = res[0].puntosSkills;
+    })
   }
 
-  cambiarEjercicio(value: any){
+  /*cambiarSkill(value: any){
     console.log(value);
-    this.idEj = value;
-    this.getAlumnosRanking(this.idEj);
-  }
+    this.idSkill = value;
+    this.getAlumnosRanking(this.idSkill);
+  }*/
 
 
-  getAlumnosRanking(idEj: number){
+  getAlumnosRanking(){
     this.alumnos = [];
-    this.usuarioService.verAlumnosRankingModificar(this.idRanking, idEj).then(alum => {
+    this.usuarioService.verAlumnosRankingSkills(this.idRanking).then(alum => {
+      console.log(alum);
       for(let i=0;i<alum.length; i++) {
         this.posicion = i+1;
-        this.alumnos.push(
-          new alumnoRanking(
-            alum[i].nickname,
-            alum[i].password,
-            alum[i].email,
-            alum[i].firstname,
-            alum[i].lastname,
-            alum[i].nombreEquipo,
-            alum[i].puntos,
-            alum.posicion = this.posicion,
-            alum.img,
-            alum[i].idusu,
-            alum[i].actual,
-            this.idRanking,
-            this.idEj
-        ));
+        this.alumnos.push(new alumnoSkills(alum[i]));
+        this.alumnos[i].posicion = this.posicion;
+        console.log(this.alumnos);
+        this.alumnos[i].cooperacion = 0;
+        this.alumnos[i].emociones = 0;
+        this.alumnos[i].responsabilidad = 0;
+        this.alumnos[i].pensamiento = 0;
+        this.alumnos[i].iniciativa = 0;
       }
     })
   }

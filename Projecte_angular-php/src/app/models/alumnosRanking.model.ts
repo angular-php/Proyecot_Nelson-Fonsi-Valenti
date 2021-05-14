@@ -22,6 +22,6 @@ export class alumnoRanking{
     public lvlPensamiento?: number,
     public lvlResponsabilidad?: number,
     public idRank?: number,
-    public idEj?: number
+    public idEj?: number,
   ){}
 }

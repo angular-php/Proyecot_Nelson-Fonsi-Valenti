@@ -47,7 +47,7 @@
                               <button type="button" *ngIf="student === false" class="btn btn-success bt" (click)="editarRanking(rank.idRank)">  <i class="fas fa-edit"></i></button>
                               <button type="button" *ngIf="student === false" class="btn btn-danger bt" (click)="eliminarRanking(rank.idRank)">  <i class="fas fa-remove"></i></button>
                               <button type="button" *ngIf="student === false" class="btn btn-warning bt" (click)="actualizarCodigo(rank)">  <i class="fas fa-spinner"></i></button>
-                              <button type="button" *ngIf="student === true" class="btn btn-success bt" > Skills <i class="fas fa-edit"></i></button>
+                              <button type="button" *ngIf="student === true" class="btn btn-success bt" (click)="editarSkills(rank.idRank)"> Skills <i class="fas fa-edit"></i></button>
                               <button type="button" *ngIf="student === false" class="btn btn-info bt" >  <i class="fas fa-history"></i></button>
                             </td>
                           </tr>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { alumnoRanking } from '../models/alumnosRanking.model';
+import { alumnoSkills } from '../models/alumnosSkills.model';
 
 const api = environment.url;
 import { Usuario } from '../models/usuario.model';
@@ -66,8 +67,20 @@ export class UsuarioService {
     return this.http.get(`${api}server/verRankingModificar.php?idRank=${idRank}&idEj=${idEj}`).toPromise();
   }
 
+  verAlumnosRankingSkills(idRank: number): Promise<any> {
+    return this.http.get(`${api}server/verRankingSkills.php?idRank=${idRank}`).toPromise();
+  }
+
   modificarPuntuacionesRanking(alumnoRanking: alumnoRanking) {
     return this.http.post(`${api}server/modificarPuntuacionesRanking.php`, JSON.stringify(alumnoRanking));
+  }
+
+  modificarSkills(alumnoSkills: alumnoSkills, idRank: number){
+    return this.http.post(`${api}server/modificarSkillsRanking.php?id=${idRank}`, JSON.stringify(alumnoSkills));
+  }
+
+  modificarPuntosAlumno(puntosAlumno: any){
+    return this.http.post(`${api}server/modificarPuntosSkill.php`, JSON.stringify(puntosAlumno));
   }
 
 }

@@ -8,6 +8,7 @@ import { VistaRankingComponent } from './components/vista-ranking/vista-ranking.
 import { FormRankingComponent } from './components/form-ranking/form-ranking.component';
 import { ModificarRankingComponent } from './components/modificar-ranking/modificar-ranking.component';
 import { FormRankingAlumnoComponent } from './components/form-ranking-alumno/form-ranking-alumno.component';
+import { SkillsComponent } from './components/skills/skills.component';
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo:"login"},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'modificarRanking', component: ModificarRankingComponent},
   {path: 'formRanking', component: FormRankingComponent},
   {path: 'formRankingAlumno', component: FormRankingAlumnoComponent},
+  {path: 'skills', component: SkillsComponent},
   {path: "**" , redirectTo:"login"}
 ];
 
